@@ -8,41 +8,36 @@ const serviceAreas = {
 
 export function ServiceAreas() {
   return (
-    <section id="areas" className="py-20 md:py-32 bg-luxury-muted-bg">
+    <section id="areas" className="py-16 md:py-20 bg-oatmeal">
       <Container size="wide">
         {/* Section Header */}
-        <div className="mb-16 md:mb-24">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="h-px w-8 md:w-12 bg-luxury-fg" />
-            <span className="text-[10px] uppercase tracking-luxury-wide text-luxury-muted-fg">
+        <div className="mb-12 md:mb-16">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-espresso/20" />
+            <span className="text-sm font-medium tracking-warm text-driftwood">
               Service Areas
             </span>
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[0.9] max-w-3xl">
-            We Buy Houses Throughout
-            <span className="block"><em className="text-luxury-accent">Southern</em> California</span>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-espresso max-w-3xl">
+            We Buy Houses Throughout <em className="text-terracotta">Southern</em> California
           </h2>
         </div>
 
         {/* Areas Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
-          {Object.entries(serviceAreas).map(([region, cities], index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {Object.entries(serviceAreas).map(([region, cities]) => (
             <div
               key={region}
-              className={`
-                p-8 md:p-12
-                border-t border-luxury-fg/10
-                ${index < 2 ? 'md:border-r md:border-luxury-fg/10' : ''}
-              `}
+              className="card-warm p-6 md:p-8"
             >
-              <h3 className="font-serif text-2xl md:text-3xl mb-8">
+              <h3 className="font-serif text-xl md:text-2xl font-medium text-espresso mb-6">
                 {region}
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 {cities.map((city) => (
-                  <li key={city} className="flex items-center gap-3 text-sm text-luxury-muted-fg group">
-                    <span className="w-1 h-1 bg-luxury-accent transition-luxury group-hover:w-4" />
-                    <span className="transition-luxury group-hover:text-luxury-fg">{city}</span>
+                  <li key={city} className="flex items-center gap-3 text-sm text-driftwood group">
+                    <span className="w-1.5 h-1.5 bg-terracotta/50 rounded-full transition-warm group-hover:bg-terracotta group-hover:scale-125" />
+                    <span className="transition-warm group-hover:text-espresso">{city}</span>
                   </li>
                 ))}
               </ul>
@@ -51,10 +46,10 @@ export function ServiceAreas() {
         </div>
 
         {/* Note */}
-        <div className="mt-12 pt-12 border-t border-luxury-fg/10 text-center">
-          <p className="text-sm text-luxury-muted-fg">
+        <div className="mt-10 text-center">
+          <p className="text-sm text-driftwood">
             Don't see your city listed?{' '}
-            <a href="#contact" className="text-luxury-fg border-b border-luxury-fg hover:border-luxury-accent hover:text-luxury-accent transition-luxury">
+            <a href="#contact" className="text-espresso font-medium hover:text-terracotta transition-warm underline underline-offset-4">
               Contact us
             </a>{' '}
             — we likely still serve your area.

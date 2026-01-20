@@ -15,7 +15,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-[10px] uppercase tracking-luxury text-luxury-muted-fg mb-2"
+            className="block text-sm font-medium text-driftwood mb-2"
           >
             {label}
           </label>
@@ -24,17 +24,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={`
-            input-luxury
+            input-warm
             w-full
-            h-12
+            h-11
             text-base
-            ${error ? 'border-luxury-accent' : ''}
+            ${error ? 'border-terracotta' : ''}
             ${className}
           `.trim().replace(/\s+/g, ' ')}
           {...props}
         />
         {error && (
-          <p className="mt-2 text-[10px] uppercase tracking-luxury text-luxury-accent">
+          <p className="mt-2 text-sm text-terracotta">
             {error}
           </p>
         )}

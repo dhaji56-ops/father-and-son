@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'terracotta';
 type ButtonSize = 'default' | 'lg' | 'sm';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -11,9 +11,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'h-10 px-6 text-[10px]',
-  default: 'h-12 px-8 text-xs',
-  lg: 'h-14 px-10 text-xs',
+  sm: 'h-9 px-5 text-sm',
+  default: 'h-11 px-6 text-sm',
+  lg: 'h-12 px-8 text-sm',
 };
 
 export function Button({
@@ -26,52 +26,24 @@ export function Button({
 }: ButtonProps) {
   const baseStyles = `
     inline-flex items-center justify-center
-    uppercase tracking-luxury font-medium
-    transition-luxury
-    focus-visible:outline-1 focus-visible:outline-luxury-fg focus-visible:outline-offset-2
+    font-medium tracking-wide
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta/30 focus-visible:ring-offset-2
     disabled:opacity-50 disabled:cursor-not-allowed
+    rounded-md
   `;
 
-  if (variant === 'primary') {
-    return (
-      <button
-        className={`
-          ${baseStyles}
-          btn-luxury-primary
-          ${sizeStyles[size]}
-          ${fullWidth ? 'w-full' : ''}
-          ${className}
-        `.trim().replace(/\s+/g, ' ')}
-        {...props}
-      >
-        <span>{children}</span>
-      </button>
-    );
-  }
+  const variantStyles: Record<ButtonVariant, string> = {
+    primary: 'btn-primary',
+    terracotta: 'btn-terracotta',
+    secondary: 'btn-secondary',
+    ghost: 'btn-ghost hover:underline underline-offset-4',
+  };
 
-  if (variant === 'secondary') {
-    return (
-      <button
-        className={`
-          ${baseStyles}
-          btn-luxury-secondary
-          ${sizeStyles[size]}
-          ${fullWidth ? 'w-full' : ''}
-          ${className}
-        `.trim().replace(/\s+/g, ' ')}
-        {...props}
-      >
-        {children}
-      </button>
-    );
-  }
-
-  // Ghost variant
   return (
     <button
       className={`
         ${baseStyles}
-        text-luxury-fg hover:text-luxury-accent
+        ${variantStyles[variant]}
         ${sizeStyles[size]}
         ${fullWidth ? 'w-full' : ''}
         ${className}

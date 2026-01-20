@@ -2,24 +2,24 @@ import { Container } from './Container';
 
 export function Header() {
   return (
-    <header className="border-b border-luxury-fg/10 bg-luxury-bg/80 backdrop-blur-sm sticky top-0 z-30">
+    <header className="border-b border-espresso/10 bg-linen/90 backdrop-blur-sm sticky top-0 z-30">
       <Container>
-        <div className="flex items-center justify-between h-20 md:h-24">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3 group">
-            <div className="w-1 h-12 bg-luxury-accent" />
+            <div className="w-1.5 h-10 bg-terracotta rounded-full" />
             <div>
-              <span className="font-serif text-xl md:text-2xl tracking-tight block">
-                Father <em className="text-luxury-accent">&</em> Son
+              <span className="font-serif text-xl font-medium tracking-tight block text-espresso">
+                Father <em className="text-terracotta">&</em> Son
               </span>
-              <span className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg block">
+              <span className="text-xs font-medium tracking-warm text-driftwood block">
                 Home Buyers
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-12">
+          <nav className="hidden md:flex items-center gap-10">
             <NavLink href="#how-it-works">Process</NavLink>
             <NavLink href="#why-us">About</NavLink>
             <NavLink href="#areas">Areas</NavLink>
@@ -28,11 +28,9 @@ export function Header() {
           {/* CTA */}
           <a
             href="#contact"
-            className="btn-luxury-primary px-6 py-3 md:px-8 md:py-4"
+            className="btn-primary px-5 py-2.5 rounded-md text-sm font-medium"
           >
-            <span className="text-xs uppercase tracking-luxury font-medium">
-              Get Offer
-            </span>
+            Get Your Offer
           </a>
         </div>
       </Container>
@@ -45,9 +43,9 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
     <a
       href={href}
       className="
-        text-xs uppercase tracking-luxury font-medium
-        text-luxury-fg hover:text-luxury-accent
-        transition-luxury
+        text-sm font-medium
+        text-espresso hover:text-terracotta
+        transition-warm
       "
     >
       {children}

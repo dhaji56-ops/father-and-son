@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Container } from '../layout/Container';
 
-// Luxury Southern California home - Mediterranean style, Orange County vibe - Unsplash
-const HERO_IMAGE = 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80';
+// Modest Southern California home - relatable to target audience
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1759355787174-044355f63c55?w=1200&q=80';
 
 export function Hero() {
   const [address, setAddress] = useState('');
@@ -14,40 +14,37 @@ export function Hero() {
   };
 
   return (
-    <section className="py-20 md:py-32 lg:py-40 relative overflow-hidden">
+    <section className="py-16 md:py-20 lg:py-24 relative overflow-hidden">
       <Container size="wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left: Typography & Form */}
           <div className="lg:col-span-5 lg:col-start-1">
-            {/* Decorative Line + Label */}
-            <div className="flex items-center gap-4 mb-8">
-              <div className="h-px w-8 md:w-12 bg-luxury-fg" />
-              <span className="text-[10px] uppercase tracking-luxury-wide text-luxury-muted-fg">
+            {/* Section Label */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-8 bg-espresso/20" />
+              <span className="text-sm font-medium tracking-warm text-driftwood">
                 Cash Home Buyers
               </span>
             </div>
 
-            {/* Main Headline - Mixed Italic */}
-            <h1 className="font-serif leading-[0.9] mb-8">
-              <span className="block text-5xl md:text-6xl lg:text-7xl">
-                Sell Your
+            {/* Main Headline */}
+            <h1 className="font-serif font-medium leading-tight mb-6">
+              <span className="block text-4xl md:text-5xl lg:text-6xl text-espresso">
+                Sell Your Home
               </span>
-              <span className="block text-6xl md:text-7xl lg:text-8xl">
-                Home
-              </span>
-              <span className="block text-5xl md:text-6xl lg:text-7xl">
-                for <em className="text-luxury-accent">Cash</em>
+              <span className="block text-4xl md:text-5xl lg:text-6xl text-espresso">
+                for <em className="text-terracotta">Cash</em>
               </span>
             </h1>
 
             {/* Subhead */}
-            <p className="text-lg md:text-xl text-luxury-muted-fg mb-12 max-w-md leading-relaxed">
-              <span className="text-luxury-fg font-medium">48-hour offers.</span>{' '}
+            <p className="text-lg text-driftwood mb-10 max-w-md leading-relaxed">
+              <span className="text-espresso font-medium">48-hour offers.</span>{' '}
               No repairs. No fees. No hassle. Serving Southern California families since 2015.
             </p>
 
-            {/* Inline Form */}
-            <form onSubmit={handleSubmit} className="space-y-6 mb-8">
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-4 mb-6">
               <div>
                 <input
                   name="address"
@@ -55,7 +52,7 @@ export function Hero() {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   required
-                  className="input-luxury w-full text-base"
+                  className="input-warm w-full h-12 text-base"
                 />
               </div>
               <div>
@@ -66,58 +63,47 @@ export function Hero() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   required
-                  className="input-luxury w-full text-base"
+                  className="input-warm w-full h-12 text-base"
                 />
               </div>
-              <button type="submit" className="btn-luxury-primary w-full h-14 mt-4">
-                <span className="text-xs uppercase tracking-luxury font-medium">
-                  Get My Cash Offer
-                </span>
+              <button type="submit" className="btn-primary w-full h-12 mt-2 text-sm font-medium">
+                Get My Cash Offer
               </button>
             </form>
 
-            <p className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+            <p className="text-sm text-driftwood">
               No obligation. Your information is secure.
             </p>
           </div>
 
-          {/* Right: Hero Image with Editorial Treatment */}
+          {/* Right: Hero Image */}
           <div className="lg:col-span-6 lg:col-start-7 relative group">
-            {/* Vertical Label */}
-            <div className="hidden lg:block absolute -left-16 top-1/2 -translate-y-1/2 z-10">
-              <span className="vertical-text text-[10px] uppercase tracking-luxury-wide text-luxury-muted-fg">
-                Orange County, CA
-              </span>
-            </div>
-
             {/* Image Container */}
-            <div className="relative aspect-[4/5] overflow-hidden shadow-luxury-lg">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-xl shadow-warm-lg">
               <img
                 src={HERO_IMAGE}
-                alt="Luxury home in Orange County, California"
-                className="img-editorial w-full h-full object-cover group-hover:scale-105"
+                alt="Single-family home in Southern California"
+                className="img-warm w-full h-full object-cover"
               />
-              {/* Inner border overlay */}
-              <div className="absolute inset-0 shadow-luxury-inset pointer-events-none" />
             </div>
 
             {/* Stats below image */}
-            <div className="flex justify-between mt-8 pt-8 border-t border-luxury-fg/10">
-              <div>
-                <span className="font-serif text-4xl md:text-5xl block">500+</span>
-                <span className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+            <div className="flex justify-between mt-8 pt-6 border-t border-espresso/10">
+              <div className="text-center">
+                <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block">500+</span>
+                <span className="text-sm text-driftwood">
                   Homes Purchased
                 </span>
               </div>
-              <div>
-                <span className="font-serif text-4xl md:text-5xl block">48hr</span>
-                <span className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+              <div className="text-center">
+                <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block">48hr</span>
+                <span className="text-sm text-driftwood">
                   Fast Offers
                 </span>
               </div>
-              <div>
-                <span className="font-serif text-4xl md:text-5xl block">$0</span>
-                <span className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+              <div className="text-center">
+                <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block">$0</span>
+                <span className="text-sm text-driftwood">
                   Hidden Fees
                 </span>
               </div>

@@ -25,36 +25,35 @@ const valueProps = [
 
 export function ValueProps() {
   return (
-    <section className="py-20 md:py-32 border-t border-luxury-fg/10">
+    <section className="py-16 md:py-20 bg-oatmeal">
       <Container size="wide">
         {/* Section Header */}
-        <div className="mb-16 md:mb-24">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="h-px w-8 md:w-12 bg-luxury-fg" />
-            <span className="text-[10px] uppercase tracking-luxury-wide text-luxury-muted-fg">
+        <div className="mb-12 md:mb-16">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-espresso/20" />
+            <span className="text-sm font-medium tracking-warm text-driftwood">
               Why Choose Us
             </span>
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[0.9] max-w-2xl">
-            The <em className="text-luxury-accent">Smarter</em> Way
-            <span className="block">to Sell Your Home</span>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-espresso max-w-2xl">
+            The <em className="text-terracotta">Smarter</em> Way to Sell Your Home
           </h2>
         </div>
 
         {/* Value Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {valueProps.map((prop) => (
             <div
               key={prop.number}
-              className="card-luxury p-8 md:p-10 group"
+              className="card-warm p-6 md:p-8 group"
             >
-              <span className="font-serif text-5xl md:text-6xl text-luxury-accent/30 block mb-6 transition-luxury group-hover:text-luxury-accent">
+              <span className="font-serif text-4xl md:text-5xl text-terracotta/30 block mb-4 transition-warm group-hover:text-terracotta">
                 {prop.number}
               </span>
-              <h3 className="font-serif text-xl md:text-2xl mb-4">
+              <h3 className="font-serif text-xl font-medium text-espresso mb-3">
                 {prop.title}
               </h3>
-              <p className="text-sm text-luxury-muted-fg leading-relaxed">
+              <p className="text-sm text-driftwood leading-relaxed">
                 {prop.description}
               </p>
             </div>

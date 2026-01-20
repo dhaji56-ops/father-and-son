@@ -20,24 +20,22 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 md:py-32 bg-luxury-fg text-white">
+    <section id="how-it-works" className="py-16 md:py-20 lg:py-24 bg-espresso text-linen">
       <Container size="wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Left: Header */}
           <div className="lg:col-span-4">
-            <div className="lg:sticky lg:top-32">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-8 md:w-12 bg-white/30" />
-                <span className="text-[10px] uppercase tracking-luxury-wide text-white/60">
+            <div className="lg:sticky lg:top-28">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px w-8 bg-linen/30" />
+                <span className="text-sm font-medium tracking-warm text-linen/60">
                   The Process
                 </span>
               </div>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[0.9] mb-8">
-                Three
-                <span className="block"><em className="text-luxury-accent">Simple</em></span>
-                <span className="block">Steps</span>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-6">
+                Three <em className="text-terracotta">Simple</em> Steps
               </h2>
-              <p className="text-white/60 leading-relaxed max-w-sm">
+              <p className="text-linen/70 leading-relaxed max-w-sm">
                 We've streamlined the home selling process to make it as effortless as possible.
                 No showings, no open houses, no waiting.
               </p>
@@ -51,21 +49,21 @@ export function HowItWorks() {
                 <div
                   key={step.number}
                   className={`
-                    py-10 md:py-14
-                    border-t border-white/10
-                    ${index === steps.length - 1 ? 'border-b border-white/10' : ''}
+                    py-8 md:py-10
+                    border-t border-linen/10
+                    ${index === steps.length - 1 ? 'border-b border-linen/10' : ''}
                     group
                   `}
                 >
-                  <div className="flex items-start gap-8 md:gap-12">
-                    <span className="font-serif text-5xl md:text-6xl text-luxury-accent/50 transition-luxury group-hover:text-luxury-accent">
+                  <div className="flex items-start gap-6 md:gap-10">
+                    <span className="font-serif text-4xl md:text-5xl text-terracotta/50 transition-warm group-hover:text-terracotta">
                       {step.number}
                     </span>
                     <div className="flex-1">
-                      <h3 className="font-serif text-2xl md:text-3xl mb-4 transition-luxury group-hover:text-luxury-accent">
+                      <h3 className="font-serif text-xl md:text-2xl font-medium mb-3 transition-warm group-hover:text-terracotta">
                         {step.title}
                       </h3>
-                      <p className="text-white/60 leading-relaxed max-w-lg">
+                      <p className="text-linen/70 leading-relaxed max-w-lg">
                         {step.description}
                       </p>
                     </div>
@@ -75,23 +73,23 @@ export function HowItWorks() {
             </div>
 
             {/* Benefits */}
-            <div className="mt-12 pt-12 border-t border-white/10">
-              <div className="grid grid-cols-3 gap-8">
-                <div>
-                  <span className="font-serif text-3xl md:text-4xl block mb-2">7</span>
-                  <span className="text-[10px] uppercase tracking-luxury text-white/60">
+            <div className="mt-10 pt-10 border-t border-linen/10">
+              <div className="grid grid-cols-3 gap-6">
+                <div className="text-center">
+                  <span className="font-serif text-2xl md:text-3xl font-medium block mb-1">7</span>
+                  <span className="text-sm text-linen/60">
                     Day Closing
                   </span>
                 </div>
-                <div>
-                  <span className="font-serif text-3xl md:text-4xl block mb-2">$0</span>
-                  <span className="text-[10px] uppercase tracking-luxury text-white/60">
+                <div className="text-center">
+                  <span className="font-serif text-2xl md:text-3xl font-medium block mb-1">$0</span>
+                  <span className="text-sm text-linen/60">
                     Closing Costs
                   </span>
                 </div>
-                <div>
-                  <span className="font-serif text-3xl md:text-4xl block mb-2">100%</span>
-                  <span className="text-[10px] uppercase tracking-luxury text-white/60">
+                <div className="text-center">
+                  <span className="font-serif text-2xl md:text-3xl font-medium block mb-1">100%</span>
+                  <span className="text-sm text-linen/60">
                     Confidential
                   </span>
                 </div>

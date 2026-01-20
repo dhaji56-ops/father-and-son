@@ -20,31 +20,30 @@ export function LeadForm() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 border-t border-luxury-fg/10">
+    <section id="contact" className="py-16 md:py-20 lg:py-24">
       <Container size="narrow">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="h-px w-8 md:w-12 bg-luxury-fg" />
-            <span className="text-[10px] uppercase tracking-luxury-wide text-luxury-muted-fg">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="h-px w-8 bg-espresso/20" />
+            <span className="text-sm font-medium tracking-warm text-driftwood">
               Get Started
             </span>
-            <div className="h-px w-8 md:w-12 bg-luxury-fg" />
+            <div className="h-px w-8 bg-espresso/20" />
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[0.9] mb-6">
-            Request Your
-            <span className="block"><em className="text-luxury-accent">Free</em> Cash Offer</span>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-espresso mb-4">
+            Request Your <em className="text-terracotta">Free</em> Cash Offer
           </h2>
-          <p className="text-luxury-muted-fg max-w-md mx-auto">
+          <p className="text-driftwood max-w-md mx-auto">
             Fill out the form below and we'll contact you within 48 hours with a fair, no-obligation offer.
           </p>
         </div>
 
         {/* Form */}
-        <div className="border-t border-luxury-fg/10 pt-12">
-          <form onSubmit={handleSubmit} className="space-y-8">
+        <div className="card-warm p-8 md:p-10">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="address" className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg block mb-2">
+              <label htmlFor="address" className="block text-sm font-medium text-driftwood mb-2">
                 Property Address
               </label>
               <input
@@ -54,13 +53,13 @@ export function LeadForm() {
                 value={formData.address}
                 onChange={handleChange}
                 required
-                className="input-luxury w-full text-base"
+                className="input-warm w-full h-12 text-base"
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg block mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-driftwood mb-2">
                   Your Name
                 </label>
                 <input
@@ -70,11 +69,11 @@ export function LeadForm() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="input-luxury w-full text-base"
+                  className="input-warm w-full h-12 text-base"
                 />
               </div>
               <div>
-                <label htmlFor="phone" className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg block mb-2">
+                <label htmlFor="phone" className="block text-sm font-medium text-driftwood mb-2">
                   Phone Number
                 </label>
                 <input
@@ -85,13 +84,13 @@ export function LeadForm() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="input-luxury w-full text-base"
+                  className="input-warm w-full h-12 text-base"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg block mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-driftwood mb-2">
                 Email (Optional)
               </label>
               <input
@@ -101,42 +100,40 @@ export function LeadForm() {
                 placeholder="john@email.com"
                 value={formData.email}
                 onChange={handleChange}
-                className="input-luxury w-full text-base"
+                className="input-warm w-full h-12 text-base"
               />
             </div>
 
-            <div className="pt-4">
-              <button type="submit" className="btn-luxury-primary w-full h-14">
-                <span className="text-xs uppercase tracking-luxury font-medium">
-                  Get My Cash Offer Now
-                </span>
+            <div className="pt-2">
+              <button type="submit" className="btn-terracotta w-full h-12 text-sm font-medium">
+                Get My Cash Offer Now
               </button>
             </div>
           </form>
 
-          <p className="mt-8 text-center text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+          <p className="mt-6 text-center text-sm text-driftwood">
             No obligation. Your information is secure and never shared.
           </p>
         </div>
 
         {/* Trust Signals */}
-        <div className="mt-16 pt-16 border-t border-luxury-fg/10">
-          <div className="flex flex-wrap justify-center gap-12 md:gap-16">
+        <div className="mt-12 pt-10 border-t border-espresso/10">
+          <div className="flex flex-wrap justify-center gap-10 md:gap-16">
             <div className="text-center">
-              <span className="font-serif text-4xl md:text-5xl block mb-2">500+</span>
-              <span className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+              <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block mb-1">500+</span>
+              <span className="text-sm text-driftwood">
                 Houses Bought
               </span>
             </div>
             <div className="text-center">
-              <span className="font-serif text-4xl md:text-5xl block mb-2">4.9</span>
-              <span className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+              <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block mb-1">4.9</span>
+              <span className="text-sm text-driftwood">
                 Google Rating
               </span>
             </div>
             <div className="text-center">
-              <span className="font-serif text-4xl md:text-5xl block mb-2">A+</span>
-              <span className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+              <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block mb-1">A+</span>
+              <span className="text-sm text-driftwood">
                 BBB Rating
               </span>
             </div>

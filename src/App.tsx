@@ -10,13 +10,7 @@ import {
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-luxury-bg pattern-noise">
-      {/* Vertical Grid Lines - Editorial Magazine Feel */}
-      <div className="grid-lines hidden lg:flex" aria-hidden="true">
-        <div className="line" />
-        <div className="line" />
-      </div>
-
+    <div className="min-h-screen flex flex-col bg-linen pattern-noise">
       <Header />
       <main className="flex-1">
         <Hero />
