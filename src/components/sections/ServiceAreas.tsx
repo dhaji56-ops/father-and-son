@@ -1,68 +1,65 @@
 import { Container } from '../layout/Container';
-import { SectionLabel } from '../ui/SectionLabel';
 
 const serviceAreas = {
-  'Orange County': ['Anaheim', 'Irvine', 'Santa Ana', 'Huntington Beach', 'Fullerton', 'Costa Mesa', 'Garden Grove', 'Orange'],
+  'Orange County': ['Anaheim', 'Irvine', 'Santa Ana', 'Huntington Beach', 'Fullerton', 'Costa Mesa', 'Newport Beach', 'Orange'],
   'Los Angeles': ['Long Beach', 'Torrance', 'Pasadena', 'Pomona', 'Downey', 'Compton', 'Norwalk', 'El Monte'],
   'Inland Empire': ['Riverside', 'Corona', 'Fontana', 'Moreno Valley', 'Ontario', 'Rancho Cucamonga', 'San Bernardino', 'Temecula'],
 };
 
 export function ServiceAreas() {
   return (
-    <section id="areas" className="py-16 md:py-24 border-b-4 border-black">
-      <Container>
-        <div className="mb-12">
-          <SectionLabel number="04" text="Service Areas" />
-          <h2 className="font-black text-3xl md:text-4xl lg:text-5xl uppercase tracking-tighter mt-4">
+    <section id="areas" className="py-20 md:py-32 bg-luxury-muted-bg">
+      <Container size="wide">
+        {/* Section Header */}
+        <div className="mb-16 md:mb-24">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-px w-8 md:w-12 bg-luxury-fg" />
+            <span className="text-[10px] uppercase tracking-luxury-wide text-luxury-muted-fg">
+              Service Areas
+            </span>
+          </div>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[0.9] max-w-3xl">
             We Buy Houses Throughout
-            <span className="text-swiss-accent"> Southern California</span>
+            <span className="block"><em className="text-luxury-accent">Southern</em> California</span>
           </h2>
         </div>
 
-        {/* Table */}
-        <div className="border-4 border-black overflow-hidden">
-          {/* Header */}
-          <div className="grid grid-cols-3 bg-black text-white">
-            {Object.keys(serviceAreas).map((region) => (
-              <div
-                key={region}
-                className="p-4 md:p-6 font-bold text-xs md:text-sm uppercase tracking-wide border-r-2 border-gray-800 last:border-r-0"
-              >
+        {/* Areas Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+          {Object.entries(serviceAreas).map(([region, cities], index) => (
+            <div
+              key={region}
+              className={`
+                p-8 md:p-12
+                border-t border-luxury-fg/10
+                ${index < 2 ? 'md:border-r md:border-luxury-fg/10' : ''}
+              `}
+            >
+              <h3 className="font-serif text-2xl md:text-3xl mb-8">
                 {region}
-              </div>
-            ))}
-          </div>
-
-          {/* Body */}
-          <div className="grid grid-cols-3">
-            {Object.entries(serviceAreas).map(([region, cities], regionIndex) => (
-              <div
-                key={region}
-                className={`
-                  p-4 md:p-6
-                  ${regionIndex < 2 ? 'border-r-2 border-black' : ''}
-                `}
-              >
-                <ul className="space-y-2">
-                  {cities.map((city) => (
-                    <li key={city} className="text-sm flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 bg-swiss-accent flex-shrink-0" />
-                      {city}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+              </h3>
+              <ul className="space-y-3">
+                {cities.map((city) => (
+                  <li key={city} className="flex items-center gap-3 text-sm text-luxury-muted-fg group">
+                    <span className="w-1 h-1 bg-luxury-accent transition-luxury group-hover:w-4" />
+                    <span className="transition-luxury group-hover:text-luxury-fg">{city}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <p className="mt-6 text-sm text-gray-600">
-          Don't see your city? We likely still serve your area.{' '}
-          <a href="#contact" className="font-bold text-black underline hover:text-swiss-accent transition-colors">
-            Contact us
-          </a>{' '}
-          to find out.
-        </p>
+        {/* Note */}
+        <div className="mt-12 pt-12 border-t border-luxury-fg/10 text-center">
+          <p className="text-sm text-luxury-muted-fg">
+            Don't see your city listed?{' '}
+            <a href="#contact" className="text-luxury-fg border-b border-luxury-fg hover:border-luxury-accent hover:text-luxury-accent transition-luxury">
+              Contact us
+            </a>{' '}
+            — we likely still serve your area.
+          </p>
+        </div>
       </Container>
     </section>
   );

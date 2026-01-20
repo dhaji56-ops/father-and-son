@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Container } from '../layout/Container';
-import { Button } from '../ui/Button';
-import { Input } from '../ui/Input';
+
+// Luxury Southern California home - Mediterranean style, Orange County vibe - Unsplash
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80';
 
 export function Hero() {
   const [address, setAddress] = useState('');
@@ -13,93 +14,112 @@ export function Hero() {
   };
 
   return (
-    <section className="bg-swiss-muted pattern-grid-large relative">
-      <Container>
-        <div className="py-12 md:py-20 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Left: Typography */}
-            <div className="lg:col-span-7">
-              <div className="mb-6">
-                <span className="text-swiss-accent font-bold text-xs tracking-widest uppercase">
-                  01. Cash Home Buyers
-                </span>
-              </div>
-
-              <h1 className="font-black uppercase tracking-tighter leading-none mb-6">
-                <span className="block text-display-sm md:text-display-lg lg:text-display-xl">
-                  Sell Your
-                </span>
-                <span className="block text-display-md md:text-display-xl lg:text-display-2xl">
-                  House
-                </span>
-                <span className="block text-display-sm md:text-display-lg lg:text-display-xl text-swiss-accent">
-                  For Cash
-                </span>
-              </h1>
-
-              <p className="text-lg md:text-xl font-medium mb-8 max-w-md">
-                <span className="font-bold">48-Hour Offers.</span>{' '}
-                <span className="text-gray-600">No Repairs. No Fees. No Hassle.</span>
-              </p>
-
-              {/* Service Areas */}
-              <div className="flex flex-wrap items-center gap-4 text-sm">
-                <span className="text-gray-500 uppercase tracking-wide text-xs">Serving:</span>
-                <div className="flex flex-wrap gap-3">
-                  {['Orange County', 'Los Angeles', 'Inland Empire'].map((area) => (
-                    <span
-                      key={area}
-                      className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide"
-                    >
-                      <span className="w-2 h-2 bg-black" />
-                      {area}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Geometric Accents */}
-              <div className="hidden lg:flex items-center gap-4 mt-12">
-                <div className="w-12 h-12 bg-swiss-accent" />
-                <div className="w-12 h-12 rounded-full border-4 border-black" />
-                <div className="w-24 h-1 bg-black" />
-              </div>
+    <section className="py-20 md:py-32 lg:py-40 relative overflow-hidden">
+      <Container size="wide">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-end">
+          {/* Left: Typography & Form */}
+          <div className="lg:col-span-5 lg:col-start-1">
+            {/* Decorative Line + Label */}
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px w-8 md:w-12 bg-luxury-fg" />
+              <span className="text-[10px] uppercase tracking-luxury-wide text-luxury-muted-fg">
+                Cash Home Buyers
+              </span>
             </div>
 
-            {/* Right: Lead Form */}
-            <div className="lg:col-span-5">
-              <div className="bg-white border-4 border-black p-6 md:p-8">
-                <h2 className="font-black text-lg uppercase tracking-tight mb-2">
-                  Get Your Cash Offer
-                </h2>
-                <p className="text-sm text-gray-600 mb-6">
-                  No obligation. Response within 48 hours.
-                </p>
+            {/* Main Headline - Mixed Italic */}
+            <h1 className="font-serif leading-[0.9] mb-8">
+              <span className="block text-5xl md:text-6xl lg:text-7xl">
+                Sell Your
+              </span>
+              <span className="block text-6xl md:text-7xl lg:text-8xl">
+                Home
+              </span>
+              <span className="block text-5xl md:text-6xl lg:text-7xl">
+                for <em className="text-luxury-accent">Cash</em>
+              </span>
+            </h1>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <Input
-                    name="address"
-                    placeholder="Property Address"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    required
-                  />
-                  <Input
-                    name="phone"
-                    type="tel"
-                    placeholder="Phone Number"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    required
-                  />
-                  <Button type="submit" variant="secondary" fullWidth size="lg">
-                    Get My Cash Offer
-                  </Button>
-                </form>
+            {/* Subhead */}
+            <p className="text-lg md:text-xl text-luxury-muted-fg mb-12 max-w-md leading-relaxed">
+              <span className="text-luxury-fg font-medium">48-hour offers.</span>{' '}
+              No repairs. No fees. No hassle. Serving Southern California families since 2015.
+            </p>
 
-                <p className="mt-4 text-xs text-gray-500 text-center">
-                  Your information is secure and never shared.
-                </p>
+            {/* Inline Form */}
+            <form onSubmit={handleSubmit} className="space-y-6 mb-8">
+              <div>
+                <input
+                  name="address"
+                  placeholder="Property address..."
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  required
+                  className="input-luxury w-full text-base"
+                />
+              </div>
+              <div>
+                <input
+                  name="phone"
+                  type="tel"
+                  placeholder="Your phone number..."
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                  className="input-luxury w-full text-base"
+                />
+              </div>
+              <button type="submit" className="btn-luxury-primary w-full h-14 mt-4">
+                <span className="text-xs uppercase tracking-luxury font-medium">
+                  Get My Cash Offer
+                </span>
+              </button>
+            </form>
+
+            <p className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+              No obligation. Your information is secure.
+            </p>
+          </div>
+
+          {/* Right: Hero Image with Editorial Treatment */}
+          <div className="lg:col-span-6 lg:col-start-7 relative group">
+            {/* Vertical Label */}
+            <div className="hidden lg:block absolute -left-16 top-1/2 -translate-y-1/2 z-10">
+              <span className="vertical-text text-[10px] uppercase tracking-luxury-wide text-luxury-muted-fg">
+                Orange County, CA
+              </span>
+            </div>
+
+            {/* Image Container */}
+            <div className="relative aspect-[4/5] overflow-hidden shadow-luxury-lg">
+              <img
+                src={HERO_IMAGE}
+                alt="Luxury home in Orange County, California"
+                className="img-editorial w-full h-full object-cover group-hover:scale-105"
+              />
+              {/* Inner border overlay */}
+              <div className="absolute inset-0 shadow-luxury-inset pointer-events-none" />
+            </div>
+
+            {/* Stats below image */}
+            <div className="flex justify-between mt-8 pt-8 border-t border-luxury-fg/10">
+              <div>
+                <span className="font-serif text-4xl md:text-5xl block">500+</span>
+                <span className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+                  Homes Purchased
+                </span>
+              </div>
+              <div>
+                <span className="font-serif text-4xl md:text-5xl block">48hr</span>
+                <span className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+                  Fast Offers
+                </span>
+              </div>
+              <div>
+                <span className="font-serif text-4xl md:text-5xl block">$0</span>
+                <span className="text-[10px] uppercase tracking-luxury text-luxury-muted-fg">
+                  Hidden Fees
+                </span>
               </div>
             </div>
           </div>

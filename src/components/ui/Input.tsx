@@ -15,7 +15,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-xs font-bold uppercase tracking-widest mb-2"
+            className="block text-[10px] uppercase tracking-luxury text-luxury-muted-fg mb-2"
           >
             {label}
           </label>
@@ -24,22 +24,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={`
+            input-luxury
             w-full
-            px-4 py-3
-            bg-white
-            border-2 border-black
-            rounded-none
+            h-12
             text-base
-            placeholder:text-gray-400 placeholder:uppercase placeholder:tracking-wide placeholder:text-sm
-            focus:border-swiss-accent focus:outline-none
-            transition-colors duration-200
-            ${error ? 'border-swiss-accent' : ''}
+            ${error ? 'border-luxury-accent' : ''}
             ${className}
           `.trim().replace(/\s+/g, ' ')}
           {...props}
         />
         {error && (
-          <p className="mt-1 text-xs text-swiss-accent font-medium">{error}</p>
+          <p className="mt-2 text-[10px] uppercase tracking-luxury text-luxury-accent">
+            {error}
+          </p>
         )}
       </div>
     );

@@ -1,49 +1,24 @@
 @import "tailwindcss";
 
-/* Google Font - Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+/* Google Fonts - Playfair Display & Inter */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
 
-/* Swiss Design System Theme */
+/* Luxury/Editorial Design System Theme */
 @theme {
-  /* Colors */
-  --color-swiss-bg: #FFFFFF;
-  --color-swiss-fg: #000000;
-  --color-swiss-muted: #F2F2F2;
-  --color-swiss-accent: #FF3000;
-  --color-swiss-border: #000000;
+  /* Colors - Sophisticated Monochrome */
+  --color-luxury-bg: #F9F8F6;
+  --color-luxury-fg: #1A1A1A;
+  --color-luxury-muted-bg: #EBE5DE;
+  --color-luxury-muted-fg: #6C6863;
+  --color-luxury-accent: #D4AF37;
+  --color-luxury-accent-fg: #FFFFFF;
 
-  /* Font Family */
+  /* Font Families */
+  --font-family-serif: 'Playfair Display', Georgia, serif;
   --font-family-sans: 'Inter', system-ui, sans-serif;
 
-  /* Font Sizes - Swiss Scale */
-  --font-size-display-sm: 3rem;
-  --font-size-display-md: 4rem;
-  --font-size-display-lg: 5rem;
-  --font-size-display-xl: 6rem;
-  --font-size-display-2xl: 8rem;
-  --font-size-display-3xl: 10rem;
-
-  /* Line Heights for Display */
-  --line-height-display-sm: 1;
-  --line-height-display-md: 1;
-  --line-height-display-lg: 0.9;
-  --line-height-display-xl: 0.85;
-  --line-height-display-2xl: 0.85;
-  --line-height-display-3xl: 0.85;
-
-  /* Letter Spacing */
-  --letter-spacing-tighter: -0.04em;
-  --letter-spacing-tight: -0.02em;
-  --letter-spacing-wide: 0.025em;
-  --letter-spacing-wider: 0.05em;
-  --letter-spacing-widest: 0.1em;
-
-  /* Border Radius - Swiss: None */
+  /* Border Radius - Strictly 0 */
   --radius-none: 0;
-
-  /* Border Width */
-  --border-width-2: 2px;
-  --border-width-4: 4px;
 }
 
 /* Base Styles */
@@ -62,113 +37,204 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--color-swiss-bg);
-  color: var(--color-swiss-fg);
-  line-height: 1.5;
+  background-color: var(--color-luxury-bg);
+  color: var(--color-luxury-fg);
+  line-height: 1.625;
 }
 
-/* CSS Patterns for Visual Depth */
-
-/* Grid Pattern - 24px architectural grid */
-.pattern-grid {
-  background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* Serif heading class */
+.font-serif {
+  font-family: var(--font-family-serif);
 }
 
-.pattern-grid-large {
-  background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-.pattern-grid-dark {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Dot Matrix Pattern - 16px halftone */
-.pattern-dots {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-  background-size: 16px 16px;
-}
-
-.pattern-dots-dark {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 16px 16px;
-}
-
-/* Diagonal Lines Pattern - 45 degrees */
-.pattern-diagonal {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(0, 0, 0, 0.03) 10px,
-    rgba(0, 0, 0, 0.03) 11px
-  );
-}
-
-/* Noise Texture - SVG-based */
-.pattern-noise {
-  position: relative;
-}
-
+/* Paper Noise Texture - Luxury feel */
 .pattern-noise::before {
   content: '';
-  position: absolute;
+  position: fixed;
   inset: 0;
-  opacity: 0.03;
+  opacity: 0.02;
   pointer-events: none;
+  z-index: 50;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 200px 200px;
 }
 
-/* Swiss Typography Classes */
-.text-display-sm {
-  font-size: var(--font-size-display-sm);
-  line-height: var(--line-height-display-sm);
-  letter-spacing: var(--letter-spacing-tighter);
+/* Vertical Grid Lines - Editorial magazine feel */
+.grid-lines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-.text-display-md {
-  font-size: var(--font-size-display-md);
-  line-height: var(--line-height-display-md);
-  letter-spacing: var(--letter-spacing-tighter);
+.grid-lines::before,
+.grid-lines::after,
+.grid-lines .line {
+  content: '';
+  width: 1px;
+  height: 100%;
+  background-color: rgba(26, 26, 26, 0.08);
 }
 
-.text-display-lg {
-  font-size: var(--font-size-display-lg);
-  line-height: var(--line-height-display-lg);
-  letter-spacing: var(--letter-spacing-tighter);
+/* Letter Spacing Utilities */
+.tracking-luxury {
+  letter-spacing: 0.25em;
 }
 
-.text-display-xl {
-  font-size: var(--font-size-display-xl);
-  line-height: var(--line-height-display-xl);
-  letter-spacing: var(--letter-spacing-tighter);
+.tracking-luxury-wide {
+  letter-spacing: 0.3em;
 }
 
-.text-display-2xl {
-  font-size: var(--font-size-display-2xl);
-  line-height: var(--line-height-display-2xl);
-  letter-spacing: var(--letter-spacing-tighter);
+/* Slow Cinematic Transitions */
+.transition-luxury {
+  transition: all 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.text-display-3xl {
-  font-size: var(--font-size-display-3xl);
-  line-height: var(--line-height-display-3xl);
-  letter-spacing: var(--letter-spacing-tighter);
+.transition-luxury-slow {
+  transition: all 1500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Focus States - Swiss Red */
+.transition-luxury-ultra {
+  transition: all 2000ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Grayscale Image Treatment */
+.img-editorial {
+  filter: grayscale(1);
+  transition: filter 1500ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1500ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.group:hover .img-editorial,
+.img-editorial:hover {
+  filter: grayscale(0);
+}
+
+/* Drop Cap for editorial feel */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-family-serif);
+  font-size: 4.5rem;
+  line-height: 0.8;
+  margin-right: 0.75rem;
+  margin-top: 0.1rem;
+  color: var(--color-luxury-fg);
+}
+
+/* Vertical Text for decorative labels */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Gold Sliding Button Animation */
+.btn-luxury-primary {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-luxury-fg);
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-luxury-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-luxury-accent);
+  transform: translateX(-100%);
+  transition: transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-luxury-primary:hover::before {
+  transform: translateX(0);
+}
+
+.btn-luxury-primary:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.btn-luxury-primary span {
+  position: relative;
+  z-index: 10;
+}
+
+/* Secondary Button */
+.btn-luxury-secondary {
+  background-color: transparent;
+  border: 1px solid var(--color-luxury-fg);
+  color: var(--color-luxury-fg);
+  transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-luxury-secondary:hover {
+  background-color: var(--color-luxury-fg);
+  color: white;
+}
+
+/* Underline Input Style */
+.input-luxury {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-luxury-fg);
+  padding: 0.75rem 0;
+  transition: border-color 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.input-luxury:focus {
+  outline: none;
+  border-bottom-color: var(--color-luxury-accent);
+}
+
+.input-luxury::placeholder {
+  font-family: var(--font-family-serif);
+  font-style: italic;
+  color: var(--color-luxury-muted-fg);
+}
+
+/* Card with top border only */
+.card-luxury {
+  border-top: 1px solid var(--color-luxury-fg);
+  transition: background-color 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-luxury:hover {
+  background-color: rgba(249, 248, 246, 0.5);
+}
+
+/* Featured card with gold accent */
+.card-luxury-featured {
+  border-top: 4px solid var(--color-luxury-accent);
+}
+
+/* Subtle Layered Shadows */
+.shadow-luxury-sm {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.shadow-luxury-md {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-luxury-lg {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Inner border for images */
+.shadow-luxury-inset {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* Focus States */
 :focus-visible {
-  outline: 4px solid var(--color-swiss-accent);
+  outline: 1px solid var(--color-luxury-fg);
   outline-offset: 2px;
 }
 
@@ -198,4 +264,24 @@ select {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  .img-editorial {
+    filter: grayscale(0);
+  }
+}
+
+/* FAQ Accordion Animation */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 300ms ease-out;
 }

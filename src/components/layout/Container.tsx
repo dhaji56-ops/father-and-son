@@ -8,8 +8,8 @@ interface ContainerProps {
 
 const sizeStyles = {
   default: 'max-w-6xl',
-  narrow: 'max-w-4xl',
-  wide: 'max-w-7xl',
+  narrow: 'max-w-3xl',
+  wide: 'max-w-[1600px]',
 };
 
 export function Container({
@@ -20,7 +20,7 @@ export function Container({
   return (
     <div
       className={`
-        w-full mx-auto px-4 md:px-8 lg:px-12
+        w-full mx-auto px-8 md:px-16
         ${sizeStyles[size]}
         ${className}
       `.trim().replace(/\s+/g, ' ')}
