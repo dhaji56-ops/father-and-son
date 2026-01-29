@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container } from '../layout/Container';
+import { useAddressAutocomplete } from '../../hooks/useAddressAutocomplete';
 
 // Modest Southern California home - relatable to target audience
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1759355787174-044355f63c55?w=1200&q=80';
@@ -7,6 +8,17 @@ const HERO_IMAGE = 'https://images.unsplash.com/photo-1759355787174-044355f63c55
 export function Hero() {
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
+
+  const addressInputRef = useAddressAutocomplete({
+    onPlaceSelected: (selectedAddress) => setAddress(selectedAddress),
+  });
+
+  // Sync input value when address state changes
+  useEffect(() => {
+    if (addressInputRef.current && addressInputRef.current.value !== address) {
+      addressInputRef.current.value = address;
+    }
+  }, [address]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,10 +59,12 @@ export function Hero() {
             <form onSubmit={handleSubmit} className="space-y-4 mb-6">
               <div>
                 <input
+                  ref={addressInputRef}
                   name="address"
                   placeholder="Property address..."
-                  value={address}
+                  defaultValue={address}
                   onChange={(e) => setAddress(e.target.value)}
+                  autoComplete="street-address"
                   required
                   className="input-warm w-full h-12 text-base"
                 />
@@ -83,7 +97,7 @@ export function Hero() {
               <img
                 src={HERO_IMAGE}
                 alt="Single-family home in Southern California"
-                className="img-warm w-full h-full object-cover"
+                className="img-warm w-full h-full object-cover -rotate-[3deg] scale-110"
               />
             </div>
 

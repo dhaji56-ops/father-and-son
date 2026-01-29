@@ -2,20 +2,16 @@ import { Container } from './Container';
 
 export function Header() {
   return (
-    <header className="border-b border-espresso/10 bg-linen/90 backdrop-blur-sm sticky top-0 z-30">
+    <header className="border-b border-espresso/10 bg-linen sticky top-0 z-[60]">
       <Container>
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3 group">
-            <div className="w-1.5 h-10 bg-terracotta rounded-full" />
-            <div>
-              <span className="font-serif text-xl font-medium tracking-tight block text-espresso">
-                Father <em className="text-terracotta">&</em> Son
-              </span>
-              <span className="text-xs font-medium tracking-warm text-driftwood block">
-                Home Buyers
-              </span>
-            </div>
+          <a href="/" className="flex items-center">
+            <img
+              src="/logo.png"
+              alt="Father & Son Home Buyers"
+              className="h-20 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}

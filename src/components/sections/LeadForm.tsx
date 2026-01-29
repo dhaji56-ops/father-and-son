@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container } from '../layout/Container';
+import { useAddressAutocomplete } from '../../hooks/useAddressAutocomplete';
 
 export function LeadForm() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,18 @@ export function LeadForm() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  const addressInputRef = useAddressAutocomplete({
+    onPlaceSelected: (selectedAddress) =>
+      setFormData((prev) => ({ ...prev, address: selectedAddress })),
+  });
+
+  // Sync input value when address state changes
+  useEffect(() => {
+    if (addressInputRef.current && addressInputRef.current.value !== formData.address) {
+      addressInputRef.current.value = formData.address;
+    }
+  }, [formData.address]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,11 +60,13 @@ export function LeadForm() {
                 Property Address
               </label>
               <input
+                ref={addressInputRef}
                 id="address"
                 name="address"
                 placeholder="123 Main Street, City, CA 92000"
-                value={formData.address}
+                defaultValue={formData.address}
                 onChange={handleChange}
+                autoComplete="street-address"
                 required
                 className="input-warm w-full h-12 text-base"
               />

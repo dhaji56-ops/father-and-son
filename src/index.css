@@ -5,13 +5,14 @@
 
 /* Warm Luxury / Heirloom Modern Design System */
 @theme {
-  /* Colors - Warm Sophisticated Neutrals */
-  --color-linen: #FAF8F5;
-  --color-oatmeal: #F0EBE3;
-  --color-espresso: #2D2926;
-  --color-driftwood: #7D746A;
-  --color-terracotta: #C17F59;
-  --color-walnut: #8B7355;
+  /* Colors - Refined Stone Palette (based on logo #edede9) */
+  --color-linen: #edede9;
+  --color-oatmeal: #e0e0db;
+  --color-cream: #f7f7f5;
+  --color-espresso: #2f3130;
+  --color-driftwood: #71746e;
+  --color-terracotta: #a47551;
+  --color-walnut: #7d756b;
 
   /* Font Families */
   --font-family-serif: 'Source Serif 4', Georgia, serif;
@@ -106,15 +107,15 @@ body {
 /* Primary Button - Confident & Inviting */
 .btn-primary {
   background-color: var(--color-espresso);
-  color: var(--color-linen);
+  color: var(--color-cream);
   border-radius: var(--radius-sm);
-  box-shadow: 0 2px 8px rgba(45, 41, 38, 0.1);
+  box-shadow: 0 2px 8px rgba(47, 49, 48, 0.12);
   transition: all 300ms ease-out;
 }
 
 .btn-primary:hover {
-  background-color: #3D3936;
-  box-shadow: 0 4px 16px rgba(45, 41, 38, 0.15);
+  background-color: #3d3f3e;
+  box-shadow: 0 4px 16px rgba(47, 49, 48, 0.18);
   transform: translateY(-1px);
 }
 
@@ -125,30 +126,30 @@ body {
 /* Terracotta Button Variant */
 .btn-terracotta {
   background-color: var(--color-terracotta);
-  color: var(--color-linen);
+  color: var(--color-cream);
   border-radius: var(--radius-sm);
-  box-shadow: 0 2px 8px rgba(193, 127, 89, 0.2);
+  box-shadow: 0 2px 8px rgba(164, 117, 81, 0.25);
   transition: all 300ms ease-out;
 }
 
 .btn-terracotta:hover {
-  background-color: #A86D4A;
-  box-shadow: 0 4px 16px rgba(193, 127, 89, 0.3);
+  background-color: #8f6645;
+  box-shadow: 0 4px 16px rgba(164, 117, 81, 0.35);
   transform: translateY(-1px);
 }
 
 /* Secondary Button - Subtle & Refined */
 .btn-secondary {
   background-color: transparent;
-  border: 1px solid rgba(45, 41, 38, 0.2);
+  border: 1px solid rgba(47, 49, 48, 0.2);
   color: var(--color-espresso);
   border-radius: var(--radius-sm);
   transition: all 300ms ease-out;
 }
 
 .btn-secondary:hover {
-  background-color: rgba(45, 41, 38, 0.05);
-  border-color: rgba(45, 41, 38, 0.3);
+  background-color: rgba(47, 49, 48, 0.05);
+  border-color: rgba(47, 49, 48, 0.3);
 }
 
 /* Ghost Button - Text with underline */
@@ -163,8 +164,8 @@ body {
 
 /* Input - Clean & Approachable */
 .input-warm {
-  background: white;
-  border: 1px solid rgba(45, 41, 38, 0.2);
+  background: var(--color-cream);
+  border: 1px solid rgba(47, 49, 48, 0.15);
   border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
   transition: all 300ms ease-out;
@@ -173,7 +174,7 @@ body {
 .input-warm:focus {
   outline: none;
   border-color: var(--color-terracotta);
-  box-shadow: 0 0 0 3px rgba(193, 127, 89, 0.15);
+  box-shadow: 0 0 0 3px rgba(164, 117, 81, 0.15);
 }
 
 .input-warm::placeholder {
@@ -182,16 +183,16 @@ body {
 
 /* Card - Warm Definition */
 .card-warm {
-  background: white;
-  border: 1px solid rgba(45, 41, 38, 0.08);
+  background: var(--color-cream);
+  border: 1px solid rgba(47, 49, 48, 0.08);
   border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(45, 41, 38, 0.04);
+  box-shadow: 0 2px 8px rgba(47, 49, 48, 0.05);
   transition: all 300ms ease-out;
 }
 
 .card-warm:hover {
-  box-shadow: 0 4px 16px rgba(45, 41, 38, 0.08);
-  border-color: rgba(45, 41, 38, 0.12);
+  box-shadow: 0 4px 16px rgba(47, 49, 48, 0.1);
+  border-color: rgba(47, 49, 48, 0.12);
 }
 
 /* Featured Card with terracotta accent */
@@ -201,26 +202,26 @@ body {
 
 /* Warm Shadows */
 .shadow-warm-sm {
-  box-shadow: 0 2px 8px rgba(45, 41, 38, 0.06);
+  box-shadow: 0 2px 8px rgba(47, 49, 48, 0.06);
 }
 
 .shadow-warm-md {
-  box-shadow: 0 4px 16px rgba(45, 41, 38, 0.1);
+  box-shadow: 0 4px 16px rgba(47, 49, 48, 0.1);
 }
 
 .shadow-warm-lg {
-  box-shadow: 0 8px 24px rgba(45, 41, 38, 0.12);
+  box-shadow: 0 8px 24px rgba(47, 49, 48, 0.12);
 }
 
 /* Image shadow */
 .shadow-warm-image {
-  box-shadow: 0 4px 20px rgba(45, 41, 38, 0.08);
+  box-shadow: 0 4px 20px rgba(47, 49, 48, 0.08);
 }
 
 /* Focus States - Visible but not jarring */
 :focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--color-linen), 0 0 0 4px rgba(193, 127, 89, 0.4);
+  box-shadow: 0 0 0 2px var(--color-cream), 0 0 0 4px rgba(164, 117, 81, 0.4);
 }
 
 /* Remove default button styles */
