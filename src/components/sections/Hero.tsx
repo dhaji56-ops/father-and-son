@@ -102,13 +102,7 @@ export function Hero() {
             </div>
 
             {/* Stats below image */}
-            <div className="flex justify-between mt-8 pt-6 border-t border-espresso/10">
-              <div className="text-center">
-                <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block">500+</span>
-                <span className="text-sm text-driftwood">
-                  Homes Purchased
-                </span>
-              </div>
+            <div className="flex justify-center gap-16 mt-8 pt-6 border-t border-espresso/10">
               <div className="text-center">
                 <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block">48hr</span>
                 <span className="text-sm text-driftwood">

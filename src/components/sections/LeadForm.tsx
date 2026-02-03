@@ -135,12 +135,6 @@ export function LeadForm() {
         <div className="mt-12 pt-10 border-t border-espresso/10">
           <div className="flex flex-wrap justify-center gap-10 md:gap-16">
             <div className="text-center">
-              <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block mb-1">500+</span>
-              <span className="text-sm text-driftwood">
-                Houses Bought
-              </span>
-            </div>
-            <div className="text-center">
               <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block mb-1">4.9</span>
               <span className="text-sm text-driftwood">
                 Google Rating
