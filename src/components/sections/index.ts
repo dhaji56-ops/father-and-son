@@ -4,3 +4,6 @@ export { HowItWorks } from './HowItWorks';
 export { ServiceAreas } from './ServiceAreas';
 export { WhyUs } from './WhyUs';
 export { LeadForm } from './LeadForm';
+export { WhySellToUs } from './WhySellToUs';
+export { MeetTheFamily } from './MeetTheFamily';
+export { CTASection } from './CTASection';

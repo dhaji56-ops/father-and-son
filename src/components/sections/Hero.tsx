@@ -2,118 +2,254 @@ import { useState, useEffect } from 'react';
 import { Container } from '../layout/Container';
 import { useAddressAutocomplete } from '../../hooks/useAddressAutocomplete';
 
-// Modest Southern California home - relatable to target audience
-const HERO_IMAGE = 'https://images.unsplash.com/photo-1759355787174-044355f63c55?w=1200&q=80';
+// Southern California home background
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=80';
 
 export function Hero() {
-  const [address, setAddress] = useState('');
-  const [phone, setPhone] = useState('');
+  const [formData, setFormData] = useState({
+    address: '',
+    name: '',
+    phone: '',
+    email: '',
+    situation: '',
+  });
 
   const addressInputRef = useAddressAutocomplete({
-    onPlaceSelected: (selectedAddress) => setAddress(selectedAddress),
+    onPlaceSelected: (selectedAddress) =>
+      setFormData((prev) => ({ ...prev, address: selectedAddress })),
   });
 
   // Sync input value when address state changes
   useEffect(() => {
-    if (addressInputRef.current && addressInputRef.current.value !== address) {
-      addressInputRef.current.value = address;
+    if (addressInputRef.current && addressInputRef.current.value !== formData.address) {
+      addressInputRef.current.value = formData.address;
     }
-  }, [address]);
+  }, [formData.address]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', { address, phone });
+    console.log('Form submitted:', formData);
   };
 
   return (
-    <section className="py-16 md:py-20 lg:py-24 relative overflow-hidden">
-      <Container size="wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left: Typography & Form */}
-          <div className="lg:col-span-5 lg:col-start-1">
-            {/* Section Label */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-8 bg-espresso/20" />
-              <span className="text-sm font-medium tracking-warm text-driftwood">
-                Cash Home Buyers
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={HERO_IMAGE}
+          alt="Beautiful Southern California home"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-espresso/80 via-espresso/60 to-espresso/40" />
+      </div>
+
+      <Container size="wide" className="relative z-10 py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left: Content */}
+          <div className="text-white">
+            {/* Logo Badge */}
+            <div className="mb-8">
+              <img
+                src="/logo.png"
+                alt="Father & Son Home Buyers"
+                className="h-28 w-auto rounded-lg shadow-lg"
+              />
+            </div>
+
+            {/* Badges */}
+            <div className="flex flex-wrap gap-3 mb-6">
+              <span className="inline-flex items-center gap-2 text-sm bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                Local Family-Owned
+              </span>
+              <span className="inline-flex items-center gap-2 text-sm bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                No Hidden Fees
               </span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="font-serif font-medium leading-tight mb-6">
-              <span className="block text-4xl md:text-5xl lg:text-6xl text-espresso">
-                Sell Your Home
-              </span>
-              <span className="block text-4xl md:text-5xl lg:text-6xl text-espresso">
-                for <em className="text-terracotta">Cash</em>
-              </span>
+            {/* Headline */}
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6">
+              Sell Your Home As-Is to a Local Father & Son You Can Trust
             </h1>
 
-            {/* Subhead */}
-            <p className="text-lg text-driftwood mb-10 max-w-md leading-relaxed">
-              <span className="text-espresso font-medium">48-hour offers.</span>{' '}
-              No repairs. No fees. No hassle. Serving Southern California families since 2015.
+            {/* Subheadline */}
+            <p className="text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
+              Get a fair, transparent cash offer within 48 hours. Close in as little as 14 days — or on your schedule. No fees. No pressure. No games.
             </p>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4 mb-6">
+            {/* Tagline */}
+            <p className="text-lg italic text-white/80 mb-8">
+              "From our family to yours — a better way to sell"
+            </p>
+
+            {/* Bullet Points */}
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-start gap-3">
+                <svg className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span>Cash offer within 48 hours — no repairs needed, sell as-is</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span>Leave what you don't want — we handle the cleanout</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span>Zero fees, zero commissions — honest and transparent</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Right: Form */}
+          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-10">
+            <div className="text-center mb-8">
+              <h2 className="font-serif text-2xl md:text-3xl font-medium text-espresso mb-2">
+                Get Your Free Cash Offer
+              </h2>
+              <p className="text-driftwood">
+                Tell us about your property. No obligation — just a fair offer.
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
+                <label htmlFor="hero-address" className="block text-sm font-medium text-driftwood mb-2">
+                  Property Address *
+                </label>
                 <input
                   ref={addressInputRef}
+                  id="hero-address"
                   name="address"
-                  placeholder="Property address..."
-                  defaultValue={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="123 Main St, Santa Ana, CA"
+                  defaultValue={formData.address}
+                  onChange={handleChange}
                   autoComplete="street-address"
                   required
                   className="input-warm w-full h-12 text-base"
                 />
               </div>
+
               <div>
+                <label htmlFor="hero-name" className="block text-sm font-medium text-driftwood mb-2">
+                  Your Name *
+                </label>
                 <input
-                  name="phone"
-                  type="tel"
-                  placeholder="Your phone number..."
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  id="hero-name"
+                  name="name"
+                  placeholder="John Smith"
+                  value={formData.name}
+                  onChange={handleChange}
                   required
                   className="input-warm w-full h-12 text-base"
                 />
               </div>
-              <button type="submit" className="btn-primary w-full h-12 mt-2 text-sm font-medium">
+
+              <div>
+                <label htmlFor="hero-phone" className="block text-sm font-medium text-driftwood mb-2">
+                  Phone Number *
+                </label>
+                <input
+                  id="hero-phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="(949) 555-1234"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  className="input-warm w-full h-12 text-base"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="hero-email" className="block text-sm font-medium text-driftwood mb-2">
+                  Email Address *
+                </label>
+                <input
+                  id="hero-email"
+                  name="email"
+                  type="email"
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="input-warm w-full h-12 text-base"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="hero-situation" className="block text-sm font-medium text-driftwood mb-2">
+                  Property Situation
+                </label>
+                <select
+                  id="hero-situation"
+                  name="situation"
+                  value={formData.situation}
+                  onChange={handleChange}
+                  className="input-warm w-full h-12 text-base"
+                >
+                  <option value="">Select your situation</option>
+                  <option value="selling">Ready to Sell</option>
+                  <option value="inherited">Inherited Property</option>
+                  <option value="foreclosure">Facing Foreclosure</option>
+                  <option value="divorce">Divorce</option>
+                  <option value="relocating">Relocating</option>
+                  <option value="repairs">Needs Repairs</option>
+                  <option value="tenant">Problem Tenants</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <button
+                type="submit"
+                className="btn-terracotta w-full h-12 text-sm font-medium flex items-center justify-center gap-2"
+              >
                 Get My Cash Offer
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </button>
             </form>
 
-            <p className="text-sm text-driftwood">
-              No obligation. Your information is secure.
+            <p className="mt-4 text-xs text-driftwood text-center">
+              By submitting this form, you consent to receive calls, texts, and emails from Father & Son Home Buyers regarding your property. Message & data rates may apply. You can opt out at any time.
             </p>
-          </div>
 
-          {/* Right: Hero Image */}
-          <div className="lg:col-span-6 lg:col-start-7 relative group">
-            {/* Image Container */}
-            <div className="relative aspect-[4/5] overflow-hidden rounded-xl shadow-warm-lg">
-              <img
-                src={HERO_IMAGE}
-                alt="Single-family home in Southern California"
-                className="img-warm w-full h-full object-cover -rotate-[3deg] scale-110"
-              />
-            </div>
-
-            {/* Stats below image */}
-            <div className="flex justify-center gap-16 mt-8 pt-6 border-t border-espresso/10">
-              <div className="text-center">
-                <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block">48hr</span>
-                <span className="text-sm text-driftwood">
-                  Fast Offers
-                </span>
-              </div>
-              <div className="text-center">
-                <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block">$0</span>
-                <span className="text-sm text-driftwood">
-                  Hidden Fees
-                </span>
+            {/* Trust Signals */}
+            <div className="mt-6 pt-6 border-t border-espresso/10">
+              <div className="flex justify-center gap-8">
+                <div className="flex items-center gap-2 text-sm text-driftwood">
+                  <svg className="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  48-Hour Offer
+                </div>
+                <div className="flex items-center gap-2 text-sm text-driftwood">
+                  <svg className="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  No Obligation
+                </div>
+                <div className="flex items-center gap-2 text-sm text-driftwood">
+                  <svg className="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  No Hidden Fees
+                </div>
               </div>
             </div>
           </div>

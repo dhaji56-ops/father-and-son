@@ -1,27 +1,28 @@
-import { Header, Footer } from './components/layout';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Layout } from './components/layout';
 import {
-  Hero,
-  ValueProps,
-  HowItWorks,
-  ServiceAreas,
-  WhyUs,
-  LeadForm,
-} from './components/sections';
+  HomePage,
+  HowItWorksPage,
+  AboutUsPage,
+  ServiceAreasPage,
+  FAQPage,
+  ContactPage,
+} from './pages';
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-linen pattern-noise">
-      <Header />
-      <main className="flex-1">
-        <Hero />
-        <ValueProps />
-        <HowItWorks />
-        <WhyUs />
-        <ServiceAreas />
-        <LeadForm />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="how-it-works" element={<HowItWorksPage />} />
+          <Route path="about-us" element={<AboutUsPage />} />
+          <Route path="service-areas" element={<ServiceAreasPage />} />
+          <Route path="faq" element={<FAQPage />} />
+          <Route path="contact" element={<ContactPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
