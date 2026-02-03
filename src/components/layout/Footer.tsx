@@ -15,7 +15,7 @@ export function Footer() {
                 <img
                   src="/logo.png"
                   alt="Father & Son Home Buyers"
-                  className="h-16 w-auto rounded-lg"
+                  className="h-24 w-auto rounded-lg"
                 />
               </div>
               <p className="text-sm text-cream/70 leading-relaxed max-w-sm mb-8">
