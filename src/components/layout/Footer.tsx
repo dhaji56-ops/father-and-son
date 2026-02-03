@@ -11,11 +11,11 @@ export function Footer() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             {/* Brand Column */}
             <div className="lg:col-span-5">
-              <div className="mb-6">
+              <div className="mb-6 flex justify-center lg:justify-start">
                 <img
                   src="/logo.png"
                   alt="Father & Son Home Buyers"
-                  className="h-24 w-auto rounded-lg"
+                  className="h-48 w-auto rounded-lg"
                 />
               </div>
               <p className="text-sm text-cream/70 leading-relaxed max-w-sm mb-8">
