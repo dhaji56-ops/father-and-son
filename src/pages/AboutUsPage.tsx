@@ -49,17 +49,11 @@ export function AboutUsPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl bg-oatmeal flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-20 h-20 bg-espresso/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-10 h-10 text-espresso" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <p className="text-driftwood text-sm">Video coming soon</p>
-                  <p className="text-espresso/60 text-xs mt-2">"We believe every seller deserves honesty and respect."</p>
-                </div>
-              </div>
+              <img
+                src="/father-son-team.jpg"
+                alt="Father and Son - the team behind Father & Son Home Buyers"
+                className="w-full rounded-2xl shadow-warm-lg object-cover"
+              />
             </div>
           </div>
         </Container>

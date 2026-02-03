@@ -20,7 +20,7 @@ export function MeetTheFamily() {
               We're not a faceless corporation — we're a local father and son team who've combined decades of real estate and construction experience to help homeowners like you.
             </p>
             <p className="text-espresso/70 leading-relaxed mb-8">
-              Watch our video to learn why we do what we do, and why transparency is at the heart of everything we offer.
+              We believe every seller deserves honesty and respect. That's why transparency is at the heart of everything we offer.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -41,19 +41,13 @@ export function MeetTheFamily() {
             </div>
           </div>
 
-          {/* Video Placeholder */}
+          {/* Father & Son Photo */}
           <div className="relative">
-            <div className="aspect-video rounded-2xl bg-[#a8c0d4] flex items-center justify-center shadow-warm-lg overflow-hidden">
-              <div className="text-center p-8">
-                <div className="w-20 h-20 bg-white/30 rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-white/40 transition-warm">
-                  <svg className="w-10 h-10 text-espresso ml-1" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-                <p className="text-espresso/70 text-sm">Video coming soon</p>
-                <p className="text-espresso/50 text-xs mt-2">"We believe every seller deserves honesty and respect."</p>
-              </div>
-            </div>
+            <img
+              src="/father-son-team.jpg"
+              alt="Father and Son - the team behind Father & Son Home Buyers"
+              className="w-full rounded-2xl shadow-warm-lg object-cover"
+            />
           </div>
         </div>
       </Container>
