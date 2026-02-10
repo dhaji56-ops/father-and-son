@@ -131,23 +131,6 @@ export function LeadForm() {
           </p>
         </div>
 
-        {/* Trust Signals */}
-        <div className="mt-12 pt-10 border-t border-espresso/10">
-          <div className="flex flex-wrap justify-center gap-10 md:gap-16">
-            <div className="text-center">
-              <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block mb-1">4.9</span>
-              <span className="text-sm text-driftwood">
-                Google Rating
-              </span>
-            </div>
-            <div className="text-center">
-              <span className="font-serif text-3xl md:text-4xl font-medium text-espresso block mb-1">A+</span>
-              <span className="text-sm text-driftwood">
-                BBB Rating
-              </span>
-            </div>
-          </div>
-        </div>
       </Container>
     </section>
   );
