@@ -14,8 +14,18 @@ const steps = [
   },
   {
     number: '02',
+    title: 'We Visit Your Property',
+    description: "We'll schedule a quick, no-pressure visit to see your property in person. This helps us give you the most accurate and fair offer.",
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    ),
+  },
+  {
+    number: '03',
     title: 'Get Your Offer',
-    description: "We'll review your property details and present you with a fair, honest cash offer within 48 hours. No repairs needed — we buy as-is.",
+    description: "After seeing your property, we'll present you with a fair, honest cash offer. No repairs needed — we buy as-is.",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -23,7 +33,7 @@ const steps = [
     ),
   },
   {
-    number: '03',
+    number: '04',
     title: 'Choose Your Close Date',
     description: "Accept the offer and pick the closing date that works for you — as fast as 14 days or whenever you're ready. You're in control.",
     icon: (
@@ -33,7 +43,7 @@ const steps = [
     ),
   },
   {
-    number: '04',
+    number: '05',
     title: 'Get Paid',
     description: "Close with a reputable title company. Walk away with cash in hand — no fees, no commissions, no hassle.",
     icon: (
@@ -61,12 +71,12 @@ export function HowItWorks() {
             How It Works
           </h2>
           <p className="text-driftwood max-w-2xl mx-auto">
-            Selling your house should be simple. Here's our straightforward 4-step process — no surprises, no hidden steps.
+            Selling your house should be simple. Here's our straightforward 5-step process — no surprises, no hidden steps.
           </p>
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
           {steps.map((step) => (
             <div
               key={step.number}
