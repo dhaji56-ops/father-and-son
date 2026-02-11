@@ -54,11 +54,11 @@ export function Hero() {
           {/* Left: Content */}
           <div className="bg-espresso/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-white">
             {/* Logo Badge */}
-            <div className="mb-6">
+            <div className="mb-6 flex justify-center">
               <img
                 src="/logo.png"
                 alt="Father & Son Home Buyers"
-                className="h-24 w-auto rounded-lg shadow-lg"
+                className="h-32 w-auto rounded-lg shadow-lg"
               />
             </div>
 
