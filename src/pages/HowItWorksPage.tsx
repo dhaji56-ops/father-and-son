@@ -89,8 +89,9 @@ export function HowItWorksPage() {
       {/* Steps Section */}
       <section className="py-16 md:py-24">
         <Container>
+          {/* First 4 steps in 2-column grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {steps.map((step) => (
+            {steps.slice(0, 4).map((step) => (
               <div
                 key={step.number}
                 className="card-warm p-8 md:p-10 relative"
@@ -109,6 +110,24 @@ export function HowItWorksPage() {
                 </p>
               </div>
             ))}
+          </div>
+
+          {/* Step 5 centered below */}
+          <div className="mt-8 lg:mt-12 max-w-md mx-auto">
+            <div className="card-warm p-8 md:p-10 relative">
+              <span className="absolute top-6 right-6 text-sm font-medium text-terracotta bg-terracotta/10 px-3 py-1 rounded-full">
+                Step {steps[4].number}
+              </span>
+              <div className="text-driftwood mb-6">
+                {steps[4].icon}
+              </div>
+              <h3 className="font-serif text-2xl font-medium text-espresso mb-4">
+                {steps[4].title}
+              </h3>
+              <p className="text-driftwood leading-relaxed">
+                {steps[4].description}
+              </p>
+            </div>
           </div>
         </Container>
       </section>
