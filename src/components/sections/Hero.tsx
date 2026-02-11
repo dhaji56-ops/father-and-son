@@ -120,7 +120,7 @@ export function Hero() {
           <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-10">
             <div className="text-center mb-8">
               <h2 className="font-serif text-2xl md:text-3xl font-medium text-espresso mb-2">
-                Get Your Free Cash Offer
+                Get Your Cash Offer
               </h2>
               <p className="text-driftwood">
                 Tell us about your property. No obligation — just a fair offer.

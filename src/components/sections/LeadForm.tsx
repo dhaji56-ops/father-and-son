@@ -121,7 +121,7 @@ export function LeadForm() {
 
             <div className="pt-2">
               <button type="submit" className="btn-terracotta w-full h-12 text-sm font-medium">
-                Get My Cash Offer Now
+                Get My Cash Offer
               </button>
             </div>
           </form>
