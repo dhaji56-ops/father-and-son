@@ -12,6 +12,7 @@ export function Hero() {
     phone: '',
     email: '',
     situation: '',
+    timeline: '',
   });
 
   const addressInputRef = useAddressAutocomplete({
@@ -177,7 +178,7 @@ export function Hero() {
 
               <div>
                 <label htmlFor="hero-email" className="block text-sm font-medium text-driftwood mb-2">
-                  Email Address *
+                  Email Address <span className="text-driftwood/60">(Optional)</span>
                 </label>
                 <input
                   id="hero-email"
@@ -186,32 +187,52 @@ export function Hero() {
                   placeholder="john@example.com"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                   className="input-warm w-full h-12 text-base"
                 />
               </div>
 
-              <div>
-                <label htmlFor="hero-situation" className="block text-sm font-medium text-driftwood mb-2">
-                  Property Situation
-                </label>
-                <select
-                  id="hero-situation"
-                  name="situation"
-                  value={formData.situation}
-                  onChange={handleChange}
-                  className="input-warm w-full h-12 text-base"
-                >
-                  <option value="">Select your situation</option>
-                  <option value="selling">Ready to Sell</option>
-                  <option value="inherited">Inherited Property</option>
-                  <option value="foreclosure">Facing Foreclosure</option>
-                  <option value="divorce">Divorce</option>
-                  <option value="relocating">Relocating</option>
-                  <option value="repairs">Needs Repairs</option>
-                  <option value="tenant">Problem Tenants</option>
-                  <option value="other">Other</option>
-                </select>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="hero-situation" className="block text-sm font-medium text-driftwood mb-2">
+                    Property Situation
+                  </label>
+                  <select
+                    id="hero-situation"
+                    name="situation"
+                    value={formData.situation}
+                    onChange={handleChange}
+                    className="input-warm w-full h-12 text-base"
+                  >
+                    <option value="">Select situation</option>
+                    <option value="selling">Ready to Sell</option>
+                    <option value="inherited">Inherited Property</option>
+                    <option value="foreclosure">Facing Foreclosure</option>
+                    <option value="divorce">Divorce</option>
+                    <option value="relocating">Relocating</option>
+                    <option value="repairs">Needs Repairs</option>
+                    <option value="tenant">Problem Tenants</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="hero-timeline" className="block text-sm font-medium text-driftwood mb-2">
+                    Timeline to Sell
+                  </label>
+                  <select
+                    id="hero-timeline"
+                    name="timeline"
+                    value={formData.timeline}
+                    onChange={handleChange}
+                    className="input-warm w-full h-12 text-base"
+                  >
+                    <option value="">Select timeline</option>
+                    <option value="asap">ASAP</option>
+                    <option value="30-60">30–60 days</option>
+                    <option value="60+">60+ days</option>
+                    <option value="unsure">Not sure yet</option>
+                  </select>
+                </div>
               </div>
 
               <button
