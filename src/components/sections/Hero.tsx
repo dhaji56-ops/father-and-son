@@ -85,22 +85,22 @@ export function Hero() {
             </div>
 
             {/* Headline */}
-            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-snug mb-4 text-center">
+            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-snug mb-4">
               Sell Your House As-Is for Cash in Southern California
             </h1>
 
             {/* Subheadline */}
-            <p className="text-base md:text-lg text-white/90 mb-4 leading-relaxed text-center">
+            <p className="text-base md:text-lg text-white/90 mb-4 leading-relaxed">
               Get a fair, transparent cash offer within 48 hours. Close in as little as 14 days — or on your schedule. No fees. No pressure. No games.
             </p>
 
             {/* Tagline */}
-            <p className="text-base italic text-white/80 mb-5 text-center">
+            <p className="text-base italic text-white/80 mb-5 border-l-2 border-terracotta pl-3">
               "From our family to yours — a better way to sell"
             </p>
 
             {/* Bullet Points */}
-            <ul className="space-y-2 flex flex-col items-center">
+            <ul className="space-y-2">
               <li className="flex items-center gap-2 text-sm">
                 <svg className="w-4 h-4 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
