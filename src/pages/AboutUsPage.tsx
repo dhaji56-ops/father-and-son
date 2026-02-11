@@ -44,7 +44,7 @@ export function AboutUsPage() {
                   We decided there had to be a better way. A way that puts homeowners first. A way that's transparent, fair, and actually helps people move on to their next chapter without the usual headaches.
                 </p>
                 <p>
-                  Today, we're proud to have helped hundreds of Southern California families sell their homes quickly and fairly — on their terms.
+                  Today, we're proud to help Southern California homeowners sell quickly and fairly — on their terms.
                 </p>
               </div>
             </div>
