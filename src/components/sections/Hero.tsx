@@ -52,26 +52,26 @@ export function Hero() {
       <Container size="wide" className="relative z-10 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Content */}
-          <div className="text-white">
+          <div className="bg-espresso/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-white">
             {/* Logo Badge */}
-            <div className="mb-8">
+            <div className="mb-6">
               <img
                 src="/logo.png"
                 alt="Father & Son Home Buyers"
-                className="h-28 w-auto rounded-lg shadow-lg"
+                className="h-24 w-auto rounded-lg shadow-lg"
               />
             </div>
 
             {/* Badges */}
-            <div className="flex flex-wrap gap-3 mb-6">
-              <span className="inline-flex items-center gap-2 text-sm bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="inline-flex items-center gap-1.5 text-xs bg-white/20 px-3 py-1.5 rounded-full">
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 Local Family-Owned
               </span>
-              <span className="inline-flex items-center gap-2 text-sm bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <span className="inline-flex items-center gap-1.5 text-xs bg-white/20 px-3 py-1.5 rounded-full">
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 No Hidden Fees
@@ -79,39 +79,39 @@ export function Hero() {
             </div>
 
             {/* Headline */}
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6">
+            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-snug mb-4">
               Sell Your House As-Is for Cash in Southern California
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
+            <p className="text-base md:text-lg text-white/90 mb-4 leading-relaxed">
               Get a fair, transparent cash offer within 48 hours. Close in as little as 14 days — or on your schedule. No fees. No pressure. No games.
             </p>
 
             {/* Tagline */}
-            <p className="text-lg italic text-white/80 mb-8">
+            <p className="text-base italic text-white/80 mb-5 border-l-2 border-terracotta pl-3">
               "From our family to yours — a better way to sell"
             </p>
 
             {/* Bullet Points */}
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+            <ul className="space-y-2">
+              <li className="flex items-center gap-2 text-sm">
+                <svg className="w-4 h-4 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                <span>Cash offer within 48 hours — no repairs needed, sell as-is</span>
+                <span>Cash offer within 48 hours — sell as-is</span>
               </li>
-              <li className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <li className="flex items-center gap-2 text-sm">
+                <svg className="w-4 h-4 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                <span>Leave what you don't want — we handle the cleanout</span>
+                <span>We handle cleanout — leave what you don't want</span>
               </li>
-              <li className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <li className="flex items-center gap-2 text-sm">
+                <svg className="w-4 h-4 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                <span>Zero fees, zero commissions — honest and transparent</span>
+                <span>Zero fees, zero commissions</span>
               </li>
             </ul>
           </div>
