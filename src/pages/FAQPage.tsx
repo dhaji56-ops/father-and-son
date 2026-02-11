@@ -72,7 +72,7 @@ export function FAQPage() {
       </section>
 
       {/* FAQ Accordion */}
-      <section className="pt-4 pb-16 md:pt-6 md:pb-24">
+      <section className="pb-16 md:pb-24">
         <Container size="narrow">
           <div className="space-y-4">
             {faqs.map((faq, index) => (
