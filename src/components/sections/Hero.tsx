@@ -79,7 +79,7 @@ export function Hero() {
 
             {/* Headline */}
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6">
-              Sell Your Home As-Is to a Local Father & Son You Can Trust
+              Sell Your House As-Is for Cash in Southern California
             </h1>
 
             {/* Subheadline */}
