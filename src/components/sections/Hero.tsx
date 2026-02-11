@@ -58,12 +58,12 @@ export function Hero() {
               <img
                 src="/logo.png"
                 alt="Father & Son Home Buyers"
-                className="h-32 w-auto rounded-lg shadow-lg"
+                className="h-40 w-auto rounded-lg shadow-lg"
               />
             </div>
 
             {/* Badges */}
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap justify-center gap-2 mb-4">
               <span className="inline-flex items-center gap-1.5 text-xs bg-white/20 px-3 py-1.5 rounded-full">
                 <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
