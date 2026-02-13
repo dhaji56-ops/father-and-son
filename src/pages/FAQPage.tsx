@@ -43,6 +43,18 @@ const faqs = [
     question: 'Who are you?',
     answer: 'We\'re Father & Son Home Buyers — a local father and son team with decades of combined real estate and construction experience. We\'re not a big corporation; we\'re a family business helping Southern California homeowners sell their properties quickly and fairly.',
   },
+  {
+    question: 'How does the cash advance work?',
+    answer: 'If you qualify, we provide an advance after the agreement is signed. It\'s typically funded quickly and is handled as part of the transaction.',
+  },
+  {
+    question: 'Is it a loan? Do I pay interest?',
+    answer: 'It\'s not set up like a traditional personal loan. Any advance terms are disclosed in writing as part of the deal.',
+  },
+  {
+    question: 'What if the sale doesn\'t close?',
+    answer: 'If the transaction cancels under certain conditions, the advance may need to be returned—this is spelled out clearly upfront.',
+  },
 ];
 
 export function FAQPage() {

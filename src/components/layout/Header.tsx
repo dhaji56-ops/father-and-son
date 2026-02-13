@@ -5,6 +5,7 @@ import { Container } from './Container';
 const navItems = [
   { to: '/', label: 'Home' },
   { to: '/how-it-works', label: 'How It Works' },
+  { to: '/cash-advance', label: 'Cash Advance' },
   { to: '/about-us', label: 'About Us' },
   { to: '/service-areas', label: 'Service Areas' },
   { to: '/faq', label: 'FAQ' },

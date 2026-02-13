@@ -3,6 +3,7 @@ import {
   ValueProps,
   HowItWorks,
   WhySellToUs,
+  CashAdvance,
   MeetTheFamily,
   ServiceAreas,
   CTASection,
@@ -15,6 +16,7 @@ export function HomePage() {
       <ValueProps />
       <HowItWorks />
       <WhySellToUs />
+      <CashAdvance />
       <MeetTheFamily />
       <ServiceAreas />
       <CTASection />

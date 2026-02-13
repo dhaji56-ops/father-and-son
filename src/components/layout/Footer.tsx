@@ -3,6 +3,7 @@ import { Container } from './Container';
 
 const quickLinks = [
   { to: '/how-it-works', label: 'How It Works' },
+  { to: '/cash-advance', label: 'Cash Advance' },
   { to: '/about-us', label: 'About Us' },
   { to: '/faq', label: 'FAQ' },
   { to: '/contact', label: 'Contact' },
