@@ -53,7 +53,7 @@ const faqs = [
   },
   {
     question: 'What if the sale doesn\'t close?',
-    answer: 'If the transaction cancels under certain conditions, the advance may need to be returned—this is spelled out clearly upfront.',
+    answer: 'If the transaction doesn\'t go through, the cash advance does need to be returned. This is spelled out clearly upfront before you accept any advance.',
   },
 ];
 

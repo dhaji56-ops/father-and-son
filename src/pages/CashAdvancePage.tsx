@@ -196,7 +196,7 @@ export function CashAdvancePage() {
                 What if the sale doesn't close?
               </h3>
               <p className="text-driftwood">
-                If the transaction cancels under certain conditions, the advance may need to be returned—this is spelled out clearly upfront.
+                If the transaction doesn't go through, the cash advance does need to be returned. This is spelled out clearly upfront before you accept any advance.
               </p>
             </div>
           </div>
