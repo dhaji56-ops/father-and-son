@@ -1,5 +1,6 @@
 import { Container } from '../components/layout';
 import { CTASection } from '../components/sections';
+import { useSEO } from '../hooks/useSEO';
 
 const steps = [
   {
@@ -63,6 +64,11 @@ const benefits = [
 ];
 
 export function HowItWorksPage() {
+  useSEO({
+    title: 'How It Works — Sell Your House for Cash in 5 Easy Steps | Father & Son Home Buyers',
+    description: 'Simple 5-step process: contact us, we visit, get your offer, sign, and close in as little as 14 days. No repairs or showings needed.',
+    canonical: 'https://fathersonhomes.com/how-it-works',
+  });
   return (
     <>
       {/* Hero Section */}

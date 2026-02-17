@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Container } from '../components/layout';
 import { CTASection } from '../components/sections';
+import { useSEO } from '../hooks/useSEO';
 
 const faqs = [
   {
@@ -58,6 +59,11 @@ const faqs = [
 ];
 
 export function FAQPage() {
+  useSEO({
+    title: 'FAQs — Selling Your House for Cash in Southern California | Father & Son Home Buyers',
+    description: 'Answers to common questions about selling your home for cash. Learn about offers, timelines, fees, and how Father & Son Home Buyers works.',
+    canonical: 'https://fathersonhomes.com/faq',
+  });
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (

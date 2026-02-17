@@ -1,7 +1,13 @@
 import { Container } from '../components/layout';
 import { CTASection } from '../components/sections';
+import { useSEO } from '../hooks/useSEO';
 
 export function AboutUsPage() {
+  useSEO({
+    title: 'About Us — Local Family-Owned Cash Home Buyers | Father & Son Home Buyers',
+    description: 'Meet the father and son team behind Father & Son Home Buyers. Decades of real estate experience serving Southern California homeowners with integrity.',
+    canonical: 'https://fathersonhomes.com/about-us',
+  });
   return (
     <>
       {/* Hero Section */}

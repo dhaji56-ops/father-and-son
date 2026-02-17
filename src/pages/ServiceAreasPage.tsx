@@ -1,5 +1,6 @@
 import { Container } from '../components/layout';
 import { CTASection } from '../components/sections';
+import { useSEO } from '../hooks/useSEO';
 
 const areas = [
   {
@@ -32,6 +33,11 @@ const areas = [
 ];
 
 export function ServiceAreasPage() {
+  useSEO({
+    title: 'Service Areas — Cash Home Buyers in Orange County, LA & Inland Empire | Father & Son',
+    description: 'We buy houses throughout Orange County, Los Angeles County, and the Inland Empire. Get a cash offer for your Southern California home today.',
+    canonical: 'https://fathersonhomes.com/service-areas',
+  });
   return (
     <>
       {/* Hero Section */}
