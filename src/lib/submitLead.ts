@@ -1,0 +1,54 @@
+export interface LeadFormData {
+  address: string;
+  name: string;
+  phone: string;
+  email?: string;
+  situation?: string;
+  timeline?: string;
+  source: 'hero' | 'contact';
+}
+
+export interface SubmitResult {
+  success: boolean;
+  message: string;
+}
+
+export async function submitLead(data: LeadFormData): Promise<SubmitResult> {
+  const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
+
+  if (!accessKey) {
+    return { success: false, message: 'Form is not configured. Please call us directly at (949) 541-2003.' };
+  }
+
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: accessKey,
+        subject: `New Lead from ${data.source === 'hero' ? 'Homepage' : 'Contact Page'}: ${data.name}`,
+        from_name: 'Father & Son Home Buyers Website',
+        to: 'contact@fathersonhomes.com',
+        cc: 'dustin@fathersonhomes.com',
+        'Property Address': data.address,
+        'Name': data.name,
+        'Phone': data.phone,
+        'Email': data.email || 'Not provided',
+        'Situation': data.situation || 'Not specified',
+        'Timeline': data.timeline || 'Not specified',
+        'Form Source': data.source === 'hero' ? 'Homepage Hero Form' : 'Contact Page Form',
+        botcheck: '',
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      return { success: true, message: "Thank you! We'll be in touch within 48 hours." };
+    } else {
+      return { success: false, message: 'Something went wrong. Please try again or call us at (949) 541-2003.' };
+    }
+  } catch {
+    return { success: false, message: 'Network error. Please try again or call us at (949) 541-2003.' };
+  }
+}

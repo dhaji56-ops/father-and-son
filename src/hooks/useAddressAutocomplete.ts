@@ -12,13 +12,36 @@ declare global {
         };
       };
     };
-    initGoogleMaps?: () => void;
   }
 }
 
 interface UseAddressAutocompleteOptions {
   onPlaceSelected?: (address: string) => void;
   country?: string;
+}
+
+let scriptLoading = false;
+let scriptLoaded = false;
+const loadCallbacks: (() => void)[] = [];
+
+function loadGoogleMapsScript() {
+  if (scriptLoaded || scriptLoading) return;
+
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_KEY;
+  if (!apiKey) return;
+
+  scriptLoading = true;
+  const script = document.createElement('script');
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+  script.async = true;
+  script.defer = true;
+  script.onload = () => {
+    scriptLoaded = true;
+    scriptLoading = false;
+    loadCallbacks.forEach((cb) => cb());
+    loadCallbacks.length = 0;
+  };
+  document.head.appendChild(script);
 }
 
 export function useAddressAutocomplete(
@@ -30,7 +53,7 @@ export function useAddressAutocomplete(
 
   const initAutocomplete = useCallback(() => {
     if (!inputRef.current || !window.google?.maps?.places) return;
-    if (autocompleteRef.current) return; // Already initialized
+    if (autocompleteRef.current) return;
 
     autocompleteRef.current = new window.google.maps.places.Autocomplete(
       inputRef.current,
@@ -56,17 +79,15 @@ export function useAddressAutocomplete(
       return;
     }
 
-    // Otherwise, wait for it to load
-    const existingCallback = window.initGoogleMaps;
-    window.initGoogleMaps = () => {
-      existingCallback?.();
-      initAutocomplete();
-    };
+    // Register callback for when script loads
+    loadCallbacks.push(initAutocomplete);
+
+    // Trigger script loading
+    loadGoogleMapsScript();
 
     return () => {
-      if (existingCallback) {
-        window.initGoogleMaps = existingCallback;
-      }
+      const idx = loadCallbacks.indexOf(initAutocomplete);
+      if (idx >= 0) loadCallbacks.splice(idx, 1);
     };
   }, [initAutocomplete]);
 
