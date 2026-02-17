@@ -28,7 +28,6 @@ export async function submitLead(data: LeadFormData): Promise<SubmitResult> {
         access_key: accessKey,
         subject: `New Lead from ${data.source === 'hero' ? 'Homepage' : 'Contact Page'}: ${data.name}`,
         from_name: 'Father & Son Home Buyers Website',
-        to: 'contact@fathersonhomes.com',
         'Property Address': data.address,
         'Name': data.name,
         'Phone': data.phone,
@@ -45,7 +44,8 @@ export async function submitLead(data: LeadFormData): Promise<SubmitResult> {
     if (result.success) {
       return { success: true, message: "Thank you! We'll be in touch within 48 hours." };
     } else {
-      return { success: false, message: 'Something went wrong. Please try again or call us at (949) 541-2003.' };
+      console.error('Web3Forms error:', result);
+      return { success: false, message: result.message || 'Something went wrong. Please try again or call us at (949) 541-2003.' };
     }
   } catch {
     return { success: false, message: 'Network error. Please try again or call us at (949) 541-2003.' };
