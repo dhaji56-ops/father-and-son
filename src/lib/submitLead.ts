@@ -29,7 +29,6 @@ export async function submitLead(data: LeadFormData): Promise<SubmitResult> {
         subject: `New Lead from ${data.source === 'hero' ? 'Homepage' : 'Contact Page'}: ${data.name}`,
         from_name: 'Father & Son Home Buyers Website',
         to: 'contact@fathersonhomes.com',
-        cc: 'dustin@fathersonhomes.com',
         'Property Address': data.address,
         'Name': data.name,
         'Phone': data.phone,
