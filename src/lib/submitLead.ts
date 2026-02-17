@@ -42,7 +42,7 @@ export async function submitLead(data: LeadFormData): Promise<SubmitResult> {
     const result = await response.json();
 
     if (result.success) {
-      return { success: true, message: "Thank you! We'll be in touch within 48 hours." };
+      return { success: true, message: "Thank you! We'll be in touch within 24 hours." };
     } else {
       console.error('Web3Forms error:', result);
       return { success: false, message: result.message || 'Something went wrong. Please try again or call us at (949) 541-2003.' };

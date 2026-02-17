@@ -15,9 +15,17 @@ export function LeadForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
+  const formatPhone = (value: string) => {
+    const digits = value.replace(/\D/g, '');
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const newValue = name === 'phone' ? formatPhone(value) : value;
+    setFormData((prev) => ({ ...prev, [name]: newValue }));
     if (errors[name as keyof ValidationErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -74,7 +82,7 @@ export function LeadForm() {
             Request Your <em className="text-terracotta">Free</em> Cash Offer
           </h2>
           <p className="text-driftwood max-w-md mx-auto">
-            Fill out the form below and we'll contact you within 48 hours with a fair, no-obligation offer.
+            Fill out the form below and we'll contact you within 24 hours with a fair, no-obligation offer.
           </p>
         </div>
 
