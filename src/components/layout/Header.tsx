@@ -8,6 +8,7 @@ const navItems = [
   { to: '/cash-advance', label: 'Cash Advance' },
   { to: '/about-us', label: 'About Us' },
   { to: '/service-areas', label: 'Service Areas' },
+  { to: '/blog', label: 'Blog' },
   { to: '/faq', label: 'FAQ' },
   { to: '/contact', label: 'Contact' },
 ];

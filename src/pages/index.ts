@@ -5,3 +5,6 @@ export { ServiceAreasPage } from './ServiceAreasPage';
 export { FAQPage } from './FAQPage';
 export { ContactPage } from './ContactPage';
 export { CashAdvancePage } from './CashAdvancePage';
+export { CityPage } from './CityPage';
+export { BlogPage } from './BlogPage';
+export { BlogPostPage } from './BlogPostPage';

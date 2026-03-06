@@ -5,14 +5,16 @@ const quickLinks = [
   { to: '/how-it-works', label: 'How It Works' },
   { to: '/cash-advance', label: 'Cash Advance' },
   { to: '/about-us', label: 'About Us' },
+  { to: '/blog', label: 'Blog' },
   { to: '/faq', label: 'FAQ' },
   { to: '/contact', label: 'Contact' },
 ];
 
 const serviceAreas = [
-  { to: '/service-areas', label: 'Orange County' },
-  { to: '/service-areas', label: 'Los Angeles County' },
-  { to: '/service-areas', label: 'Inland Empire' },
+  { to: '/locations/anaheim', label: 'Anaheim' },
+  { to: '/locations/irvine', label: 'Irvine' },
+  { to: '/locations/long-beach', label: 'Long Beach' },
+  { to: '/locations/riverside', label: 'Riverside' },
   { to: '/service-areas', label: 'View All Cities' },
 ];
 

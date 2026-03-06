@@ -8,6 +8,9 @@ import {
   FAQPage,
   ContactPage,
   CashAdvancePage,
+  CityPage,
+  BlogPage,
+  BlogPostPage,
 } from './pages';
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
           <Route path="faq" element={<FAQPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="cash-advance" element={<CashAdvancePage />} />
+          <Route path="locations/:slug" element={<CityPage />} />
+          <Route path="blog" element={<BlogPage />} />
+          <Route path="blog/:slug" element={<BlogPostPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

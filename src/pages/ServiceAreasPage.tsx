@@ -1,6 +1,15 @@
+import { Link } from 'react-router-dom';
 import { Container } from '../components/layout';
 import { CTASection } from '../components/sections';
 import { useSEO } from '../hooks/useSEO';
+import { cities } from '../lib/cities';
+
+// Slugs that have dedicated landing pages
+const cityPageSlugs = new Set(cities.map((c) => c.slug));
+
+function cityToSlug(city: string): string {
+  return city.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+}
 
 const areas = [
   {
@@ -77,14 +86,25 @@ export function ServiceAreasPage() {
                   </h2>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {area.cities.map((city) => (
-                    <span
-                      key={city}
-                      className="text-sm text-driftwood bg-oatmeal/50 px-3 py-1.5 rounded-full"
-                    >
-                      {city}
-                    </span>
-                  ))}
+                  {area.cities.map((city) => {
+                    const slug = cityToSlug(city);
+                    return cityPageSlugs.has(slug) ? (
+                      <Link
+                        key={city}
+                        to={`/locations/${slug}`}
+                        className="text-sm text-driftwood bg-oatmeal/50 px-3 py-1.5 rounded-full hover:bg-terracotta/10 hover:text-terracotta transition-warm"
+                      >
+                        {city}
+                      </Link>
+                    ) : (
+                      <span
+                        key={city}
+                        className="text-sm text-driftwood bg-oatmeal/50 px-3 py-1.5 rounded-full"
+                      >
+                        {city}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             ))}
