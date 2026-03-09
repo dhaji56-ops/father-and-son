@@ -43,9 +43,12 @@ export function useSEO({ title, description, canonical }: SEOProps) {
       }
 
       let canonicalLink = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-      if (canonicalLink) {
-        canonicalLink.setAttribute('href', canonical);
+      if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonicalLink);
       }
+      canonicalLink.setAttribute('href', canonical);
 
       // Update Twitter URL
       let twitterUrl = document.querySelector<HTMLMetaElement>('meta[name="twitter:url"]');
