@@ -11,6 +11,8 @@ import {
   CityPage,
   BlogPage,
   BlogPostPage,
+  PrivacyPolicyPage,
+  TermsOfServicePage,
 } from './pages';
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
           <Route path="locations/:slug" element={<CityPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog/:slug" element={<BlogPostPage />} />
+          <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="terms-of-service" element={<TermsOfServicePage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -40,7 +40,7 @@ export function Footer() {
               <div className="mb-6">
                 <img
                   src="/logo.png"
-                  alt="Father & Son Home Buyers"
+                  alt="Father & Son Home Buyers — we buy houses in Southern California"
                   className="h-24 w-auto rounded-lg"
                 />
               </div>
@@ -135,12 +135,12 @@ export function Footer() {
             &copy; {currentYear} Father & Son Home Buyers. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-xs text-cream/40 hover:text-terracotta transition-warm">
+            <Link to="/privacy-policy" className="text-xs text-cream/40 hover:text-terracotta transition-warm">
               Privacy Policy
-            </a>
-            <a href="#" className="text-xs text-cream/40 hover:text-terracotta transition-warm">
+            </Link>
+            <Link to="/terms-of-service" className="text-xs text-cream/40 hover:text-terracotta transition-warm">
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </Container>

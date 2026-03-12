@@ -11,8 +11,8 @@ export function BlogPostPage() {
 
   useSEO({
     title: post
-      ? `${post.title} | Father & Son Home Buyers`
-      : 'Post Not Found | Father & Son Home Buyers',
+      ? `${post.title} | Father & Son`
+      : 'Post Not Found | Father & Son',
     description: post?.description ?? 'Post not found.',
     canonical: post ? `https://fathersonhomes.com/blog/${post.slug}` : undefined,
   });
@@ -52,6 +52,46 @@ export function BlogPostPage() {
         '@type': 'WebPage',
         '@id': `https://fathersonhomes.com/blog/${post.slug}`,
       },
+    });
+    return () => {
+      document.getElementById(id)?.remove();
+    };
+  }, [post]);
+
+  // Inject BreadcrumbList structured data
+  useEffect(() => {
+    if (!post) return;
+    const id = 'breadcrumb-schema';
+    let script = document.getElementById(id) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = id;
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://fathersonhomes.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: 'https://fathersonhomes.com/blog',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: post.title,
+          item: `https://fathersonhomes.com/blog/${post.slug}`,
+        },
+      ],
     });
     return () => {
       document.getElementById(id)?.remove();

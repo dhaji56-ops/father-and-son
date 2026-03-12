@@ -4,7 +4,7 @@ import { useSEO } from '../hooks/useSEO';
 
 export function AboutUsPage() {
   useSEO({
-    title: 'About Us — Local Family-Owned Cash Home Buyers | Father & Son Home Buyers',
+    title: 'About Us | Local Cash Home Buyers | Father & Son',
     description: 'Meet the father and son team behind Father & Son Home Buyers. Decades of real estate experience serving Southern California homeowners with integrity.',
     canonical: 'https://fathersonhomes.com/about-us',
   });
@@ -57,7 +57,7 @@ export function AboutUsPage() {
             <div className="relative">
               <img
                 src="/father-son-team.jpg"
-                alt="Father and Son - the team behind Father & Son Home Buyers"
+                alt="Father & Son Home Buyers team — local family-owned cash home buyers in Southern California"
                 className="w-full rounded-2xl shadow-warm-lg object-cover"
               />
             </div>

@@ -6,7 +6,7 @@ import { blogPosts } from '../lib/blog-posts';
 
 export function BlogPage() {
   useSEO({
-    title: 'Blog — Home Selling Tips for Southern California Homeowners | Father & Son',
+    title: 'Blog | Home Selling Tips for SoCal | Father & Son',
     description:
       'Practical advice for Southern California homeowners facing foreclosure, inherited properties, as-is sales, and more. From Father & Son Home Buyers.',
     canonical: 'https://fathersonhomes.com/blog',

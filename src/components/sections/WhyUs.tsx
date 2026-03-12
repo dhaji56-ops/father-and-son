@@ -14,7 +14,7 @@ export function WhyUs() {
             <div className="relative aspect-[3/4] overflow-hidden rounded-xl shadow-warm-lg">
               <img
                 src={FATHER_SON_IMAGE}
-                alt="Father and son - the team behind Father & Son Home Buyers"
+                alt="Father and son team — local cash home buyers serving Southern California"
                 className="img-warm w-full h-full object-cover object-top"
               />
             </div>

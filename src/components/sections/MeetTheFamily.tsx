@@ -45,7 +45,7 @@ export function MeetTheFamily() {
           <div className="relative">
             <img
               src="/father-son-team.jpg"
-              alt="Father and Son - the team behind Father & Son Home Buyers"
+              alt="Father & Son Home Buyers team photo — family-owned cash home buyers in Southern California"
               className="w-full rounded-2xl shadow-warm-lg object-cover"
             />
           </div>

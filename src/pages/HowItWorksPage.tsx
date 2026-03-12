@@ -65,7 +65,7 @@ const benefits = [
 
 export function HowItWorksPage() {
   useSEO({
-    title: 'How It Works — Sell Your House for Cash in 5 Easy Steps | Father & Son Home Buyers',
+    title: 'How It Works | Sell Your House for Cash | Father & Son',
     description: 'Simple 5-step process: contact us, we visit, get your offer, sign, and close in as little as 14 days. No repairs or showings needed.',
     canonical: 'https://fathersonhomes.com/how-it-works',
   });

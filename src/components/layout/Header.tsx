@@ -24,7 +24,7 @@ export function Header() {
           <Link to="/" className="flex items-center">
             <img
               src="/logo.png"
-              alt="Father & Son Home Buyers"
+              alt="Father & Son Home Buyers — sell your house fast for cash"
               className="h-20 w-auto"
             />
           </Link>

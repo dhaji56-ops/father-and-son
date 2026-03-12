@@ -60,7 +60,7 @@ const faqs = [
 
 export function FAQPage() {
   useSEO({
-    title: 'FAQs — Selling Your House for Cash in Southern California | Father & Son Home Buyers',
+    title: 'FAQ | Selling Your House for Cash | Father & Son',
     description: 'Answers to common questions about selling your home for cash. Learn about offers, timelines, fees, and how Father & Son Home Buyers works.',
     canonical: 'https://fathersonhomes.com/faq',
   });

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container } from '../components/layout';
 import { CTASection } from '../components/sections';
@@ -10,13 +11,53 @@ export function CityPage() {
 
   useSEO({
     title: city
-      ? `Sell My House Fast for Cash in ${city.name}, CA | Father & Son Home Buyers`
-      : 'City Not Found | Father & Son Home Buyers',
+      ? `Sell My House Fast in ${city.name}, CA | Father & Son`
+      : 'City Not Found | Father & Son',
     description: city
       ? `Get a fair cash offer for your ${city.name} home within 24 hours. No repairs, no fees, no agents. Father & Son Home Buyers serves all of ${city.county}.`
       : 'Page not found.',
     canonical: city ? `https://fathersonhomes.com/locations/${city.slug}` : undefined,
   });
+
+  // Inject BreadcrumbList structured data
+  useEffect(() => {
+    if (!city) return;
+    const id = 'breadcrumb-schema';
+    let script = document.getElementById(id) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = id;
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://fathersonhomes.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Service Areas',
+          item: 'https://fathersonhomes.com/service-areas',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: city.name,
+          item: `https://fathersonhomes.com/locations/${city.slug}`,
+        },
+      ],
+    });
+    return () => {
+      document.getElementById(id)?.remove();
+    };
+  }, [city]);
 
   if (!city) {
     return (

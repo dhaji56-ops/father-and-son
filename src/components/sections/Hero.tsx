@@ -78,7 +78,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0">
         <img
           src={HERO_IMAGE}
-          alt="Beautiful Southern California home"
+          alt="Southern California home exterior — we buy houses for cash in OC, LA, and the Inland Empire"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-espresso/80 via-espresso/60 to-espresso/40" />
@@ -92,7 +92,7 @@ export function Hero() {
             <div className="mb-6 flex justify-center">
               <img
                 src="/logo.png"
-                alt="Father & Son Home Buyers"
+                alt="Father & Son Home Buyers logo — cash home buyers in Southern California"
                 className="h-40 w-auto rounded-lg shadow-lg"
               />
             </div>
