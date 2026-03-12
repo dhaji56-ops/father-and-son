@@ -247,6 +247,17 @@ export const cities: CityData[] = [
     situations: ['Retirement and downsizing', 'Investment properties near Old Town', 'Sellers leaving the area for a different lifestyle', 'Estate homes being sold by heirs'],
     blurb: "From Old Town to the vineyards, we make fast cash offers on Temecula homes of every kind.",
   },
+  {
+    slug: 'eastvale',
+    name: 'Eastvale',
+    county: 'Riverside County',
+    countySlug: 'riverside-county',
+    state: 'CA',
+    description: "Eastvale is one of the Inland Empire's newest and fastest-growing cities, known for its large family homes and tight-knit community. When life changes require a fast sale, we make fair cash offers on Eastvale homes in any condition.",
+    neighborhoods: ['Cloverdale', 'Homecoming', 'Sycamore Creek', 'River Ranch', 'Eastvale Gateway area'],
+    situations: ['Sellers relocating out of state', 'Larger homes that need significant repairs before listing', 'Divorce or financial hardship requiring a fast close', 'Homeowners who want to avoid the open-market hassle'],
+    blurb: "We serve Eastvale homeowners across every neighborhood — fast cash offers, no repairs, close on your timeline.",
+  },
 ];
 
 export function getCityBySlug(slug: string): CityData | undefined {

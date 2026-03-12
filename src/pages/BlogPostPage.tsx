@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container } from '../components/layout';
 import { CTASection } from '../components/sections';
@@ -15,6 +16,47 @@ export function BlogPostPage() {
     description: post?.description ?? 'Post not found.',
     canonical: post ? `https://fathersonhomes.com/blog/${post.slug}` : undefined,
   });
+
+  // Inject Article structured data
+  useEffect(() => {
+    if (!post) return;
+    const id = 'article-schema';
+    let script = document.getElementById(id) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = id;
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      author: {
+        '@type': 'Organization',
+        name: 'Father & Son Home Buyers',
+        url: 'https://fathersonhomes.com',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Father & Son Home Buyers',
+        url: 'https://fathersonhomes.com',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://fathersonhomes.com/logo.png',
+        },
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `https://fathersonhomes.com/blog/${post.slug}`,
+      },
+    });
+    return () => {
+      document.getElementById(id)?.remove();
+    };
+  }, [post]);
 
   if (!post) {
     return (

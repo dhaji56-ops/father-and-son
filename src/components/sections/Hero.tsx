@@ -10,6 +10,7 @@ const HERO_IMAGE = 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6
 export function Hero() {
   const [formData, setFormData] = useState({
     address: '',
+    city: '',
     name: '',
     phone: '',
     email: '',
@@ -21,8 +22,8 @@ export function Hero() {
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const addressInputRef = useAddressAutocomplete({
-    onPlaceSelected: (selectedAddress) => {
-      setFormData((prev) => ({ ...prev, address: selectedAddress }));
+    onPlaceSelected: (selectedAddress, city) => {
+      setFormData((prev) => ({ ...prev, address: selectedAddress, city }));
       setErrors((prev) => ({ ...prev, address: undefined }));
     },
   });
@@ -66,7 +67,7 @@ export function Hero() {
     setSubmitStatus({ type: result.success ? 'success' : 'error', message: result.message });
 
     if (result.success) {
-      setFormData({ address: '', name: '', phone: '', email: '', situation: '', timeline: '' });
+      setFormData({ address: '', city: '', name: '', phone: '', email: '', situation: '', timeline: '' });
       if (addressInputRef.current) addressInputRef.current.value = '';
     }
   };
