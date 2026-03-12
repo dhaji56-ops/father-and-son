@@ -7,6 +7,7 @@ import { validateLeadForm, hasErrors, type ValidationErrors } from '../../lib/va
 export function LeadForm() {
   const [formData, setFormData] = useState({
     address: '',
+    city: '',
     name: '',
     phone: '',
     email: '',
@@ -32,8 +33,8 @@ export function LeadForm() {
   };
 
   const addressInputRef = useAddressAutocomplete({
-    onPlaceSelected: (selectedAddress) => {
-      setFormData((prev) => ({ ...prev, address: selectedAddress }));
+    onPlaceSelected: (selectedAddress, city) => {
+      setFormData((prev) => ({ ...prev, address: selectedAddress, city }));
       setErrors((prev) => ({ ...prev, address: undefined }));
     },
   });
@@ -55,13 +56,13 @@ export function LeadForm() {
     if (hasErrors(validationErrors)) return;
 
     setIsSubmitting(true);
-    const result = await submitLead({ ...formData, source: 'contact' });
+    const result = await submitLead({ ...formData, source: 'contact', city: formData.city });
     setIsSubmitting(false);
 
     setSubmitStatus({ type: result.success ? 'success' : 'error', message: result.message });
 
     if (result.success) {
-      setFormData({ address: '', name: '', phone: '', email: '' });
+      setFormData({ address: '', city: '', name: '', phone: '', email: '' });
       if (addressInputRef.current) addressInputRef.current.value = '';
     }
   };

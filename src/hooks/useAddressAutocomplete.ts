@@ -16,7 +16,7 @@ declare global {
 }
 
 interface UseAddressAutocompleteOptions {
-  onPlaceSelected?: (address: string) => void;
+  onPlaceSelected?: (address: string, city: string) => void;
   country?: string;
 }
 
@@ -59,7 +59,7 @@ export function useAddressAutocomplete(
       inputRef.current,
       {
         componentRestrictions: { country },
-        fields: ['formatted_address'],
+        fields: ['formatted_address', 'address_components'],
         types: ['address'],
       }
     );
@@ -67,7 +67,11 @@ export function useAddressAutocomplete(
     autocompleteRef.current.addListener('place_changed', () => {
       const place = autocompleteRef.current?.getPlace();
       if (place?.formatted_address && onPlaceSelected) {
-        onPlaceSelected(place.formatted_address);
+        const cityComponent = place.address_components?.find((c: google.maps.GeocoderAddressComponent) =>
+          c.types.includes('locality')
+        );
+        const city = cityComponent?.long_name ?? '';
+        onPlaceSelected(place.formatted_address, city);
       }
     });
   }, [country, onPlaceSelected]);

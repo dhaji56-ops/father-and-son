@@ -1,5 +1,6 @@
 export interface LeadFormData {
   address: string;
+  city?: string;
   name: string;
   phone: string;
   email?: string;
@@ -29,6 +30,7 @@ export async function submitLead(data: LeadFormData): Promise<SubmitResult> {
         subject: `New Lead from ${data.source === 'hero' ? 'Homepage' : 'Contact Page'}: ${data.name}`,
         from_name: 'Father & Son Home Buyers Website',
         'Property Address': data.address,
+        'City': data.city || 'Not captured',
         'Name': data.name,
         'Phone': data.phone,
         'Email': data.email || 'Not provided',
