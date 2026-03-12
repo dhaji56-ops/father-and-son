@@ -121,7 +121,7 @@ export function Hero() {
 
             {/* Headline */}
             <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-snug mb-4">
-              Sell Your House As-Is for Cash in Southern California
+              Father &amp; Son Home Buyers — Sell Your House for Cash in Southern California
             </h1>
 
             {/* Subheadline */}
