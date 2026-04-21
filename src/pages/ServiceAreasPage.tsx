@@ -61,10 +61,10 @@ export function ServiceAreasPage() {
               <div className="h-px w-8 bg-espresso/20" />
             </div>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight text-espresso mb-6">
-              Serving Southern California
+              We Buy Houses Throughout Southern California
             </h1>
             <p className="text-lg text-driftwood max-w-2xl mx-auto">
-              We buy houses throughout Orange County, Los Angeles County, and the Inland Empire. If you're in SoCal, we'd love to help.
+              We're cash home buyers serving Orange County, Los Angeles County, and the Inland Empire. Sell your home for cash — any condition, any situation, any timeline.
             </p>
           </div>
         </Container>

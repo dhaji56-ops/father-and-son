@@ -80,10 +80,10 @@ export function FAQPage() {
               <div className="h-px w-8 bg-espresso/20" />
             </div>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight text-espresso mb-6">
-              Frequently Asked Questions
+              Frequently Asked Questions About Selling Your Home for Cash
             </h1>
             <p className="text-lg text-driftwood max-w-2xl mx-auto">
-              Got questions? We've got answers. Here are the most common questions we hear from homeowners.
+              Common questions we hear from Southern California homeowners considering a cash sale. No fluff — just straight answers.
             </p>
           </div>
         </Container>

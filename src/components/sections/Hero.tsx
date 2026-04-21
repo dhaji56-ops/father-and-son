@@ -4,8 +4,8 @@ import { useAddressAutocomplete } from '../../hooks/useAddressAutocomplete';
 import { submitLead } from '../../lib/submitLead';
 import { validateLeadForm, hasErrors, type ValidationErrors } from '../../lib/validateLead';
 
-// Southern California home background
-const HERO_IMAGE = 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=80';
+// Self-hosted hero image for faster loading & better Core Web Vitals
+const HERO_IMAGE = '/hero-home.jpg';
 
 export function Hero() {
   const [formData, setFormData] = useState({
@@ -80,6 +80,11 @@ export function Hero() {
           src={HERO_IMAGE}
           alt="Southern California home exterior — we buy houses for cash in OC, LA, and the Inland Empire"
           className="w-full h-full object-cover"
+          width={1200}
+          height={800}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-espresso/80 via-espresso/60 to-espresso/40" />
       </div>
@@ -94,6 +99,7 @@ export function Hero() {
                 src="/logo.png"
                 alt="Father & Son Home Buyers logo — cash home buyers in Southern California"
                 className="h-40 w-auto rounded-lg shadow-lg"
+                loading="lazy"
               />
             </div>
 
@@ -116,6 +122,12 @@ export function Hero() {
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 Sell As-Is
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-xs bg-white/20 px-3 py-1.5 rounded-full">
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                We Buy Houses
               </span>
             </div>
 
@@ -343,7 +355,7 @@ export function Hero() {
 
             {/* Trust Signals */}
             <div className="mt-6 pt-6 border-t border-espresso/10">
-              <div className="flex justify-center gap-8">
+              <div className="flex flex-wrap justify-center gap-6">
                 <div className="flex items-center gap-2 text-sm text-driftwood">
                   <svg className="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -361,6 +373,10 @@ export function Hero() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   No Hidden Fees
+                </div>
+                <div className="flex items-center gap-1.5 text-sm text-driftwood">
+                  <span className="flex text-yellow-400 text-xs">★★★★★</span>
+                  <span>5.0 on Google</span>
                 </div>
               </div>
             </div>

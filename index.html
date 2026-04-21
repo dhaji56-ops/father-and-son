@@ -8,11 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#3d2b1f" />
 
+    <!-- Preload LCP hero image -->
+    <link rel="preload" as="image" href="/hero-home.jpg" fetchpriority="high" />
+
     <!-- Primary Meta Tags -->
     <title>Father &amp; Son Home Buyers | Sell Your House Fast for Cash</title>
     <meta name="title" content="Father &amp; Son Home Buyers | Sell Your House Fast for Cash" />
     <meta name="description" content="Father &amp; Son Home Buyers — get a fair cash offer within 24 hours. No repairs, no fees, no agents. Family-owned cash home buyers serving Orange County, LA &amp; Inland Empire." />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://fathersonhomes.com/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -47,6 +51,9 @@
       "logo": "https://fathersonhomes.com/logo.png",
       "image": "https://fathersonhomes.com/logo.png",
       "priceRange": "$$",
+      "sameAs": [
+        "https://www.google.com/maps/place/Father+%26+Son+Home+Buyers"
+      ],
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -95,6 +102,13 @@
         "Quick Home Sales",
         "Southern California Real Estate"
       ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "2",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Home Buying Services",
@@ -189,8 +203,59 @@
             "@type": "Answer",
             "text": "We're Father & Son Home Buyers — a local father and son team with decades of combined real estate and construction experience. We're not a big corporation; we're a family business helping Southern California homeowners sell their properties quickly and fairly."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I sell my home for cash in Southern California?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To sell your home for cash in Southern California, contact a local cash home buyer like Father & Son Home Buyers. You share details about your property, we schedule a quick visit, and you receive a written cash offer within 24–48 hours. If you accept, you choose the closing date — as fast as 14 days. No repairs, no agent commissions, no hidden fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What types of homes do you buy for cash?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We buy all types of homes for cash throughout Orange County, LA County, and the Inland Empire — single-family homes, condos, and multi-unit properties in any condition. Inherited homes, properties in foreclosure, homes with code violations, rentals with problem tenants, fire-damaged homes, and homes needing major repairs are all situations we handle."
+          }
         }
       ]
+    }
+    </script>
+
+    <!-- Organization Structured Data (Author Markup) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://fathersonhomes.com/#organization",
+      "name": "Father & Son Home Buyers",
+      "url": "https://fathersonhomes.com",
+      "logo": "https://fathersonhomes.com/logo.png",
+      "foundingDate": "2024",
+      "founder": {
+        "@type": "Person",
+        "name": "Dustin",
+        "jobTitle": "Co-Founder"
+      },
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "minValue": 2,
+        "maxValue": 10
+      },
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Orange County, CA" },
+        { "@type": "AdministrativeArea", "name": "Los Angeles County, CA" },
+        { "@type": "AdministrativeArea", "name": "Riverside County, CA" },
+        { "@type": "AdministrativeArea", "name": "San Bernardino County, CA" }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-949-541-2003",
+        "contactType": "sales",
+        "availableLanguage": ["English", "Spanish"]
+      }
     }
     </script>
 
@@ -201,6 +266,7 @@
       "@type": "WebSite",
       "name": "Father & Son Home Buyers",
       "url": "https://fathersonhomes.com",
+      "publisher": { "@id": "https://fathersonhomes.com/#organization" },
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://fathersonhomes.com/service-areas?q={search_term_string}",

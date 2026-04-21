@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Container } from '../components/layout';
 import { CTASection } from '../components/sections';
 import { useSEO } from '../hooks/useSEO';
@@ -69,6 +70,33 @@ export function HowItWorksPage() {
     description: 'Simple 5-step process: contact us, we visit, get your offer, sign, and close in as little as 14 days. No repairs or showings needed.',
     canonical: 'https://fathersonhomes.com/how-it-works',
   });
+
+  useEffect(() => {
+    const id = 'howto-schema';
+    let script = document.getElementById(id) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = id;
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      'name': 'How to Sell Your House for Cash',
+      'description': 'Our 5-step process for selling your Southern California home for cash — no repairs, no fees, no agent commissions.',
+      'totalTime': 'P14D',
+      'step': [
+        { '@type': 'HowToStep', 'position': 1, 'name': 'Contact Us', 'text': 'Fill out our simple form or give us a call. Tell us about your property — any condition, any situation. There\'s no obligation.' },
+        { '@type': 'HowToStep', 'position': 2, 'name': 'We Visit Your Property', 'text': 'We\'ll schedule a quick, no-pressure visit to see your property in person. This helps us give you the most accurate and fair offer.' },
+        { '@type': 'HowToStep', 'position': 3, 'name': 'Get Your Cash Offer', 'text': 'After seeing your property, we\'ll present you with a fair, honest cash offer within 48 hours. No repairs needed — we buy as-is.' },
+        { '@type': 'HowToStep', 'position': 4, 'name': 'Choose Your Close Date', 'text': 'Accept the offer and pick the closing date that works for you — as fast as 14 days or whenever you\'re ready. You\'re in control.' },
+        { '@type': 'HowToStep', 'position': 5, 'name': 'Get Paid', 'text': 'Close with a reputable title company. Walk away with cash in hand — no fees, no commissions, no hassle.' },
+      ],
+    });
+    return () => { document.getElementById(id)?.remove(); };
+  }, []);
+
   return (
     <>
       {/* Hero Section */}
@@ -83,10 +111,10 @@ export function HowItWorksPage() {
               <div className="h-px w-8 bg-espresso/20" />
             </div>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight text-espresso mb-6">
-              How It Works
+              How to Sell Your House for Cash: Our 5-Step Process
             </h1>
             <p className="text-lg text-driftwood max-w-2xl mx-auto">
-              Selling your house should be simple. Here's our straightforward 5-step process — no surprises, no hidden steps.
+              Selling your house for cash should be simple. Here's our straightforward process — no surprises, no hidden steps, no agent commissions.
             </p>
           </div>
         </Container>
