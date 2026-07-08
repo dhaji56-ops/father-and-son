@@ -26,6 +26,7 @@ export function Header() {
               src="/logo.png"
               alt="Father & Son Home Buyers — sell your house fast for cash"
               className="h-20 w-auto"
+              loading="lazy"
             />
           </Link>
 

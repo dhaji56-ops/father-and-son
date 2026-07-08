@@ -3,11 +3,12 @@ import { useParams, Link } from 'react-router-dom';
 import { Container } from '../components/layout';
 import { CTASection } from '../components/sections';
 import { useSEO } from '../hooks/useSEO';
-import { getCityBySlug } from '../lib/cities';
+import { getCityBySlug, getNearbyCities } from '../lib/cities';
 
 export function CityPage() {
   const { slug } = useParams<{ slug: string }>();
   const city = slug ? getCityBySlug(slug) : undefined;
+  const nearbyCities = slug ? getNearbyCities(slug) : [];
 
   useSEO({
     title: city
@@ -53,6 +54,45 @@ export function CityPage() {
           item: `https://fathersonhomes.com/locations/${city.slug}`,
         },
       ],
+    });
+    return () => {
+      document.getElementById(id)?.remove();
+    };
+  }, [city]);
+
+  // Inject city-specific LocalBusiness structured data
+  useEffect(() => {
+    if (!city) return;
+    const id = 'city-localbusiness-schema';
+    let script = document.getElementById(id) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = id;
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      '@id': `https://fathersonhomes.com/locations/${city.slug}#business`,
+      'name': 'Father & Son Home Buyers',
+      'description': `Cash home buyers in ${city.name}, ${city.state}. ${city.description}`,
+      'url': `https://fathersonhomes.com/locations/${city.slug}`,
+      'telephone': '(949) 541-2003',
+      'areaServed': {
+        '@type': 'City',
+        'name': city.name,
+        'containedInPlace': {
+          '@type': 'AdministrativeArea',
+          'name': city.county,
+        },
+      },
+      'serviceType': [
+        'Cash Home Buying',
+        'As-Is Home Purchase',
+        'Pre-Foreclosure Home Purchase',
+      ],
+      'priceRange': '$$',
     });
     return () => {
       document.getElementById(id)?.remove();
@@ -252,6 +292,36 @@ export function CityPage() {
           </div>
         </Container>
       </section>
+
+      {/* Nearby Areas We Serve */}
+      {nearbyCities.length > 0 && (
+        <section className="py-16 md:py-20 bg-oatmeal/30">
+          <Container>
+            <div className="text-center mb-12">
+              <h2 className="font-serif text-3xl md:text-4xl font-medium text-espresso mb-4">
+                We Also Buy Houses in These Nearby Cities
+              </h2>
+              <p className="text-driftwood max-w-xl mx-auto">
+                Father &amp; Son Home Buyers serves homeowners across Southern California. Explore more of our service areas.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {nearbyCities.map((nearby) => (
+                <Link
+                  key={nearby.slug}
+                  to={`/locations/${nearby.slug}`}
+                  className="card-warm p-5 text-center hover:shadow-md transition-warm"
+                >
+                  <h3 className="font-serif text-lg font-medium text-espresso mb-1">
+                    {nearby.name}
+                  </h3>
+                  <p className="text-xs text-driftwood">{nearby.county}</p>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* Breadcrumb nav back to service areas */}
       <section className="py-8 bg-oatmeal/20">

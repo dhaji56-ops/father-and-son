@@ -42,6 +42,8 @@ export function Footer() {
                   src="/logo.png"
                   alt="Father & Son Home Buyers — we buy houses in Southern California"
                   className="h-24 w-auto rounded-lg"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <p className="text-sm text-cream/70 leading-relaxed mb-6">

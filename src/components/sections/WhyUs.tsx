@@ -1,7 +1,7 @@
 import { Container } from '../layout/Container';
 
-// Father and son in professional/business context
-const FATHER_SON_IMAGE = 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80';
+// Self-hosted image for faster loading
+const FATHER_SON_IMAGE = '/why-us-team.jpg';
 
 export function WhyUs() {
   return (
@@ -16,6 +16,8 @@ export function WhyUs() {
                 src={FATHER_SON_IMAGE}
                 alt="Father and son team — local cash home buyers serving Southern California"
                 className="img-warm w-full h-full object-cover object-top"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 

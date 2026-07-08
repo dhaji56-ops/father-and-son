@@ -9,7 +9,7 @@ export function ContactPage() {
   });
   return (
     <>
-      <LeadForm />
+      <LeadForm as="h1" />
     </>
   );
 }

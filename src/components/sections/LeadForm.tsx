@@ -4,7 +4,7 @@ import { useAddressAutocomplete } from '../../hooks/useAddressAutocomplete';
 import { submitLead } from '../../lib/submitLead';
 import { validateLeadForm, hasErrors, type ValidationErrors } from '../../lib/validateLead';
 
-export function LeadForm() {
+export function LeadForm({ as: Heading = 'h2' }: { as?: 'h1' | 'h2' } = {}) {
   const [formData, setFormData] = useState({
     address: '',
     city: '',
@@ -79,9 +79,9 @@ export function LeadForm() {
             </span>
             <div className="h-px w-8 bg-espresso/20" />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-espresso mb-4">
+          <Heading className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-espresso mb-4">
             Request Your <em className="text-terracotta">Free</em> Cash Offer
-          </h2>
+          </Heading>
           <p className="text-driftwood max-w-md mx-auto">
             Fill out the form below and we'll contact you within 24 hours with a fair, no-obligation offer.
           </p>

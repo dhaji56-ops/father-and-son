@@ -1,4 +1,7 @@
 {
+  "buildCommand": "npm run build:prerender",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     { "source": "/((?!assets|favicon|logo|icon|apple-touch|sitemap|robots|og-image).*)", "destination": "/index.html" }
   ]

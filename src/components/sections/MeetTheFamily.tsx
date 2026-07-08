@@ -47,6 +47,8 @@ export function MeetTheFamily() {
               src="/father-son-team.jpg"
               alt="Father & Son Home Buyers team photo — family-owned cash home buyers in Southern California"
               className="w-full rounded-2xl shadow-warm-lg object-cover"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>

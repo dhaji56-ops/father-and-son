@@ -265,3 +265,38 @@ export function getCityBySlug(slug: string): CityData | undefined {
 }
 
 export const citySlugs = cities.map((c) => c.slug);
+
+/**
+ * Returns up to 8 nearby cities for cross-linking SEO.
+ * Priority: same-county cities first, then cross-county neighbors.
+ * OC cities get all other OC cities first (primary market).
+ */
+export function getNearbyCities(currentSlug: string): CityData[] {
+  const current = getCityBySlug(currentSlug);
+  if (!current) return [];
+
+  const MAX = 8;
+
+  // Cross-county bridge slugs by county
+  const crossCountyMap: Record<string, string[]> = {
+    'Orange County': ['long-beach', 'corona'],
+    'Los Angeles County': ['anaheim', 'santa-ana'],
+    'Riverside County': ['corona', 'anaheim'],
+    'San Bernardino County': ['corona', 'anaheim'],
+  };
+
+  // Same-county cities (excluding self)
+  const sameCounty = cities.filter(
+    (c) => c.county === current.county && c.slug !== currentSlug,
+  );
+
+  // Cross-county neighbors (excluding self and already-included same-county)
+  const bridgeSlugs = crossCountyMap[current.county] ?? [];
+  const sameCountySlugs = new Set(sameCounty.map((c) => c.slug));
+  const crossCounty = bridgeSlugs
+    .filter((s) => s !== currentSlug && !sameCountySlugs.has(s))
+    .map((s) => getCityBySlug(s))
+    .filter((c): c is CityData => c !== undefined);
+
+  return [...sameCounty, ...crossCounty].slice(0, MAX);
+}
