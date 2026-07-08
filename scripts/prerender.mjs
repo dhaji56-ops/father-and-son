@@ -182,14 +182,21 @@ async function launchBrowser() {
   });
 }
 
-function startServer(port) {
+function startServer(port, shellHtml) {
   return new Promise((resolve) => {
     const server = createServer(async (req, res) => {
-      let filePath = join(DIST, req.url === '/' ? '/index.html' : req.url);
+      const filePath = join(DIST, req.url === '/' ? '/index.html' : req.url);
 
-      // SPA fallback — serve index.html for routes without file extensions
+      // SPA fallback (including '/') — always serve the pristine shell captured
+      // before prerendering began. Reading dist/index.html from disk would be
+      // wrong here: once the '/' route is prerendered it overwrites that file
+      // with the homepage's fully-rendered output (which carries page-specific
+      // schema like LocalBusiness). Serving that as the fallback would leak the
+      // homepage's schema onto every other route.
       if (!extname(filePath) || !existsSync(filePath)) {
-        filePath = join(DIST, 'index.html');
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(shellHtml);
+        return;
       }
 
       try {
@@ -212,8 +219,12 @@ async function prerender() {
   console.log(`📁 Dist directory: ${DIST}`);
   console.log(`📄 Routes to prerender: ${routes.length}\n`);
 
+  // Snapshot the pristine Vite-built shell before any route overwrites it, so
+  // the SPA fallback never serves a page-specific prerender as the shell.
+  const shellHtml = readFileSync(join(DIST, 'index.html'), 'utf-8');
+
   const PORT = 4173;
-  const server = await startServer(PORT);
+  const server = await startServer(PORT, shellHtml);
 
   const browser = await launchBrowser();
 

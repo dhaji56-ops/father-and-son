@@ -1,8 +1,12 @@
-import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container } from '../components/layout';
 import { CTASection } from '../components/sections';
 import { useSEO } from '../hooks/useSEO';
+import {
+  usePageSchema,
+  cityBreadcrumbSchema,
+  cityLocalBusinessSchema,
+} from '../lib/schema';
 import { getCityBySlug, getNearbyCities } from '../lib/cities';
 
 export function CityPage() {
@@ -20,84 +24,12 @@ export function CityPage() {
     canonical: city ? `https://fathersonhomes.com/locations/${city.slug}` : undefined,
   });
 
-  // Inject BreadcrumbList structured data
-  useEffect(() => {
-    if (!city) return;
-    const id = 'breadcrumb-schema';
-    let script = document.getElementById(id) as HTMLScriptElement | null;
-    if (!script) {
-      script = document.createElement('script');
-      script.id = id;
-      script.type = 'application/ld+json';
-      document.head.appendChild(script);
-    }
-    script.textContent = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: 'https://fathersonhomes.com',
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Service Areas',
-          item: 'https://fathersonhomes.com/service-areas',
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: city.name,
-          item: `https://fathersonhomes.com/locations/${city.slug}`,
-        },
-      ],
-    });
-    return () => {
-      document.getElementById(id)?.remove();
-    };
-  }, [city]);
-
-  // Inject city-specific LocalBusiness structured data
-  useEffect(() => {
-    if (!city) return;
-    const id = 'city-localbusiness-schema';
-    let script = document.getElementById(id) as HTMLScriptElement | null;
-    if (!script) {
-      script = document.createElement('script');
-      script.id = id;
-      script.type = 'application/ld+json';
-      document.head.appendChild(script);
-    }
-    script.textContent = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'LocalBusiness',
-      '@id': `https://fathersonhomes.com/locations/${city.slug}#business`,
-      'name': 'Father & Son Home Buyers',
-      'description': `Cash home buyers in ${city.name}, ${city.state}. ${city.description}`,
-      'url': `https://fathersonhomes.com/locations/${city.slug}`,
-      'telephone': '(949) 541-2003',
-      'areaServed': {
-        '@type': 'City',
-        'name': city.name,
-        'containedInPlace': {
-          '@type': 'AdministrativeArea',
-          'name': city.county,
-        },
-      },
-      'serviceType': [
-        'Cash Home Buying',
-        'As-Is Home Purchase',
-        'Pre-Foreclosure Home Purchase',
-      ],
-      'priceRange': '$$',
-    });
-    return () => {
-      document.getElementById(id)?.remove();
-    };
-  }, [city]);
+  // City pages emit a BreadcrumbList plus a LocalBusiness scoped to this city.
+  // The city LocalBusiness has its own @id, so it never duplicates the sitewide
+  // Organization from index.html.
+  usePageSchema(
+    city ? [cityBreadcrumbSchema(city), cityLocalBusinessSchema(city)] : []
+  );
 
   if (!city) {
     return (
