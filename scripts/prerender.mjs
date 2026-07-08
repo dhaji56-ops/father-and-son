@@ -11,7 +11,6 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import puppeteer from 'puppeteer';
 import { createServer } from 'http';
 import { readFile } from 'fs/promises';
 import { extname } from 'path';
@@ -149,6 +148,40 @@ const MIME_TYPES = {
   '.xml': 'application/xml',
 };
 
+/**
+ * Launch Chromium in a way that works both locally and inside Vercel's build
+ * container. Locally we use the full `puppeteer` package (its bundled Chromium
+ * runs fine on a dev machine). On Vercel/CI the build image is Amazon Linux,
+ * where that bundled Chromium is missing system libraries — so we drive
+ * `puppeteer-core` with the Amazon Linux-compatible Chromium binary shipped by
+ * `@sparticuz/chromium`. This lets the prerender run inside Vercel's own build,
+ * so a plain `git push` (with the Vercel Git integration) fully deploys.
+ */
+async function launchBrowser() {
+  const onServer = Boolean(
+    process.env.VERCEL || process.env.CI || process.env.AWS_LAMBDA_FUNCTION_NAME
+  );
+
+  if (onServer) {
+    const { default: chromium } = await import('@sparticuz/chromium');
+    const { default: puppeteerCore } = await import('puppeteer-core');
+    console.log('🧭 Using @sparticuz/chromium (serverless build environment)');
+    return puppeteerCore.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: true,
+    });
+  }
+
+  const { default: puppeteer } = await import('puppeteer');
+  console.log('🧭 Using local puppeteer (bundled Chromium)');
+  return puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
+}
+
 function startServer(port) {
   return new Promise((resolve) => {
     const server = createServer(async (req, res) => {
@@ -182,10 +215,7 @@ async function prerender() {
   const PORT = 4173;
   const server = await startServer(PORT);
 
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  });
+  const browser = await launchBrowser();
 
   let success = 0;
   let failed = 0;
