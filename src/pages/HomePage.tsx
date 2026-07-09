@@ -14,7 +14,7 @@ import {
 export function HomePage() {
   useSEO({
     title: 'Father & Son Home Buyers | Sell Your House Fast for Cash',
-    description: 'Father & Son Home Buyers — get a fair cash offer within 24 hours. No repairs, no fees, no agents. Family-owned cash home buyers serving Orange County, LA & Inland Empire.',
+    description: 'Get a fair cash offer within 24 hours from Father & Son Home Buyers. No repairs, no fees, no agents. Serving Orange County, LA & the Inland Empire.',
     canonical: 'https://fathersonhomes.com/',
   });
 

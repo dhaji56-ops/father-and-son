@@ -7,7 +7,7 @@ import { usePageSchema, faqPageSchema } from '../lib/schema';
 const faqs = [
   {
     question: 'How fast can I get an offer?',
-    answer: 'We provide a fair cash offer within 48 hours of learning about your property. In many cases, we can give you a preliminary offer the same day you contact us.',
+    answer: 'We provide a fair cash offer within 24 hours of learning about your property. In many cases, we can give you a preliminary offer the same day you contact us.',
   },
   {
     question: 'Do I need to make any repairs?',

@@ -57,7 +57,7 @@ const steps = [
 ];
 
 const benefits = [
-  'Cash offer within 48 hours',
+  'Cash offer within 24 hours',
   'Close in as little as 14 days',
   'No fees or commissions',
   'Sell as-is, no repairs needed',
@@ -89,7 +89,7 @@ export function HowItWorksPage() {
       'step': [
         { '@type': 'HowToStep', 'position': 1, 'name': 'Contact Us', 'text': 'Fill out our simple form or give us a call. Tell us about your property — any condition, any situation. There\'s no obligation.' },
         { '@type': 'HowToStep', 'position': 2, 'name': 'We Visit Your Property', 'text': 'We\'ll schedule a quick, no-pressure visit to see your property in person. This helps us give you the most accurate and fair offer.' },
-        { '@type': 'HowToStep', 'position': 3, 'name': 'Get Your Cash Offer', 'text': 'After seeing your property, we\'ll present you with a fair, honest cash offer within 48 hours. No repairs needed — we buy as-is.' },
+        { '@type': 'HowToStep', 'position': 3, 'name': 'Get Your Cash Offer', 'text': 'After seeing your property, we\'ll present you with a fair, honest cash offer within 24 hours. No repairs needed — we buy as-is.' },
         { '@type': 'HowToStep', 'position': 4, 'name': 'Choose Your Close Date', 'text': 'Accept the offer and pick the closing date that works for you — as fast as 14 days or whenever you\'re ready. You\'re in control.' },
         { '@type': 'HowToStep', 'position': 5, 'name': 'Get Paid', 'text': 'Close with a reputable title company. Walk away with cash in hand — no fees, no commissions, no hassle.' },
       ],

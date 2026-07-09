@@ -30,7 +30,7 @@ const valueProps = [
     ),
   },
   {
-    title: '48-Hour Offer',
+    title: '24-Hour Offer',
     description: 'Fast, fair cash offer',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">

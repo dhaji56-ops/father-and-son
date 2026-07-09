@@ -138,7 +138,7 @@ export function Hero() {
 
             {/* Subheadline */}
             <p className="text-base md:text-lg text-white/90 mb-4 leading-relaxed">
-              Get a fair, transparent cash offer within 48 hours. Close in as little as 14 days — or on your schedule. No fees. No pressure. No games.
+              Get a fair, transparent cash offer within 24 hours. Close in as little as 14 days — or on your schedule. No fees. No pressure. No games.
             </p>
 
             {/* Tagline */}
@@ -152,7 +152,7 @@ export function Hero() {
                 <svg className="w-4 h-4 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                <span>Cash offer within 48 hours — sell as-is</span>
+                <span>Cash offer within 24 hours — sell as-is</span>
               </li>
               <li className="flex items-center gap-2 text-sm">
                 <svg className="w-4 h-4 text-terracotta flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -360,7 +360,7 @@ export function Hero() {
                   <svg className="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  48-Hour Offer
+                  24-Hour Offer
                 </div>
                 <div className="flex items-center gap-2 text-sm text-driftwood">
                   <svg className="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">

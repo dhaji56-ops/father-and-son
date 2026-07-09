@@ -11,9 +11,9 @@ export function BlogPostPage() {
 
   useSEO({
     title: post
-      ? `${post.title} | Father & Son`
+      ? post.seoTitle ?? `${post.title} | Father & Son`
       : 'Post Not Found | Father & Son',
-    description: post?.description ?? 'Post not found.',
+    description: post?.seoDescription ?? post?.description ?? 'Post not found.',
     canonical: post ? `https://fathersonhomes.com/blog/${post.slug}` : undefined,
   });
 

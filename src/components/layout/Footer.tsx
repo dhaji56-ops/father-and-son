@@ -19,7 +19,7 @@ const serviceAreas = [
 ];
 
 const promises = [
-  'Cash offer within 48 hours',
+  'Cash offer within 24 hours',
   'Close in as little as 14 days',
   'No fees or commissions',
   'Sell as-is, no repairs needed',

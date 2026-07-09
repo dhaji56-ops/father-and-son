@@ -2,6 +2,10 @@ export interface BlogPost {
   slug: string;
   title: string;
   description: string;
+  /** Optional <=60-char <title> override for SEO (falls back to `${title} | Father & Son`). */
+  seoTitle?: string;
+  /** Optional <=155-char meta description override for SEO (falls back to `description`). */
+  seoDescription?: string;
   date: string;
   readTime: string;
   category: string;
@@ -17,6 +21,9 @@ export const blogPosts: BlogPost[] = [
     title: 'How to Sell an Inherited Property in Southern California',
     description:
       "Inheriting a home in California comes with legal, financial, and emotional complexity. Here's what you need to know — and how to sell quickly if that's the right choice for you.",
+    seoTitle: 'How to Sell an Inherited House in California | Father & Son',
+    seoDescription:
+      "Inheriting a home in California? Here's what you need to know — and how to sell quickly and for cash if that's the right choice.",
     date: 'February 28, 2026',
     readTime: '6 min read',
     category: 'Inherited Property',
@@ -51,6 +58,9 @@ export const blogPosts: BlogPost[] = [
     title: 'Facing Foreclosure in California? Here Are Your Options',
     description:
       "If you've fallen behind on mortgage payments, you have more options than you might realize. Here's a clear breakdown of what California homeowners can do before foreclosure becomes final.",
+    seoTitle: 'Foreclosure in California? Know Your Options | Father & Son',
+    seoDescription:
+      "Behind on mortgage payments? You have more options than you think. Here's what California homeowners can do before foreclosure is final.",
     date: 'February 14, 2026',
     readTime: '7 min read',
     category: 'Foreclosure',
@@ -93,6 +103,9 @@ export const blogPosts: BlogPost[] = [
     title: 'Selling a House As-Is in Southern California: What You Need to Know',
     description:
       "Selling as-is means skipping repairs and selling the home in its current condition. Here's how it works in California, what it means for your sale price, and when it makes sense.",
+    seoTitle: 'Selling a House As-Is in Southern California | Father & Son',
+    seoDescription:
+      "Selling as-is means skipping repairs and selling in current condition. Here's how it works in California and when it makes sense.",
     date: 'January 30, 2026',
     readTime: '5 min read',
     category: 'Selling Tips',
@@ -127,6 +140,9 @@ export const blogPosts: BlogPost[] = [
     title: 'Selling Your House During a Divorce in Orange County: A Practical Guide',
     description:
       'Divorce is already difficult — selling the family home shouldn\'t add more stress. Here\'s how Orange County homeowners can sell quickly, divide proceeds fairly, and move forward.',
+    seoTitle: 'Selling Your House During a Divorce in Orange County',
+    seoDescription:
+      "Selling the family home during a divorce? Here's how Orange County homeowners can sell quickly, divide proceeds fairly, and move forward.",
     date: 'March 17, 2026',
     readTime: '7 min read',
     category: 'Divorce',
@@ -161,6 +177,9 @@ export const blogPosts: BlogPost[] = [
     title: 'How to Avoid Foreclosure in Orange County, CA: 5 Steps to Protect Your Home',
     description:
       'If you\'ve missed mortgage payments on your Orange County home, don\'t wait. These five steps can help you avoid foreclosure and protect your credit and equity.',
+    seoTitle: 'How to Avoid Foreclosure in Orange County, CA | Father & Son',
+    seoDescription:
+      "Missed mortgage payments in Orange County? Don't wait. These five steps can help you avoid foreclosure and protect your credit and equity.",
     date: 'March 10, 2026',
     readTime: '6 min read',
     category: 'Foreclosure',
@@ -195,6 +214,9 @@ export const blogPosts: BlogPost[] = [
     title: 'Can You Sell a House with Code Violations in California?',
     description:
       'Yes — but it\'s complicated on the open market. Learn how code violations affect your sale options and why a cash buyer may be the simplest solution for Southern California homeowners.',
+    seoTitle: 'Sell a House with Code Violations in CA | Father & Son',
+    seoDescription:
+      "Yes, but it's complicated on the open market. Learn how code violations affect your options and why a cash buyer may be the simplest fix.",
     date: 'March 3, 2026',
     readTime: '6 min read',
     category: 'Selling Tips',
@@ -225,6 +247,9 @@ export const blogPosts: BlogPost[] = [
     title: 'How to Sell a Probate Property in Orange County: A Complete Guide',
     description:
       'Navigating probate in Orange County while trying to sell a home is overwhelming. Here\'s a step-by-step guide to selling a probate property quickly — with or without full court confirmation.',
+    seoTitle: 'How to Sell a Probate Property in Orange County',
+    seoDescription:
+      "Selling a probate property in Orange County is overwhelming. Here's a step-by-step guide to selling quickly — with or without court confirmation.",
     date: 'February 24, 2026',
     readTime: '8 min read',
     category: 'Inherited Property',
@@ -259,6 +284,9 @@ export const blogPosts: BlogPost[] = [
     title: 'How to Sell Your Home for Cash in Southern California',
     description:
       "Thinking about selling your home for cash? Here's exactly how cash home sales work in Southern California, what to expect, and how to make sure you're working with a legitimate buyer.",
+    seoTitle: 'Sell Your Home for Cash in Southern California',
+    seoDescription:
+      "Thinking of selling your home for cash? Here's how cash sales work in Southern California, what to expect, and how to find a legitimate buyer.",
     date: 'April 15, 2026',
     readTime: '7 min read',
     category: 'Selling Tips',
