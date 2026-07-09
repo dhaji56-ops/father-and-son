@@ -75,3 +75,16 @@ export const GOOGLE_REVIEWS = {
   reviewCount: 2,
   profileUrl: 'https://share.google/mYFjndAgX62vZejGs',
 };
+
+/**
+ * Below this many reviews we do NOT emit aggregateRating/Review JSON-LD.
+ * Rationale: Google doesn't render star rich-results from self-hosted
+ * LocalBusiness review markup anyway, and a rating built on a tiny sample is a
+ * self-serving-review pattern its policies discourage. The visible on-page
+ * "on Google" badge still shows the real number — this only gates the schema.
+ * Bump the real reviewCount above and this turns back on automatically.
+ */
+export const MIN_REVIEWS_FOR_RATING_SCHEMA = 5;
+
+export const RATING_SCHEMA_ENABLED =
+  GOOGLE_REVIEWS.reviewCount >= MIN_REVIEWS_FOR_RATING_SCHEMA;
