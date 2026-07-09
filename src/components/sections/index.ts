@@ -8,3 +8,4 @@ export { WhySellToUs } from './WhySellToUs';
 export { MeetTheFamily } from './MeetTheFamily';
 export { CTASection } from './CTASection';
 export { CashAdvance } from './CashAdvance';
+export { Testimonials } from './Testimonials';

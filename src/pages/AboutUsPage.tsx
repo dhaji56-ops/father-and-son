@@ -1,11 +1,12 @@
 import { Container } from '../components/layout';
-import { CTASection } from '../components/sections';
+import { CTASection, Testimonials } from '../components/sections';
 import { useSEO } from '../hooks/useSEO';
+import { TEAM, CREDENTIALS } from '../lib/reviews';
 
 export function AboutUsPage() {
   useSEO({
-    title: 'About Us | Local Cash Home Buyers | Father & Son',
-    description: 'Meet the father and son team behind Father & Son Home Buyers. Decades of real estate experience serving Southern California homeowners with integrity.',
+    title: 'About Us | Ahmad & Dustin Hajiali | Father & Son Home Buyers',
+    description: 'Meet Ahmad and Dustin Hajiali — the father-and-son team behind Father & Son Home Buyers. 20+ years in construction and 4,000+ real estate transactions.',
     canonical: 'https://fathersonhomes.com/about-us',
   });
   return (
@@ -22,53 +23,94 @@ export function AboutUsPage() {
               <div className="h-px w-8 bg-espresso/20" />
             </div>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight text-espresso mb-6">
-              A Father & Son You Can Trust
+              Meet Ahmad &amp; Dustin Hajiali
             </h1>
             <p className="text-lg text-driftwood max-w-2xl mx-auto">
-              We're not a faceless corporation — we're a local father and son team who've combined decades of real estate and construction experience to help homeowners like you.
+              We're not a faceless corporation — we're a local, family-owned father-and-son team. Together we combine 20+ years of construction with more than 4,000 real estate transactions to help homeowners like you.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Story Section */}
+      {/* Team Section — real people, real bios */}
       <section className="py-16 md:py-24">
+        <Container>
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl font-medium text-espresso mb-4">
+              Our Team
+            </h2>
+            <p className="text-driftwood max-w-xl mx-auto">
+              A father and son who actually pick up the phone — and personally evaluate every home we buy.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 max-w-4xl mx-auto">
+            {TEAM.map((member) => (
+              <div key={member.name} className="text-center md:text-left">
+                <img
+                  src={member.photo}
+                  alt={member.photoAlt}
+                  className="w-40 h-40 rounded-2xl shadow-warm-lg object-cover mx-auto md:mx-0 mb-5"
+                  loading="lazy"
+                  decoding="async"
+                  width={160}
+                  height={160}
+                />
+                <h3 className="font-serif text-2xl font-medium text-espresso">
+                  {member.name}
+                </h3>
+                <p className="text-sm font-medium tracking-warm text-terracotta mb-3">
+                  {member.role}
+                </p>
+                <p className="text-driftwood leading-relaxed">{member.bio}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Why We Do This + Credentials */}
+      <section className="py-16 md:py-24 bg-oatmeal/30">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
               <h2 className="font-serif text-3xl md:text-4xl font-medium text-espresso mb-6">
-                Our Story
+                Why We Do This
               </h2>
               <div className="space-y-4 text-driftwood leading-relaxed">
                 <p>
-                  Father & Son Home Buyers was born from a simple belief: selling your home shouldn't be stressful, complicated, or expensive.
+                  We founded Father & Son Home Buyers to give homeowners a straightforward, transparent way to sell properties that may need repairs, renovations, or extra attention.
                 </p>
                 <p>
-                  With decades of combined experience in real estate and construction, we saw too many homeowners struggle with the traditional selling process — the endless showings, the costly repairs, the uncertainty of waiting for buyers, and the hefty commissions eating into their equity.
-                </p>
-                <p>
-                  We decided there had to be a better way. A way that puts homeowners first. A way that's transparent, fair, and actually helps people move on to their next chapter without the usual headaches.
-                </p>
-                <p>
-                  Today, we're proud to help Southern California homeowners sell quickly and fairly — on their terms.
+                  As a local, family-owned business, our goal is simple: provide homeowners in our community with honest information, clear expectations, and a respectful selling experience from beginning to end.
                 </p>
               </div>
             </div>
-            <div className="relative">
-              <img
-                src="/father-son-team.jpg"
-                alt="Father & Son Home Buyers team — local family-owned cash home buyers in Southern California"
-                className="w-full rounded-2xl shadow-warm-lg object-cover"
-                loading="lazy"
-                decoding="async"
-              />
+            <div className="bg-white rounded-2xl p-8 shadow-warm">
+              <h3 className="font-serif text-xl font-medium text-espresso mb-5">
+                Credentials & Experience
+              </h3>
+              <ul className="space-y-4">
+                {CREDENTIALS.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <svg
+                      className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-driftwood leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </Container>
       </section>
 
       {/* Values Section */}
-      <section className="py-16 md:py-24 bg-oatmeal/30">
+      <section className="py-16 md:py-24">
         <Container>
           <div className="text-center mb-12">
             <h2 className="font-serif text-3xl md:text-4xl font-medium text-espresso mb-4">
@@ -116,6 +158,8 @@ export function AboutUsPage() {
           </div>
         </Container>
       </section>
+
+      <Testimonials />
 
       <CTASection />
     </>

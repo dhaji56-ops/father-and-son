@@ -7,6 +7,7 @@ import {
   WhySellToUs,
   CashAdvance,
   MeetTheFamily,
+  Testimonials,
   ServiceAreas,
   CTASection,
 } from '../components/sections';
@@ -28,6 +29,7 @@ export function HomePage() {
       <WhySellToUs />
       <CashAdvance />
       <MeetTheFamily />
+      <Testimonials />
       <ServiceAreas />
       <CTASection />
     </>

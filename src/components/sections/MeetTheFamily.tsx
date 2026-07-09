@@ -14,14 +14,20 @@ export function MeetTheFamily() {
               </span>
             </div>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-espresso mb-6">
-              A Father & Son You Can Trust
+              Ahmad &amp; Dustin Hajiali
             </h2>
             <p className="text-espresso/80 leading-relaxed mb-6">
-              We're not a faceless corporation — we're a local father and son team who've combined decades of real estate and construction experience to help homeowners like you.
+              We're not a faceless corporation — we're a local, family-owned father-and-son team. Ahmad brings 20+ years in construction and renovation; Dustin has worked in real estate since 17 and has taken part in more than 4,000 transactions.
             </p>
             <p className="text-espresso/70 leading-relaxed mb-8">
-              We believe every seller deserves honesty and respect. That's why transparency is at the heart of everything we offer.
+              Between us, we can evaluate any property honestly and walk you through every step. We believe every seller deserves honesty and respect — that's why transparency is at the heart of everything we offer.
             </p>
+            <Link
+              to="/about-us"
+              className="inline-flex items-center gap-1 text-sm font-medium text-espresso underline underline-offset-4 mb-8 hover:text-terracotta"
+            >
+              Read our full story &amp; bios →
+            </Link>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/contact"
