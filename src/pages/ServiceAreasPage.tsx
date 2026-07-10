@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Container } from '../components/layout';
 import { CTASection } from '../components/sections';
 import { useSEO } from '../hooks/useSEO';
+import { usePageSchema, faqPageSchema } from '../lib/schema';
 import { cities } from '../lib/cities';
 
 // Slugs that have dedicated landing pages
@@ -10,6 +11,80 @@ const cityPageSlugs = new Set(cities.map((c) => c.slug));
 function cityToSlug(city: string): string {
   return city.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 }
+
+// County-level detail used to give the page real substance and to cross-link
+// down to the dedicated city landing pages.
+const counties = [
+  {
+    name: 'Orange County',
+    blurb:
+      'From the coast at Huntington Beach and Newport to the older neighborhoods of Santa Ana, Anaheim, and Garden Grove, Orange County is our home base. We know its 1950s tract homes, its historic districts, and its hillside builds — and we buy all of them as-is.',
+  },
+  {
+    name: 'Los Angeles County',
+    blurb:
+      'Across the South Bay, Gateway Cities, and beyond — Long Beach, Downey, Whittier, Torrance, Carson, and their neighbors — we buy craftsman bungalows, mid-century homes, and inherited family properties without asking you to fix a thing.',
+  },
+  {
+    name: 'Inland Empire',
+    blurb:
+      'Riverside and San Bernardino counties are among the fastest-changing markets in the state. Whether you own an aging home in San Bernardino or a newer build in Eastvale, Corona, or Temecula, we make fair cash offers with closings that fit your timeline.',
+  },
+];
+
+// Situations we handle statewide — the reasons homeowners across all three
+// regions reach out.
+const situations = [
+  'Inherited or probate properties',
+  'Foreclosure or missed payments',
+  'Divorce or separation',
+  'Tired landlords and problem tenants',
+  'Major repairs, code violations, or fire damage',
+  'Job relocation or downsizing',
+  'Tax liens or back taxes',
+  'Vacant, distressed, or hard-to-sell homes',
+];
+
+const steps = [
+  {
+    step: '01',
+    title: 'Tell us about your home',
+    body: 'Call, text, or fill out our form. It takes about five minutes and there is no obligation.',
+  },
+  {
+    step: '02',
+    title: 'Get a fair cash offer',
+    body: 'We review your property and present a no-obligation cash offer within 24 hours — no appraisals, no showings.',
+  },
+  {
+    step: '03',
+    title: 'Close on your timeline',
+    body: 'Pick your closing date, as fast as 14 days. We cover the closing costs and buy the home as-is.',
+  },
+];
+
+const areaFaqs = [
+  {
+    question: 'What areas of Southern California do you buy houses in?',
+    answer:
+      'We buy houses throughout Orange County, Los Angeles County, and the Inland Empire (Riverside and San Bernardino counties). That includes cities like Santa Ana, Anaheim, Irvine, Long Beach, Torrance, Riverside, Corona, and Temecula, along with the many communities in between.',
+  },
+  {
+    question: "What if my city isn't listed?",
+    answer:
+      "Our city pages cover the areas we work in most, but the list isn't exhaustive. If you're anywhere in Southern California, reach out — there's a good chance we can still make you a cash offer or point you in the right direction.",
+  },
+  {
+    question: 'Do you charge fees or commissions anywhere you buy?',
+    answer:
+      'No. In every city we serve, there are no agent commissions, no closing costs, and no hidden fees. The cash offer you accept is the amount you walk away with.',
+  },
+  {
+    question: 'How fast can you close in my area?',
+    answer:
+      'Because we buy with our own cash, we can close in as little as 14 days anywhere we operate — or on a later date if you need more time. You choose the timeline that works for you.',
+  },
+];
 
 const areas = [
   {
@@ -47,6 +122,9 @@ export function ServiceAreasPage() {
     description: 'We buy houses throughout Orange County, Los Angeles County, and the Inland Empire. Get a cash offer for your Southern California home today.',
     canonical: 'https://fathersonhomes.com/service-areas',
   });
+
+  usePageSchema(faqPageSchema(areaFaqs));
+
   return (
     <>
       {/* Hero Section */}
@@ -64,8 +142,64 @@ export function ServiceAreasPage() {
               We Buy Houses Throughout Southern California
             </h1>
             <p className="text-lg text-driftwood max-w-2xl mx-auto">
-              We're cash home buyers serving Orange County, Los Angeles County, and the Inland Empire. Sell your home for cash — any condition, any situation, any timeline.
+              We're a family-owned team of cash home buyers serving Orange County, Los Angeles County, and the Inland Empire. Sell your home for cash — any condition, any situation, any timeline.
             </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Intro / Counties We Serve */}
+      <section className="py-16 md:py-24">
+        <Container size="narrow">
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl font-medium text-espresso mb-4">
+              Local Cash Home Buyers Across Southern California
+            </h2>
+            <p className="text-driftwood leading-relaxed">
+              Father &amp; Son Home Buyers has spent years buying houses across three of
+              the most diverse real-estate markets in the country. We're not a
+              national franchise routing your information to the highest bidder — we're
+              a local father-and-son team that knows these neighborhoods, buys homes
+              directly with our own funds, and closes on your schedule. Below are the
+              regions and counties we serve, plus the situations we help homeowners
+              through every week.
+            </p>
+          </div>
+          <div className="space-y-6">
+            {counties.map((county) => (
+              <div key={county.name} className="card-warm p-6 md:p-8">
+                <h3 className="font-serif text-2xl font-medium text-espresso mb-3">
+                  {county.name}
+                </h3>
+                <p className="text-driftwood leading-relaxed">{county.blurb}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Situations We Handle */}
+      <section className="py-16 md:py-24 bg-oatmeal/30">
+        <Container>
+          <div className="text-center mb-12 max-w-2xl mx-auto">
+            <h2 className="font-serif text-3xl md:text-4xl font-medium text-espresso mb-4">
+              Situations We Handle
+            </h2>
+            <p className="text-driftwood leading-relaxed">
+              No matter where you are in Southern California, life throws the same
+              curveballs. Whatever's behind your sale, we've likely handled it before —
+              without judgment, and without asking you to make a single repair.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+            {situations.map((s) => (
+              <div key={s} className="flex items-start gap-3 card-warm p-5">
+                <svg className="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-driftwood">{s}</span>
+              </div>
+            ))}
           </div>
         </Container>
       </section>
@@ -106,6 +240,61 @@ export function ServiceAreasPage() {
                     );
                   })}
                 </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* How It Works Summary */}
+      <section className="py-16 md:py-24 bg-oatmeal/30">
+        <Container>
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl font-medium text-espresso mb-4">
+              How Selling to Us Works
+            </h2>
+            <p className="text-driftwood max-w-xl mx-auto">
+              The same simple, three-step process in every city we serve.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {steps.map((item) => (
+              <div key={item.step} className="card-warm p-8 text-center">
+                <div className="font-serif text-5xl font-medium text-terracotta/30 mb-4">{item.step}</div>
+                <h3 className="font-serif text-xl font-medium text-espresso mb-3">{item.title}</h3>
+                <p className="text-driftwood text-sm leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link
+              to="/how-it-works"
+              className="text-sm text-terracotta hover:text-espresso transition-warm inline-flex items-center gap-1 font-medium"
+            >
+              See the full process
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* Service Areas FAQ */}
+      <section className="py-16 md:py-24">
+        <Container size="narrow">
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl font-medium text-espresso mb-4">
+              Service Area Questions
+            </h2>
+          </div>
+          <div className="space-y-6">
+            {areaFaqs.map((faq) => (
+              <div key={faq.question} className="card-warm p-6">
+                <h3 className="font-serif text-lg font-medium text-espresso mb-2">
+                  {faq.question}
+                </h3>
+                <p className="text-driftwood leading-relaxed">{faq.answer}</p>
               </div>
             ))}
           </div>
