@@ -14,6 +14,7 @@ const FAQPage = lazy(() => import('./pages/FAQPage').then(m => ({ default: m.FAQ
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
 const CashAdvancePage = lazy(() => import('./pages/CashAdvancePage').then(m => ({ default: m.CashAdvancePage })));
 const CityPage = lazy(() => import('./pages/CityPage').then(m => ({ default: m.CityPage })));
+const CountyHubPage = lazy(() => import('./pages/CountyHubPage').then(m => ({ default: m.CountyHubPage })));
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
@@ -30,6 +31,7 @@ function App() {
             <Route path="how-it-works" element={<HowItWorksPage />} />
             <Route path="about-us" element={<AboutUsPage />} />
             <Route path="service-areas" element={<ServiceAreasPage />} />
+            <Route path="service-areas/:slug" element={<CountyHubPage />} />
             <Route path="faq" element={<FAQPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="cash-advance" element={<CashAdvancePage />} />

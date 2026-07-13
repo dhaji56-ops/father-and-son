@@ -57,10 +57,12 @@ const staticRoutes = [
 // out of sync with the app (App.tsx renders /locations/:slug and /blog/:slug).
 const citySlugs = extractSlugs('lib/cities.ts');
 const blogSlugs = extractSlugs('lib/blog-posts.ts');
+const countyHubSlugs = extractSlugs('lib/counties.ts');
 
 // All routes to prerender.
 const routes = [
   ...staticRoutes,
+  ...countyHubSlugs.map((slug) => `/service-areas/${slug}`),
   ...citySlugs.map((slug) => `/locations/${slug}`),
   ...blogSlugs.map((slug) => `/blog/${slug}`),
 ];

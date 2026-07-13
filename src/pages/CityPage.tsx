@@ -9,11 +9,13 @@ import {
   faqPageSchema,
 } from '../lib/schema';
 import { getCityBySlug, getNearbyCities } from '../lib/cities';
+import { getHubForCity } from '../lib/counties';
 
 export function CityPage() {
   const { slug } = useParams<{ slug: string }>();
   const city = slug ? getCityBySlug(slug) : undefined;
   const nearbyCities = slug ? getNearbyCities(slug) : [];
+  const countyHub = city ? getHubForCity(city) : undefined;
 
   // Local FAQ built from this city's own data, so the copy varies city-to-city
   // instead of shipping identical boilerplate across every location page.
@@ -422,13 +424,17 @@ export function CityPage() {
               Service Areas
             </Link>
             <span>/</span>
-            <Link
-              to="/service-areas"
-              className="hover:text-terracotta transition-warm"
-              title={`Cash home buyers across ${city.county}`}
-            >
-              {city.county}
-            </Link>
+            {countyHub ? (
+              <Link
+                to={`/service-areas/${countyHub.slug}`}
+                className="hover:text-terracotta transition-warm"
+                title={`We buy houses across ${countyHub.name}`}
+              >
+                {countyHub.name}
+              </Link>
+            ) : (
+              <span>{city.county}</span>
+            )}
             <span>/</span>
             <span className="text-espresso">{city.name}</span>
           </div>

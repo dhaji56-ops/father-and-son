@@ -17,16 +17,19 @@ function cityToSlug(city: string): string {
 const counties = [
   {
     name: 'Orange County',
+    slug: 'orange-county',
     blurb:
       'From the coast at Huntington Beach and Newport to the older neighborhoods of Santa Ana, Anaheim, and Garden Grove, Orange County is our home base. We know its 1950s tract homes, its historic districts, and its hillside builds — and we buy all of them as-is.',
   },
   {
     name: 'Los Angeles County',
+    slug: 'los-angeles-county',
     blurb:
       'Across the South Bay, Gateway Cities, and beyond — Long Beach, Downey, Whittier, Torrance, Carson, and their neighbors — we buy craftsman bungalows, mid-century homes, and inherited family properties without asking you to fix a thing.',
   },
   {
     name: 'Inland Empire',
+    slug: 'inland-empire',
     blurb:
       'Riverside and San Bernardino counties are among the fastest-changing markets in the state. Whether you own an aging home in San Bernardino or a newer build in Eastvale, Corona, or Temecula, we make fair cash offers with closings that fit your timeline.',
   },
@@ -169,9 +172,23 @@ export function ServiceAreasPage() {
             {counties.map((county) => (
               <div key={county.name} className="card-warm p-6 md:p-8">
                 <h3 className="font-serif text-2xl font-medium text-espresso mb-3">
-                  {county.name}
+                  <Link
+                    to={`/service-areas/${county.slug}`}
+                    className="hover:text-terracotta transition-warm"
+                  >
+                    {county.name}
+                  </Link>
                 </h3>
-                <p className="text-driftwood leading-relaxed">{county.blurb}</p>
+                <p className="text-driftwood leading-relaxed mb-4">{county.blurb}</p>
+                <Link
+                  to={`/service-areas/${county.slug}`}
+                  className="text-sm text-terracotta hover:text-espresso transition-warm inline-flex items-center gap-1 font-medium"
+                >
+                  We buy houses in {county.name}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
               </div>
             ))}
           </div>
