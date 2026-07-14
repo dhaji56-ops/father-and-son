@@ -9,6 +9,11 @@ export interface BlogPost {
   date: string;
   readTime: string;
   category: string;
+  /**
+   * Optional situation landing page this article maps to. Renders a reciprocal
+   * link from the blog post to the conversion-focused /situations/<slug> page.
+   */
+  relatedSituationSlug?: string;
   sections: {
     heading?: string;
     body: string;
@@ -18,6 +23,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: 'sell-inherited-property-california',
+    relatedSituationSlug: 'inherited-probate',
     title: 'How to Sell an Inherited Property in Southern California',
     description:
       "Inheriting a home in California comes with legal, financial, and emotional complexity. Here's what you need to know — and how to sell quickly if that's the right choice for you.",
@@ -55,6 +61,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'foreclosure-options-california',
+    relatedSituationSlug: 'foreclosure',
     title: 'Facing Foreclosure in California? Here Are Your Options',
     description:
       "If you've fallen behind on mortgage payments, you have more options than you might realize. Here's a clear breakdown of what California homeowners can do before foreclosure becomes final.",
@@ -100,6 +107,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'sell-house-as-is-southern-california',
+    relatedSituationSlug: 'as-is-repairs',
     title: 'Selling a House As-Is in Southern California: What You Need to Know',
     description:
       "Selling as-is means skipping repairs and selling the home in its current condition. Here's how it works in California, what it means for your sale price, and when it makes sense.",
@@ -137,6 +145,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'sell-house-during-divorce-orange-county',
+    relatedSituationSlug: 'divorce',
     title: 'Selling Your House During a Divorce in Orange County: A Practical Guide',
     description:
       'Divorce is already difficult — selling the family home shouldn\'t add more stress. Here\'s how Orange County homeowners can sell quickly, divide proceeds fairly, and move forward.',
@@ -174,6 +183,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'avoid-foreclosure-orange-county-ca',
+    relatedSituationSlug: 'foreclosure',
     title: 'How to Avoid Foreclosure in Orange County, CA: 5 Steps to Protect Your Home',
     description:
       'If you\'ve missed mortgage payments on your Orange County home, don\'t wait. These five steps can help you avoid foreclosure and protect your credit and equity.',
@@ -211,6 +221,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'selling-home-with-code-violations-california',
+    relatedSituationSlug: 'code-violations',
     title: 'Can You Sell a House with Code Violations in California?',
     description:
       'Yes — but it\'s complicated on the open market. Learn how code violations affect your sale options and why a cash buyer may be the simplest solution for Southern California homeowners.',
@@ -244,6 +255,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'probate-home-sale-orange-county',
+    relatedSituationSlug: 'inherited-probate',
     title: 'How to Sell a Probate Property in Orange County: A Complete Guide',
     description:
       'Navigating probate in Orange County while trying to sell a home is overwhelming. Here\'s a step-by-step guide to selling a probate property quickly — with or without full court confirmation.',

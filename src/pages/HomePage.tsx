@@ -9,6 +9,7 @@ import {
   MeetTheFamily,
   Testimonials,
   ServiceAreas,
+  SituationsGrid,
   CTASection,
 } from '../components/sections';
 
@@ -27,6 +28,7 @@ export function HomePage() {
       <ValueProps />
       <HowItWorks />
       <WhySellToUs />
+      <SituationsGrid />
       <CashAdvance />
       <MeetTheFamily />
       <Testimonials />

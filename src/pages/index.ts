@@ -7,6 +7,7 @@ export { ContactPage } from './ContactPage';
 export { CashAdvancePage } from './CashAdvancePage';
 export { CityPage } from './CityPage';
 export { CountyHubPage } from './CountyHubPage';
+export { SituationPage } from './SituationPage';
 export { BlogPage } from './BlogPage';
 export { BlogPostPage } from './BlogPostPage';
 export { PrivacyPolicyPage } from './PrivacyPolicyPage';

@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { Container } from '../components/layout';
-import { CTASection } from '../components/sections';
+import { CTASection, SituationsGrid } from '../components/sections';
 import { useSEO } from '../hooks/useSEO';
 import {
   usePageSchema,
@@ -169,6 +169,13 @@ export function CountyHubPage() {
           </div>
         </Container>
       </section>
+
+      {/* Situations we help with — links to the dedicated situation pages */}
+      <SituationsGrid
+        heading="Situations We Help With"
+        subheading={`Whatever's behind your ${hub.proseName} sale, there's a good chance we've handled it before. Each of these has a dedicated page explaining exactly how we help.`}
+        className="py-16 md:py-20"
+      />
 
       {/* Cash Advance callout — the same differentiator surfaced on city pages */}
       <section className="py-16 md:py-20 bg-gradient-to-b from-espresso to-espresso/95">

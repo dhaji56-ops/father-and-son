@@ -4,6 +4,7 @@ import { CTASection } from '../components/sections';
 import { useSEO } from '../hooks/useSEO';
 import { usePageSchema, blogPostingSchema } from '../lib/schema';
 import { getPostBySlug, blogPosts } from '../lib/blog-posts';
+import { getSituationBySlug } from '../lib/situations';
 
 export function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -37,6 +38,9 @@ export function BlogPostPage() {
   }
 
   const otherPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
+  const relatedSituation = post.relatedSituationSlug
+    ? getSituationBySlug(post.relatedSituationSlug)
+    : undefined;
 
   return (
     <>
@@ -86,6 +90,35 @@ export function BlogPostPage() {
               </div>
             ))}
           </div>
+
+          {/* Related situation landing page — reciprocal link to the
+              conversion-focused page for this topic. */}
+          {relatedSituation && (
+            <div className="mt-12 p-6 bg-terracotta/5 rounded-lg border border-terracotta/20">
+              <div className="flex items-start gap-4">
+                <svg className="w-6 h-6 text-terracotta flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <h3 className="font-serif text-lg font-medium text-espresso mb-1">
+                    Ready to sell, not just read?
+                  </h3>
+                  <p className="text-driftwood text-sm mb-3">
+                    See exactly how we help homeowners in this situation and get a fair cash offer.
+                  </p>
+                  <Link
+                    to={`/situations/${relatedSituation.slug}`}
+                    className="text-sm font-medium text-terracotta hover:underline inline-flex items-center gap-1"
+                  >
+                    {relatedSituation.name}: how we help
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* CTA Card */}
           <div className="mt-12 p-8 bg-oatmeal/40 rounded-lg border border-espresso/10">

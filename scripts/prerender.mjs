@@ -58,12 +58,14 @@ const staticRoutes = [
 const citySlugs = extractSlugs('lib/cities.ts');
 const blogSlugs = extractSlugs('lib/blog-posts.ts');
 const countyHubSlugs = extractSlugs('lib/counties.ts');
+const situationSlugs = extractSlugs('lib/situations.ts');
 
 // All routes to prerender.
 const routes = [
   ...staticRoutes,
   ...countyHubSlugs.map((slug) => `/service-areas/${slug}`),
   ...citySlugs.map((slug) => `/locations/${slug}`),
+  ...situationSlugs.map((slug) => `/situations/${slug}`),
   ...blogSlugs.map((slug) => `/blog/${slug}`),
 ];
 
