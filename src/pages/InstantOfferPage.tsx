@@ -40,7 +40,7 @@ const FAQS = [
   {
     question: 'How accurate is this cash offer estimate?',
     answer:
-      "It's a ballpark, and we say so on purpose. The estimate starts from typical recent sale prices in your county, adjusts for your home's size and condition, and reflects that an as-is cash sale usually comes in below full retail in exchange for speed and certainty. It is not an appraisal, not a comp-based valuation, and not an offer. Your real, no-obligation offer comes after we look at your specific property — usually within 24 hours.",
+      "It's a ballpark, and we say so on purpose. The estimate starts from typical recent sale prices in your county, adjusts for your home's size and condition, and reflects that an as-is cash sale usually comes in below full retail in exchange for speed and certainty. We also keep the range deliberately conservative — we would rather your real offer come in above the estimate than below it. It is not an appraisal, not a comp-based valuation, and not an offer. Your real, no-obligation offer comes after we look at your specific property — usually within 24 hours.",
   },
   {
     question: 'What is my house worth in cash versus on the open market?',
@@ -537,7 +537,7 @@ export function InstantOfferPage() {
               {
                 step: '03',
                 title: 'Cash-Sale Terms',
-                body: "An as-is cash sale trades some price for speed, certainty, and zero fees or repairs. The range reflects that honestly instead of quoting retail.",
+                body: "An as-is cash sale trades some price for speed, certainty, and zero fees or repairs. The range reflects that honestly instead of quoting retail — and we keep it conservative, so your real offer is more likely to beat it than miss it.",
               },
             ].map((item) => (
               <div key={item.step} className="card-warm p-8 text-center">

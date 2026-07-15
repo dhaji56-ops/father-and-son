@@ -60,9 +60,12 @@ const CONDITION_FACTOR: Record<Condition, number> = {
 };
 
 // An as-is cash purchase trades some price for speed, certainty, and zero
-// seller costs. The band reflects that honestly instead of quoting retail.
-const CASH_LOW = 0.78;
-const CASH_HIGH = 0.9;
+// seller costs. The band reflects that honestly instead of quoting retail —
+// and it is deliberately conservative: over-promising here anchors the seller
+// to a number the real offer can't beat. The estimate should be one the
+// actual offer lands inside or above, never below.
+const CASH_LOW = 0.68;
+const CASH_HIGH = 0.8;
 
 export interface EstimateInputs {
   /** City name as captured from the address (autocomplete or typed). */
@@ -113,8 +116,9 @@ export function methodology(range: EstimateRange): string {
     `How we got this number: we start from typical recent sale prices for a home ` +
     `of your size in ${range.marketLabel}, adjust for the condition you selected, ` +
     `and reflect that an as-is cash sale typically comes in below full retail in ` +
-    `exchange for speed, certainty, and zero fees or repairs. It's a ballpark — ` +
-    `not an appraisal, and not an offer. Your real number comes after we look at ` +
-    `your specific property.`
+    `exchange for speed, certainty, and zero fees or repairs. We keep the range ` +
+    `deliberately conservative — we'd rather your real offer land above it than ` +
+    `below it. It's a ballpark, not an appraisal and not an offer; your real ` +
+    `number comes after we look at your specific property.`
   );
 }
