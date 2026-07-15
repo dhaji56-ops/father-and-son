@@ -239,6 +239,27 @@ async function prerender() {
       // Remove any Puppeteer-injected scripts
       html = html.replace(/<script[^>]*puppeteer[^>]*>[\s\S]*?<\/script>/gi, '');
 
+      // Strip the Google Maps API scripts the address-autocomplete hook
+      // injected during the render. If they ship in the static HTML, the
+      // browser loads the API from the raw page AND the hook loads it again
+      // at runtime — Google then rejects the page ("included the Google Maps
+      // JavaScript API multiple times") and autocomplete breaks. The client
+      // injects the script on demand; the prerender must stay clean.
+      html = html.replace(
+        /<script[^>]*src="[^"]*maps\.(?:googleapis|gstatic)\.com[^"]*"[^>]*>\s*<\/script>/gi,
+        ''
+      );
+      // Drop the (empty) autocomplete dropdown containers and the stylesheet
+      // Maps appended to the document during the render.
+      html = html.replace(
+        /<div[^>]*class="pac-container[^"]*"[^>]*>\s*<\/div>/gi,
+        ''
+      );
+      html = html.replace(
+        /<style[^>]*>[^<]*\.pac-container[\s\S]*?<\/style>/gi,
+        ''
+      );
+
       // Normalize <head> — single correct title/description/canonical.
       html = normalizeHead(html, route);
 
