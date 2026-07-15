@@ -14,60 +14,37 @@ import { fileURLToPath } from 'url';
 import { createServer } from 'http';
 import { readFile } from 'fs/promises';
 import { extname } from 'path';
+// The route set (static routes from App.tsx + dynamic routes derived from the
+// src/lib data files) lives in routes.mjs, shared with generate-sitemap.mjs so
+// the prerender and the sitemap can never drift apart.
+import { routePaths as routes, SITE_ORIGIN } from './routes.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, '..', 'dist');
-const SRC = join(__dirname, '..', 'src');
-
-// Canonical origin — the prerendered files must carry a self-referential
-// canonical that matches the real URL each page is served at.
-const SITE_ORIGIN = 'https://fathersonhomes.com';
 
 /**
- * Extract `slug: '<value>'` string literals from a source file. Only the data
- * entries use quoted slugs; the `slug: string` type field and `c.slug`
- * property accesses have no quotes, so they are ignored.
+ * Guard: public/sitemap.xml must contain exactly the routes being prerendered.
+ * Fails the build with a fix-it hint when the committed sitemap goes stale.
  */
-function extractSlugs(relPath) {
-  const contents = readFileSync(join(SRC, relPath), 'utf-8');
-  const slugs = [];
-  const re = /slug:\s*'([^']+)'/g;
-  let m;
-  while ((m = re.exec(contents)) !== null) {
-    slugs.push(m[1]);
+function assertSitemapMatches() {
+  const sitemap = readFileSync(join(__dirname, '..', 'public', 'sitemap.xml'), 'utf-8');
+  const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const sitemapPaths = new Set(
+    locs.map((loc) => {
+      const path = loc.replace(SITE_ORIGIN, '');
+      return path === '' || path === '/' ? '/' : path;
+    })
+  );
+  const missing = routes.filter((r) => !sitemapPaths.has(r));
+  const extra = [...sitemapPaths].filter((p) => !routes.includes(p));
+  if (missing.length > 0 || extra.length > 0) {
+    if (missing.length > 0) console.error(`🚫 Routes missing from sitemap.xml: ${missing.join(', ')}`);
+    if (extra.length > 0) console.error(`🚫 Stale URLs in sitemap.xml: ${extra.join(', ')}`);
+    console.error('   Run `npm run sitemap` and commit the result.');
+    process.exit(1);
   }
-  return slugs;
+  console.log(`🗺️  sitemap.xml matches the route set (${routes.length} URLs)`);
 }
-
-// Static, top-level routes declared in src/App.tsx.
-const staticRoutes = [
-  '/',
-  '/how-it-works',
-  '/about-us',
-  '/service-areas',
-  '/faq',
-  '/contact',
-  '/cash-advance',
-  '/blog',
-  '/privacy-policy',
-  '/terms-of-service',
-];
-
-// Dynamic routes derived from the data sources so this list can never drift
-// out of sync with the app (App.tsx renders /locations/:slug and /blog/:slug).
-const citySlugs = extractSlugs('lib/cities.ts');
-const blogSlugs = extractSlugs('lib/blog-posts.ts');
-const countyHubSlugs = extractSlugs('lib/counties.ts');
-const situationSlugs = extractSlugs('lib/situations.ts');
-
-// All routes to prerender.
-const routes = [
-  ...staticRoutes,
-  ...countyHubSlugs.map((slug) => `/service-areas/${slug}`),
-  ...citySlugs.map((slug) => `/locations/${slug}`),
-  ...situationSlugs.map((slug) => `/situations/${slug}`),
-  ...blogSlugs.map((slug) => `/blog/${slug}`),
-];
 
 /** The self-referential canonical URL for a given route. */
 function canonicalFor(route) {
@@ -222,6 +199,8 @@ async function prerender() {
   console.log('🚀 Starting prerender...');
   console.log(`📁 Dist directory: ${DIST}`);
   console.log(`📄 Routes to prerender: ${routes.length}\n`);
+
+  assertSitemapMatches();
 
   // Snapshot the pristine Vite-built shell before any route overwrites it, so
   // the SPA fallback never serves a page-specific prerender as the shell.

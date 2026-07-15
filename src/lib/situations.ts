@@ -470,4 +470,26 @@ export function getSituationBySlug(slug: string): Situation | undefined {
   return situations.find((s) => s.slug === slug);
 }
 
+/**
+ * Situations that apply to nearly any city, used to pad city-page cross-links
+ * when a city isn't named in enough situations' relatedCitySlugs.
+ */
+const fallbackSituationSlugs = ['as-is-repairs', 'inherited-probate', 'relocation'];
+
+/**
+ * The situation pages a city page should cross-link. A situation is "for" a
+ * city when it lists that city in relatedCitySlugs (the same data that drives
+ * the situation page's own city links, so the linking is reciprocal). Every
+ * city gets exactly three, padded from the fallbacks above.
+ */
+export function getSituationsForCity(citySlug: string): Situation[] {
+  const matched = situations.filter((s) => s.relatedCitySlugs.includes(citySlug));
+  for (const slug of fallbackSituationSlugs) {
+    if (matched.length >= 3) break;
+    const fallback = getSituationBySlug(slug);
+    if (fallback && !matched.includes(fallback)) matched.push(fallback);
+  }
+  return matched.slice(0, 3);
+}
+
 export const situationSlugs = situations.map((s) => s.slug);

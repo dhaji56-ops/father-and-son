@@ -1,17 +1,49 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Container } from './Container';
+import { countyHubs } from '../../lib/counties';
+import { situations } from '../../lib/situations';
 
-const navItems = [
+interface NavItem {
+  to?: string;
+  label: string;
+  children?: { to: string; label: string }[];
+}
+
+// Dropdown children are derived from the data files so the nav can never
+// drift out of sync with the county-hub and situation route sets.
+const navItems: NavItem[] = [
   { to: '/', label: 'Home' },
   { to: '/how-it-works', label: 'How It Works' },
   { to: '/cash-advance', label: 'Cash Advance' },
+  {
+    to: '/service-areas',
+    label: 'Service Areas',
+    children: [
+      ...countyHubs.map((hub) => ({
+        to: `/service-areas/${hub.slug}`,
+        label: hub.slug === 'inland-empire' ? 'Inland Empire' : hub.name,
+      })),
+      { to: '/service-areas', label: 'All Cities' },
+    ],
+  },
+  {
+    label: 'Situations',
+    children: situations.map((s) => ({
+      to: `/situations/${s.slug}`,
+      label: s.name,
+    })),
+  },
   { to: '/about-us', label: 'About Us' },
-  { to: '/service-areas', label: 'Service Areas' },
   { to: '/blog', label: 'Blog' },
   { to: '/faq', label: 'FAQ' },
   { to: '/contact', label: 'Contact' },
 ];
+
+const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `text-sm font-medium transition-warm ${
+    isActive ? 'text-terracotta' : 'text-espresso hover:text-terracotta'
+  }`;
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,22 +63,55 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) =>
-                  `text-sm font-medium transition-warm ${
-                    isActive
-                      ? 'text-terracotta'
-                      : 'text-espresso hover:text-terracotta'
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
+          <nav className="hidden lg:flex items-center gap-6">
+            {navItems.map((item) =>
+              item.children ? (
+                <div key={item.label} className="relative group">
+                  {item.to ? (
+                    <NavLink to={item.to} className={navLinkClass}>
+                      <span className="inline-flex items-center gap-1">
+                        {item.label}
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </NavLink>
+                  ) : (
+                    <span className="text-sm font-medium text-espresso group-hover:text-terracotta transition-warm cursor-default inline-flex items-center gap-1">
+                      {item.label}
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  )}
+                  {/* Dropdown stays in the DOM (hidden via CSS) so crawlers see
+                      these links in the prerendered HTML of every page. */}
+                  <div className="absolute left-0 top-full pt-3 hidden group-hover:block group-focus-within:block z-50">
+                    <div className="bg-linen border border-espresso/10 rounded-lg shadow-warm-lg py-2 min-w-56">
+                      {item.children.map((child) => (
+                        <NavLink
+                          key={`${child.to}-${child.label}`}
+                          to={child.to}
+                          className={({ isActive }) =>
+                            `block px-5 py-2.5 text-sm font-medium transition-warm ${
+                              isActive
+                                ? 'text-terracotta'
+                                : 'text-espresso hover:text-terracotta hover:bg-oatmeal/50'
+                            }`
+                          }
+                        >
+                          {child.label}
+                        </NavLink>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <NavLink key={item.label} to={item.to!} className={navLinkClass} end={item.to === '/'}>
+                  {item.label}
+                </NavLink>
+              )
+            )}
           </nav>
 
           {/* Phone CTA */}
@@ -80,23 +145,51 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className="lg:hidden py-4 border-t border-espresso/10">
+          <nav className="lg:hidden py-4 border-t border-espresso/10 max-h-[calc(100vh-5rem)] overflow-y-auto">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={({ isActive }) =>
-                    `px-4 py-3 rounded-md text-sm font-medium transition-warm ${
-                      isActive
-                        ? 'bg-terracotta/10 text-terracotta'
-                        : 'text-espresso hover:bg-oatmeal'
-                    }`
-                  }
-                >
-                  {item.label}
-                </NavLink>
+                <div key={item.label}>
+                  {item.to ? (
+                    <NavLink
+                      to={item.to}
+                      end={item.to === '/'}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={({ isActive }) =>
+                        `block px-4 py-3 rounded-md text-sm font-medium transition-warm ${
+                          isActive
+                            ? 'bg-terracotta/10 text-terracotta'
+                            : 'text-espresso hover:bg-oatmeal'
+                        }`
+                      }
+                    >
+                      {item.label}
+                    </NavLink>
+                  ) : (
+                    <span className="block px-4 py-3 text-sm font-medium text-espresso">
+                      {item.label}
+                    </span>
+                  )}
+                  {item.children && (
+                    <div className="flex flex-col">
+                      {item.children.map((child) => (
+                        <NavLink
+                          key={`${child.to}-${child.label}`}
+                          to={child.to}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={({ isActive }) =>
+                            `block pl-8 pr-4 py-2.5 rounded-md text-sm transition-warm ${
+                              isActive
+                                ? 'bg-terracotta/10 text-terracotta'
+                                : 'text-driftwood hover:bg-oatmeal'
+                            }`
+                          }
+                        >
+                          {child.label}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
               <a
                 href="tel:+19495412003"

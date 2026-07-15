@@ -14,6 +14,11 @@ export interface BlogPost {
    * link from the blog post to the conversion-focused /situations/<slug> page.
    */
   relatedSituationSlug?: string;
+  /**
+   * City pages most relevant to this article's topic. Renders "we buy houses
+   * in" links so the location pages pick up internal links from blog content.
+   */
+  relatedCitySlugs?: string[];
   sections: {
     heading?: string;
     body: string;
@@ -23,6 +28,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: 'sell-inherited-property-california',
+    relatedCitySlugs: ['santa-ana', 'fullerton', 'long-beach'],
     relatedSituationSlug: 'inherited-probate',
     title: 'How to Sell an Inherited Property in Southern California',
     description:
@@ -61,6 +67,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'foreclosure-options-california',
+    relatedCitySlugs: ['santa-ana', 'anaheim', 'riverside'],
     relatedSituationSlug: 'foreclosure',
     title: 'Facing Foreclosure in California? Here Are Your Options',
     description:
@@ -107,6 +114,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'sell-house-as-is-southern-california',
+    relatedCitySlugs: ['garden-grove', 'compton', 'san-bernardino'],
     relatedSituationSlug: 'as-is-repairs',
     title: 'Selling a House As-Is in Southern California: What You Need to Know',
     description:
@@ -145,6 +153,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'sell-house-during-divorce-orange-county',
+    relatedCitySlugs: ['irvine', 'costa-mesa', 'huntington-beach'],
     relatedSituationSlug: 'divorce',
     title: 'Selling Your House During a Divorce in Orange County: A Practical Guide',
     description:
@@ -183,6 +192,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'avoid-foreclosure-orange-county-ca',
+    relatedCitySlugs: ['santa-ana', 'anaheim', 'orange'],
     relatedSituationSlug: 'foreclosure',
     title: 'How to Avoid Foreclosure in Orange County, CA: 5 Steps to Protect Your Home',
     description:
@@ -221,6 +231,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'selling-home-with-code-violations-california',
+    relatedCitySlugs: ['anaheim', 'compton', 'riverside'],
     relatedSituationSlug: 'code-violations',
     title: 'Can You Sell a House with Code Violations in California?',
     description:
@@ -255,6 +266,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'probate-home-sale-orange-county',
+    relatedCitySlugs: ['santa-ana', 'fullerton', 'garden-grove'],
     relatedSituationSlug: 'inherited-probate',
     title: 'How to Sell a Probate Property in Orange County: A Complete Guide',
     description:
@@ -293,6 +305,8 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'sell-my-home-for-cash-southern-california',
+    relatedSituationSlug: 'as-is-repairs',
+    relatedCitySlugs: ['anaheim', 'long-beach', 'ontario'],
     title: 'How to Sell Your Home for Cash in Southern California',
     description:
       "Thinking about selling your home for cash? Here's exactly how cash home sales work in Southern California, what to expect, and how to make sure you're working with a legitimate buyer.",

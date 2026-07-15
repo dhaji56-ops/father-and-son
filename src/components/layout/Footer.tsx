@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Container } from './Container';
+import { countyHubs } from '../../lib/counties';
+import { situations } from '../../lib/situations';
 
 const quickLinks = [
   { to: '/how-it-works', label: 'How It Works' },
@@ -10,13 +12,25 @@ const quickLinks = [
   { to: '/contact', label: 'Contact' },
 ];
 
+// County hubs come first (derived from counties.ts so this can't drift),
+// followed by a few flagship cities and the full index.
 const serviceAreas = [
+  ...countyHubs.map((hub) => ({
+    to: `/service-areas/${hub.slug}`,
+    label: hub.slug === 'inland-empire' ? 'Inland Empire' : hub.name,
+  })),
   { to: '/locations/anaheim', label: 'Anaheim' },
   { to: '/locations/irvine', label: 'Irvine' },
   { to: '/locations/long-beach', label: 'Long Beach' },
   { to: '/locations/riverside', label: 'Riverside' },
   { to: '/service-areas', label: 'View All Cities' },
 ];
+
+// Every situation landing page, derived from situations.ts.
+const situationLinks = situations.map((s) => ({
+  to: `/situations/${s.slug}`,
+  label: s.name,
+}));
 
 const promises = [
   'Cash offer within 24 hours',
@@ -34,7 +48,7 @@ export function Footer() {
       <Container>
         {/* Main Footer Content */}
         <div className="py-16 md:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
             {/* Brand Column */}
             <div>
               <div className="mb-6">
@@ -103,6 +117,24 @@ export function Footer() {
                 {serviceAreas.map((link, index) => (
                   <Link
                     key={index}
+                    to={link.to}
+                    className="block text-sm text-cream/70 hover:text-terracotta transition-warm"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* Situations Column */}
+            <div>
+              <h3 className="text-sm font-medium tracking-warm text-cream/50 mb-5">
+                Situations We Help With
+              </h3>
+              <nav className="space-y-3">
+                {situationLinks.map((link) => (
+                  <Link
+                    key={link.to}
                     to={link.to}
                     className="block text-sm text-cream/70 hover:text-terracotta transition-warm"
                   >

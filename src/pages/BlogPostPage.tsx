@@ -5,6 +5,7 @@ import { useSEO } from '../hooks/useSEO';
 import { usePageSchema, blogPostingSchema } from '../lib/schema';
 import { getPostBySlug, blogPosts } from '../lib/blog-posts';
 import { getSituationBySlug } from '../lib/situations';
+import { getCityBySlug } from '../lib/cities';
 
 export function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -41,6 +42,9 @@ export function BlogPostPage() {
   const relatedSituation = post.relatedSituationSlug
     ? getSituationBySlug(post.relatedSituationSlug)
     : undefined;
+  const relatedCities = (post.relatedCitySlugs ?? [])
+    .map((s) => getCityBySlug(s))
+    .filter((c): c is NonNullable<typeof c> => Boolean(c));
 
   return (
     <>
@@ -116,6 +120,27 @@ export function BlogPostPage() {
                     </svg>
                   </Link>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* City pages relevant to this article's topic — gives the location
+              pages internal links from blog content. */}
+          {relatedCities.length > 0 && (
+            <div className="mt-8">
+              <h3 className="font-serif text-lg font-medium text-espresso mb-3">
+                We Buy Houses in These Cities
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {relatedCities.map((city) => (
+                  <Link
+                    key={city.slug}
+                    to={`/locations/${city.slug}`}
+                    className="text-sm font-medium text-terracotta bg-terracotta/5 border border-terracotta/20 px-4 py-2 rounded-full hover:bg-terracotta/10 transition-warm"
+                  >
+                    Sell fast in {city.name}
+                  </Link>
+                ))}
               </div>
             </div>
           )}

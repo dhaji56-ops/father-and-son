@@ -10,12 +10,14 @@ import {
 } from '../lib/schema';
 import { getCityBySlug, getNearbyCities } from '../lib/cities';
 import { getHubForCity } from '../lib/counties';
+import { getSituationsForCity } from '../lib/situations';
 
 export function CityPage() {
   const { slug } = useParams<{ slug: string }>();
   const city = slug ? getCityBySlug(slug) : undefined;
   const nearbyCities = slug ? getNearbyCities(slug) : [];
   const countyHub = city ? getHubForCity(city) : undefined;
+  const citySituations = slug ? getSituationsForCity(slug) : [];
 
   // Local FAQ built from this city's own data, so the copy varies city-to-city
   // instead of shipping identical boilerplate across every location page.
@@ -201,6 +203,29 @@ export function CityPage() {
                   </li>
                 ))}
               </ul>
+              {/* Cross-links to the situation landing pages most relevant to
+                  this city — reciprocal with each situation's own city links. */}
+              {citySituations.length > 0 && (
+                <div className="space-y-3 mb-8">
+                  {citySituations.map((s) => (
+                    <Link
+                      key={s.slug}
+                      to={`/situations/${s.slug}`}
+                      className="card-warm p-4 flex items-center justify-between gap-4 hover:shadow-md transition-warm"
+                    >
+                      <div>
+                        <span className="font-serif text-base font-medium text-espresso block">
+                          {s.name}
+                        </span>
+                        <span className="text-xs text-driftwood">How we help {city.name} sellers</span>
+                      </div>
+                      <svg className="w-4 h-4 text-terracotta flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  ))}
+                </div>
+              )}
               <p className="text-driftwood text-sm">
                 Dealing with something not on this list? It's likely we've seen it
                 before.{' '}
