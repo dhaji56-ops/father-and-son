@@ -14,6 +14,7 @@ interface NavItem {
 // drift out of sync with the county-hub and situation route sets.
 const navItems: NavItem[] = [
   { to: '/', label: 'Home' },
+  { to: '/instant-offer', label: 'Instant Offer' },
   { to: '/how-it-works', label: 'How It Works' },
   { to: '/cash-advance', label: 'Cash Advance' },
   {

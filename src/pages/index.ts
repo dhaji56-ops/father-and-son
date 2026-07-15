@@ -5,6 +5,7 @@ export { ServiceAreasPage } from './ServiceAreasPage';
 export { FAQPage } from './FAQPage';
 export { ContactPage } from './ContactPage';
 export { CashAdvancePage } from './CashAdvancePage';
+export { InstantOfferPage } from './InstantOfferPage';
 export { CityPage } from './CityPage';
 export { CountyHubPage } from './CountyHubPage';
 export { SituationPage } from './SituationPage';

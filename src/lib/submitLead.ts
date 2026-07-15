@@ -6,8 +6,19 @@ export interface LeadFormData {
   email?: string;
   situation?: string;
   timeline?: string;
-  source: 'hero' | 'contact';
+  source: 'hero' | 'contact' | 'instant-offer';
+  /** Property details captured by the instant-offer estimator. */
+  beds?: string;
+  baths?: string;
+  condition?: string;
+  estimateRange?: string;
 }
+
+const SOURCE_LABELS: Record<LeadFormData['source'], string> = {
+  hero: 'Homepage Hero Form',
+  contact: 'Contact Page Form',
+  'instant-offer': 'Instant Offer Estimator',
+};
 
 export interface SubmitResult {
   success: boolean;
@@ -27,7 +38,7 @@ export async function submitLead(data: LeadFormData): Promise<SubmitResult> {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         access_key: accessKey,
-        subject: `New Lead from ${data.source === 'hero' ? 'Homepage' : 'Contact Page'}: ${data.name}`,
+        subject: `New Lead from ${SOURCE_LABELS[data.source]}: ${data.name}`,
         from_name: 'Father & Son Home Buyers Website',
         'Property Address': data.address,
         'City': data.city || 'Not captured',
@@ -36,7 +47,11 @@ export async function submitLead(data: LeadFormData): Promise<SubmitResult> {
         'Email': data.email || 'Not provided',
         'Situation': data.situation || 'Not specified',
         'Timeline': data.timeline || 'Not specified',
-        'Form Source': data.source === 'hero' ? 'Homepage Hero Form' : 'Contact Page Form',
+        ...(data.beds ? { 'Beds': data.beds } : {}),
+        ...(data.baths ? { 'Baths': data.baths } : {}),
+        ...(data.condition ? { 'Condition': data.condition } : {}),
+        ...(data.estimateRange ? { 'Estimate Shown': data.estimateRange } : {}),
+        'Form Source': SOURCE_LABELS[data.source],
         botcheck: '',
       }),
     });

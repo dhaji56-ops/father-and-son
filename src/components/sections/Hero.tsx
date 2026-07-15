@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Container } from '../layout/Container';
 import { useAddressAutocomplete } from '../../hooks/useAddressAutocomplete';
 import { submitLead } from '../../lib/submitLead';
@@ -349,6 +350,14 @@ export function Hero() {
 
                 <p className="mt-4 text-xs text-driftwood text-center">
                   By submitting this form, you consent to receive calls, texts, and emails from Father & Son Home Buyers regarding your property. Message & data rates may apply. You can opt out at any time.
+                </p>
+
+                <p className="mt-3 text-sm text-driftwood text-center">
+                  Want a ballpark number first?{' '}
+                  <Link to="/instant-offer" className="text-terracotta font-medium hover:underline">
+                    Get an instant cash offer estimate
+                  </Link>{' '}
+                  in 60 seconds.
                 </p>
               </>
             )}

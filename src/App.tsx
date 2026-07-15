@@ -13,6 +13,7 @@ const ServiceAreasPage = lazy(() => import('./pages/ServiceAreasPage').then(m =>
 const FAQPage = lazy(() => import('./pages/FAQPage').then(m => ({ default: m.FAQPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
 const CashAdvancePage = lazy(() => import('./pages/CashAdvancePage').then(m => ({ default: m.CashAdvancePage })));
+const InstantOfferPage = lazy(() => import('./pages/InstantOfferPage').then(m => ({ default: m.InstantOfferPage })));
 const CityPage = lazy(() => import('./pages/CityPage').then(m => ({ default: m.CityPage })));
 const CountyHubPage = lazy(() => import('./pages/CountyHubPage').then(m => ({ default: m.CountyHubPage })));
 const SituationPage = lazy(() => import('./pages/SituationPage').then(m => ({ default: m.SituationPage })));
@@ -36,6 +37,7 @@ function App() {
             <Route path="faq" element={<FAQPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="cash-advance" element={<CashAdvancePage />} />
+            <Route path="instant-offer" element={<InstantOfferPage />} />
             <Route path="locations/:slug" element={<CityPage />} />
             <Route path="situations/:slug" element={<SituationPage />} />
             <Route path="blog" element={<BlogPage />} />

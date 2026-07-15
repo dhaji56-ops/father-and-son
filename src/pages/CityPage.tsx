@@ -306,6 +306,23 @@ export function CityPage() {
               </tbody>
             </table>
           </div>
+          <div className="text-center mt-10">
+            <p className="text-driftwood mb-4">
+              Wondering what a cash offer on your {city.name} home might look like?
+            </p>
+            <Link
+              to="/instant-offer"
+              className="btn-terracotta px-8 py-3 rounded-md text-sm font-medium inline-flex items-center justify-center gap-2"
+            >
+              Get an Instant Offer Estimate
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+            <p className="text-xs text-driftwood mt-3">
+              Free, 60 seconds, no obligation — a ballpark range, not an appraisal.
+            </p>
+          </div>
         </Container>
       </section>
 

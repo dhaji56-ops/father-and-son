@@ -94,6 +94,13 @@ export function CountyHubPage() {
                 Call or Text (949) 541-2003
               </a>
             </div>
+            <p className="text-sm text-driftwood mt-6">
+              Just want a ballpark first?{' '}
+              <Link to="/instant-offer" className="text-terracotta font-medium hover:underline">
+                Get an instant cash offer estimate
+              </Link>{' '}
+              for your {hub.proseName} home in 60 seconds.
+            </p>
           </div>
         </Container>
       </section>
