@@ -142,6 +142,7 @@ export function useAddressAutocomplete(
     let debounceTimer: ReturnType<typeof setTimeout> | undefined;
     let requestId = 0;
     let destroyed = false;
+    let suppressNextInput = false;
 
     async function ensurePlaces(): Promise<PlacesLibrary | null> {
       if (placesLib) return placesLib;
@@ -194,6 +195,9 @@ export function useAddressAutocomplete(
 
     async function select(prediction: PlacePrediction) {
       closeDropdown();
+      // The synthetic input event at the end of selection must not re-open
+      // the dropdown with suggestions for the just-selected address.
+      suppressNextInput = true;
       try {
         const place = prediction.toPlace();
         await place.fetchFields({
@@ -266,6 +270,10 @@ export function useAddressAutocomplete(
     }
 
     function handleInput() {
+      if (suppressNextInput) {
+        suppressNextInput = false;
+        return;
+      }
       const value = input!.value.trim();
       clearTimeout(debounceTimer);
       if (value.length < 3) {
