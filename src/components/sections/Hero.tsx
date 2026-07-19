@@ -353,11 +353,11 @@ export function Hero() {
                 </p>
 
                 <p className="mt-3 text-sm text-driftwood text-center">
-                  Want a ballpark number first?{' '}
+                  Prefer a quicker start?{' '}
                   <Link to="/instant-offer" className="text-terracotta font-medium hover:underline">
-                    Get an instant cash offer estimate
-                  </Link>{' '}
-                  in 60 seconds.
+                    Request your cash offer in 60 seconds
+                  </Link>
+                  .
                 </p>
               </>
             )}

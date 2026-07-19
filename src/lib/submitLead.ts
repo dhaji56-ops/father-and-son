@@ -7,17 +7,16 @@ export interface LeadFormData {
   situation?: string;
   timeline?: string;
   source: 'hero' | 'contact' | 'instant-offer';
-  /** Property details captured by the instant-offer estimator. */
+  /** Property details captured by the instant-offer flow. */
   beds?: string;
   baths?: string;
   condition?: string;
-  estimateRange?: string;
 }
 
 const SOURCE_LABELS: Record<LeadFormData['source'], string> = {
   hero: 'Homepage Hero Form',
   contact: 'Contact Page Form',
-  'instant-offer': 'Instant Offer Estimator',
+  'instant-offer': 'Instant Offer Request',
 };
 
 export interface SubmitResult {
@@ -50,7 +49,6 @@ export async function submitLead(data: LeadFormData): Promise<SubmitResult> {
         ...(data.beds ? { 'Beds': data.beds } : {}),
         ...(data.baths ? { 'Baths': data.baths } : {}),
         ...(data.condition ? { 'Condition': data.condition } : {}),
-        ...(data.estimateRange ? { 'Estimate Shown': data.estimateRange } : {}),
         'Form Source': SOURCE_LABELS[data.source],
         botcheck: '',
       }),

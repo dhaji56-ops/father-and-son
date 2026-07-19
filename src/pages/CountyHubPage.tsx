@@ -95,11 +95,11 @@ export function CountyHubPage() {
               </a>
             </div>
             <p className="text-sm text-driftwood mt-6">
-              Just want a ballpark first?{' '}
+              In a hurry?{' '}
               <Link to="/instant-offer" className="text-terracotta font-medium hover:underline">
-                Get an instant cash offer estimate
+                Request your cash offer online
               </Link>{' '}
-              for your {hub.proseName} home in 60 seconds.
+              — 60 seconds for your {hub.proseName} home, real number within 24 hours.
             </p>
           </div>
         </Container>
