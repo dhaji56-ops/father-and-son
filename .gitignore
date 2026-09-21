@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 .vercel
 .env
+
+# Generated at build time (scripts/generate-sitemap.mjs) — scheduled
+# publishing changes the route set on days nobody commits.
+public/sitemap.xml

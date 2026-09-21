@@ -373,6 +373,208 @@ export const cityGuides: Record<string, CityGuideSection[]> = {
       body: 'If you own a home in Torrance and you are considering your options, an offer from Father & Son Home Buyers is free, transparent, and comes with no obligation. You can also explore [our FAQ page](/faq) for answers to the questions sellers ask most.\n\nGet in touch about your Torrance home and we will respond within one business day to discuss the property and arrange a visit.',
     },
   ],
+  'laguna-niguel': [
+    {
+      body: 'If your Laguna Niguel home needs repairs or you\'re simply looking for a faster, simpler sale, Father & Son Home Buyers offers a direct off-market option. We buy homes in Laguna Niguel as-is, for cash, with no agent commissions and no out-of-pocket costs for the seller.',
+    },
+    {
+      heading: 'What We Buy in Laguna Niguel',
+      body: 'Much of Laguna Niguel was built out across hills and canyons in the 1970s and \'80s, which gives the city its views and also its most common selling headaches. Hillside lots bring slope maintenance, retaining walls, and drainage that inspectors flag and lenders care about. Many neighborhoods sit under homeowner associations with their own transfer requirements and architectural rules. And a good share of homes are still with longtime owners, so original kitchens, roofs, and systems are common.\n\nWe buy single-family homes, townhomes, and condos across Laguna Niguel in whatever condition they\'re in, and we work through association documents and dues as part of closing rather than treating them as reasons to renegotiate.',
+    },
+    {
+      heading: 'What We Offer Homeowners in Laguna Niguel',
+      body: 'When you work with Father & Son Home Buyers, you\'re working with a local, family-owned team that has direct experience buying and renovating homes in Orange County. We\'re not a national platform or an algorithm — we evaluate every property ourselves.\n\nHere\'s what sellers in Laguna Niguel get when they work with us:',
+      bullets: [
+        { text: 'Cash offer for your Laguna Niguel home — no financing delays, no deal uncertainty' },
+        { text: 'Buy in as-is condition — no repairs, cleaning, or updates required' },
+        { text: 'Close in as little as 14 days, or on the timeline that works for you' },
+        { text: 'No agent commissions and no fees of any kind for the seller' },
+        { text: 'You can leave behind items or belongings you don\'t want to move' },
+        { text: 'Transparent process from first call to closing — no surprises' },
+      ],
+    },
+    {
+      heading: 'Who We Work With in Laguna Niguel',
+      body: 'We buy homes from homeowners in a wide range of situations in the Laguna Niguel area:',
+      bullets: [
+        { text: 'Sellers who need to move quickly and don\'t have time for a traditional listing' },
+        { text: 'Homeowners with properties that need significant repairs or updates' },
+        { text: 'Families who have inherited a property and want a simple resolution' },
+        { text: 'People dealing with financial pressure, relocation, or other time-sensitive circumstances' },
+        { text: 'Sellers who simply prefer a direct, off-market transaction over the traditional process' },
+      ],
+    },
+    {
+      heading: 'How the Process Works',
+      body: 'Reach out and tell us about your property. We\'ll review the details, schedule a visit if needed, and put together a fair cash offer — typically within 24 hours. There\'s no obligation to accept, and we\'ll walk you through every number so nothing is unclear.\n\nIf you decide to move forward, we handle the paperwork and set a closing date that works for you. At closing, you receive your funds directly. No agents, no middlemen, no unexpected deductions.',
+    },
+    {
+      heading: 'Serving Homeowners Throughout Laguna Niguel and Orange County',
+      body: 'We\'re active buyers throughout Orange County and know the Laguna Niguel market well.\n\nWhether your home is in need of major work or simply isn\'t the right fit for a traditional listing, we can evaluate it and give you a straight answer about what it\'s worth to us — and what the process would look like.\n\nReady to get a no-obligation cash offer for your Laguna Niguel home? Call us or [fill out our online form](/contact) and we\'ll get back to you promptly.',
+    },
+  ],
+  'westminster': [
+    {
+      body: 'Homeowners in Westminster looking to sell without the complexity of a traditional listing can work directly with Father & Son Home Buyers. We purchase homes in Westminster for cash, as-is, with no repairs required and no agent fees — on a closing timeline that fits your schedule.',
+    },
+    {
+      heading: 'What We Buy in Westminster',
+      body: 'Much of Westminster was built quickly in the post-war decades, so many streets are lined with single-story tract homes of the same age — and the same aging roofs, galvanized plumbing, and original electrical panels. Over the years a lot of these homes also picked up additions, enclosed patios, or garage conversions, some permitted and some not, which can stall a traditional sale once an inspector or appraiser gets involved.\n\nWestminster is also home to many multigenerational families, and when a house that has held several generations needs to be sold, the decisions are rarely simple. We buy Westminster homes as-is, factor unpermitted work into the offer instead of asking you to fix it first, and take the time families need.',
+    },
+    {
+      heading: 'What We Offer Homeowners in Westminster',
+      body: 'When you work with Father & Son Home Buyers, you\'re working with a local, family-owned team that has direct experience buying and renovating homes in Orange County. We\'re not a national platform or an algorithm — we evaluate every property ourselves.\n\nHere\'s what sellers in Westminster get when they work with us:',
+      bullets: [
+        { text: 'Cash offer for your Westminster home — no financing delays, no deal uncertainty' },
+        { text: 'Buy in as-is condition — no repairs, cleaning, or updates required' },
+        { text: 'Close in as little as 14 days, or on the timeline that works for you' },
+        { text: 'No agent commissions and no fees of any kind for the seller' },
+        { text: 'You can leave behind items or belongings you don\'t want to move' },
+        { text: 'Transparent process from first call to closing — no surprises' },
+      ],
+    },
+    {
+      heading: 'Who We Work With in Westminster',
+      body: 'We buy homes from homeowners in a wide range of situations in the Westminster area:',
+      bullets: [
+        { text: 'Sellers who need to move quickly and don\'t have time for a traditional listing' },
+        { text: 'Homeowners with properties that need significant repairs or updates' },
+        { text: 'Families who have inherited a property and want a simple resolution' },
+        { text: 'People dealing with financial pressure, relocation, or other time-sensitive circumstances' },
+        { text: 'Sellers who simply prefer a direct, off-market transaction over the traditional process' },
+      ],
+    },
+    {
+      heading: 'How the Process Works',
+      body: 'Reach out and tell us about your property. We\'ll review the details, schedule a visit if needed, and put together a fair cash offer — typically within 24 hours. There\'s no obligation to accept, and we\'ll walk you through every number so nothing is unclear.\n\nIf you decide to move forward, we handle the paperwork and set a closing date that works for you. At closing, you receive your funds directly. No agents, no middlemen, no unexpected deductions.',
+    },
+    {
+      heading: 'Serving Homeowners Throughout Westminster and Orange County',
+      body: 'We\'re active buyers throughout Orange County and know the Westminster market well.\n\nWhether your home is in need of major work or simply isn\'t the right fit for a traditional listing, we can evaluate it and give you a straight answer about what it\'s worth to us — and what the process would look like.\n\nReady to get a no-obligation cash offer for your Westminster home? Call us or [fill out our online form](/contact) and we\'ll get back to you promptly.',
+    },
+  ],
+  'rialto': [
+    {
+      body: 'Homeowners in Rialto who need to sell without making repairs or going through a traditional listing have a direct option with Father & Son Home Buyers. We purchase homes in Rialto and throughout San Bernardino County for cash, as-is, with no fees to the seller and flexible closing timelines.',
+    },
+    {
+      heading: 'What We Buy in Rialto',
+      body: 'Rialto\'s housing spans several eras: older single-story homes near downtown and south of the 10, mid-century neighborhoods through the middle of the city, and newer planned communities to the north. A large share of homes here are rentals, and landlords who want out often face tenant turnover, wear from years of occupancy, or repairs they would rather not fund. Older homes commonly come with dated electrical and plumbing, or additions that were never permitted.\n\nWe buy single-family homes, condos, and small rentals across Rialto as-is — occupied or vacant — and can close on a schedule that works around tenants and move-out dates.',
+    },
+    {
+      heading: 'What We Offer Homeowners in Rialto',
+      body: 'When you work with Father & Son Home Buyers, you\'re working with a local, family-owned team that has direct experience buying and renovating homes in San Bernardino County. We\'re not a national platform or an algorithm — we evaluate every property ourselves.\n\nHere\'s what sellers in Rialto get when they work with us:',
+      bullets: [
+        { text: 'Cash offer for your Rialto home — no financing delays, no deal uncertainty' },
+        { text: 'Buy in as-is condition — no repairs, cleaning, or updates required' },
+        { text: 'Close in as little as 14 days, or on the timeline that works for you' },
+        { text: 'No agent commissions and no fees of any kind for the seller' },
+        { text: 'You can leave behind items or belongings you don\'t want to move' },
+        { text: 'Transparent process from first call to closing — no surprises' },
+        { text: 'Off-market transactions — no listings, no public showings, no agent coordination' },
+      ],
+    },
+    {
+      heading: 'Who We Work With in Rialto',
+      body: 'We buy homes from homeowners in a wide range of situations in the Rialto area:',
+      bullets: [
+        { text: 'Sellers who need to move quickly and don\'t have time for a traditional listing' },
+        { text: 'Homeowners with properties that need significant repairs or updates' },
+        { text: 'Families who have inherited a property and want a simple resolution' },
+        { text: 'People dealing with financial pressure, relocation, or other time-sensitive circumstances' },
+        { text: 'Sellers who simply prefer a direct, off-market transaction over the traditional process' },
+      ],
+    },
+    {
+      heading: 'How the Process Works',
+      body: 'Reach out and tell us about your property. We\'ll review the details, schedule a visit if needed, and put together a fair cash offer — typically within 24 hours. There\'s no obligation to accept, and we\'ll walk you through every number so nothing is unclear.\n\nIf you decide to move forward, we handle the paperwork and set a closing date that works for you. At closing, you receive your funds directly. No agents, no middlemen, no unexpected deductions.',
+    },
+    {
+      heading: 'Serving Homeowners Throughout Rialto and San Bernardino County',
+      body: 'We work with homeowners across San Bernardino County and surrounding communities, including Rialto.\n\nWhether your home is in need of major work or simply isn\'t the right fit for a traditional listing, we can evaluate it and give you a straight answer about what it\'s worth to us — and what the process would look like.\n\nReady to get a no-obligation cash offer for your Rialto home? Call us or [fill out our online form](/contact) and we\'ll get back to you promptly.',
+    },
+  ],
+  'fontana': [
+    {
+      body: 'If your Fontana home needs significant repairs or you\'re dealing with a distressed property situation, Father & Son Home Buyers is an active buyer in the Fontana market. We purchase homes in any condition, for cash, with no repairs required and no fees on your end.',
+    },
+    {
+      heading: 'What We Buy in Fontana',
+      body: 'Fontana is really several markets in one. South and central Fontana have older homes, many on larger lots, that often need roofs, systems, or structural work; North Fontana is mostly newer tract neighborhoods and communities like Sierra Lakes and Hunter\'s Ridge.\n\nThe distressed properties we see most here are older homes with years of deferred maintenance, fire or water damage, or additions that were never permitted — exactly the homes that struggle to pass a lender\'s appraisal and inspection. We buy them as-is and price the repair work honestly, because estimating renovation is the part of this business our family knows best.',
+    },
+    {
+      heading: 'What We Offer Homeowners in Fontana',
+      body: 'When you work with Father & Son Home Buyers, you\'re working with a local, family-owned team that has direct experience buying and renovating homes in San Bernardino County. We\'re not a national platform or an algorithm — we evaluate every property ourselves.\n\nHere\'s what sellers in Fontana get when they work with us:',
+      bullets: [
+        { text: 'Cash offer for your Fontana home — no financing delays, no deal uncertainty' },
+        { text: 'Buy in as-is condition — no repairs, cleaning, or updates required' },
+        { text: 'Close in as little as 14 days, or on the timeline that works for you' },
+        { text: 'No agent commissions and no fees of any kind for the seller' },
+        { text: 'You can leave behind items or belongings you don\'t want to move' },
+        { text: 'Transparent process from first call to closing — no surprises' },
+        { text: 'Properties with deferred maintenance, structural issues, or major repair needs are welcome' },
+      ],
+    },
+    {
+      heading: 'Who We Work With in Fontana',
+      body: 'We buy homes from homeowners in a wide range of situations in the Fontana area:',
+      bullets: [
+        { text: 'Sellers who need to move quickly and don\'t have time for a traditional listing' },
+        { text: 'Homeowners with properties that need significant repairs or updates' },
+        { text: 'Families who have inherited a property and want a simple resolution' },
+        { text: 'People dealing with financial pressure, relocation, or other time-sensitive circumstances' },
+        { text: 'Sellers who simply prefer a direct, off-market transaction over the traditional process' },
+      ],
+    },
+    {
+      heading: 'How the Process Works',
+      body: 'Reach out and tell us about your property. We\'ll review the details, schedule a visit if needed, and put together a fair cash offer — typically within 24 hours. There\'s no obligation to accept, and we\'ll walk you through every number so nothing is unclear.\n\nIf you decide to move forward, we handle the paperwork and set a closing date that works for you. At closing, you receive your funds directly. No agents, no middlemen, no unexpected deductions.',
+    },
+    {
+      heading: 'Serving Homeowners Throughout Fontana and San Bernardino County',
+      body: 'We work with homeowners across San Bernardino County and surrounding communities, including Fontana.\n\nWhether your home is in need of major work or simply isn\'t the right fit for a traditional listing, we can evaluate it and give you a straight answer about what it\'s worth to us — and what the process would look like.\n\nReady to get a no-obligation cash offer for your Fontana home? Call us or [fill out our online form](/contact) and we\'ll get back to you promptly.',
+    },
+  ],
+  'pomona': [
+    {
+      body: 'Homeowners in Pomona looking to sell without going through the traditional listing process can work directly with Father & Son Home Buyers. We buy homes in Pomona as-is, for cash, with no repairs, no commissions, and no fees — closing on a timeline that works for you.',
+    },
+    {
+      heading: 'What We Buy in Pomona',
+      body: 'Pomona is one of the older cities in eastern Los Angeles County, and its housing reflects that. Historic districts like Lincoln Park hold Craftsman and other early-1900s homes that are beautiful and often expensive to maintain, while mid-century neighborhoods across the city have aging systems and, in many cases, additions or conversions that were never permitted. Newer hillside neighborhoods in Phillips Ranch bring their own slope and association considerations.\n\nWith Cal Poly Pomona and the Fairplex nearby, the city also has plenty of rental properties. We buy all of these as-is — including homes with code or permit issues — and factor the work into a straightforward offer.',
+    },
+    {
+      heading: 'What We Offer Homeowners in Pomona',
+      body: 'When you work with Father & Son Home Buyers, you\'re working with a local, family-owned team that has direct experience buying and renovating homes in Los Angeles County. We\'re not a national platform or an algorithm — we evaluate every property ourselves.\n\nHere\'s what sellers in Pomona get when they work with us:',
+      bullets: [
+        { text: 'Cash offer for your Pomona home — no financing delays, no deal uncertainty' },
+        { text: 'Buy in as-is condition — no repairs, cleaning, or updates required' },
+        { text: 'Close in as little as 14 days, or on the timeline that works for you' },
+        { text: 'No agent commissions and no fees of any kind for the seller' },
+        { text: 'You can leave behind items or belongings you don\'t want to move' },
+        { text: 'Transparent process from first call to closing — no surprises' },
+      ],
+    },
+    {
+      heading: 'Who We Work With in Pomona',
+      body: 'We buy homes from homeowners in a wide range of situations in the Pomona area:',
+      bullets: [
+        { text: 'Sellers who need to move quickly and don\'t have time for a traditional listing' },
+        { text: 'Homeowners with properties that need significant repairs or updates' },
+        { text: 'Families who have inherited a property and want a simple resolution' },
+        { text: 'People dealing with financial pressure, relocation, or other time-sensitive circumstances' },
+        { text: 'Sellers who simply prefer a direct, off-market transaction over the traditional process' },
+      ],
+    },
+    {
+      heading: 'How the Process Works',
+      body: 'Reach out and tell us about your property. We\'ll review the details, schedule a visit if needed, and put together a fair cash offer — typically within 24 hours. There\'s no obligation to accept, and we\'ll walk you through every number so nothing is unclear.\n\nIf you decide to move forward, we handle the paperwork and set a closing date that works for you. At closing, you receive your funds directly. No agents, no middlemen, no unexpected deductions.',
+    },
+    {
+      heading: 'Serving Homeowners Throughout Pomona and Los Angeles County',
+      body: 'We work with homeowners across Los Angeles County and surrounding communities, including Pomona.\n\nWhether your home is in need of major work or simply isn\'t the right fit for a traditional listing, we can evaluate it and give you a straight answer about what it\'s worth to us — and what the process would look like.\n\nReady to get a no-obligation cash offer for your Pomona home? Call us or [fill out our online form](/contact) and we\'ll get back to you promptly.',
+    },
+  ],
 };
 
 export function getCityGuide(slug: string): CityGuideSection[] | undefined {

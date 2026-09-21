@@ -1,5 +1,12 @@
+import { isPublished } from './publishing';
+
 export interface CityData {
   slug: string;
+  /**
+   * Scheduled publish date, YYYY-MM-DD (Pacific). Until then the city has no
+   * page and no hub, nearby-city, or schema listing. See publishing.ts.
+   */
+  publishOn?: string;
   name: string;
   county: string;
   countySlug: string;
@@ -10,7 +17,8 @@ export interface CityData {
   blurb: string;
 }
 
-export const cities: CityData[] = [
+/** Every city, including scheduled ones. Use `cities` for anything shown. */
+const allCities: CityData[] = [
   // Orange County
   {
     slug: 'anaheim',
@@ -269,7 +277,72 @@ export const cities: CityData[] = [
     situations: ['Sellers relocating out of state', 'Larger homes that need significant repairs before listing', 'Divorce or financial hardship requiring a fast close', 'Homeowners who want to avoid the open-market hassle'],
     blurb: "We serve Eastvale homeowners across every neighborhood — fast cash offers, no repairs, close on your timeline.",
   },
+
+  // Added from the Q4 2026 content plan; scheduled via publishOn.
+  {
+    slug: 'laguna-niguel',
+    publishOn: '2026-09-21',
+    name: 'Laguna Niguel',
+    county: 'Orange County',
+    countySlug: 'orange-county',
+    state: 'CA',
+    description: 'Laguna Niguel\'s hillside neighborhoods hold their value, but many homes here date to the 1970s and \'80s and come with association rules and slope upkeep. We buy them as-is, for cash.',
+    neighborhoods: ['Marina Hills', 'Beacon Hill', 'Rancho Niguel', 'Bear Brand', 'Crown Valley'],
+    situations: ['Downsizing out of a longtime family home', 'Estate sales from original owners', 'Homes with slope, drainage, or deferred exterior work', 'HOA or association complications'],
+    blurb: 'From Marina Hills to the ridgelines off Crown Valley Parkway, we buy Laguna Niguel homes exactly as they sit.',
+  },
+  {
+    slug: 'westminster',
+    publishOn: '2026-10-06',
+    name: 'Westminster',
+    county: 'Orange County',
+    countySlug: 'orange-county',
+    state: 'CA',
+    description: 'Westminster is home to Little Saigon and a large stock of post-war tract homes, many still with their original owners. We buy Westminster houses as-is, whatever shape they\'re in.',
+    neighborhoods: ['Little Saigon', 'Sigler Park area', 'Civic Center area', 'West Westminster', 'Bolsa Avenue corridor'],
+    situations: ['Original-owner homes needing full updates', 'Multigenerational family estates', 'Homes with unpermitted additions or garage conversions', 'Sellers who want a private, off-market sale'],
+    blurb: 'From Little Saigon to the tract neighborhoods off Beach Boulevard, we make fair cash offers on Westminster homes.',
+  },
+  {
+    slug: 'rialto',
+    publishOn: '2026-10-13',
+    name: 'Rialto',
+    county: 'San Bernardino County',
+    countySlug: 'san-bernardino-county',
+    state: 'CA',
+    description: 'Rialto has a mix of older single-story homes, newer planned neighborhoods, and plenty of rentals. We buy Rialto homes for cash in any condition, occupied or vacant.',
+    neighborhoods: ['Downtown Rialto', 'North Rialto', 'South Rialto', 'Renaissance', 'Frisbie Park area'],
+    situations: ['Rentals with tenant or condition problems', 'Inherited homes with deferred maintenance', 'Homeowners behind on payments', 'Properties with unpermitted additions'],
+    blurb: 'From downtown to the newer neighborhoods near the 210, we buy Rialto homes exactly as they sit.',
+  },
+  {
+    slug: 'fontana',
+    publishOn: '2026-10-20',
+    name: 'Fontana',
+    county: 'San Bernardino County',
+    countySlug: 'san-bernardino-county',
+    state: 'CA',
+    description: 'Fontana runs from older homes on larger lots in the south to newer tracts in North Fontana. Whatever you own and whatever shape it\'s in, we make fair cash offers.',
+    neighborhoods: ['Downtown Fontana', 'North Fontana', 'South Fontana', 'Sierra Lakes', 'Hunter\'s Ridge'],
+    situations: ['Distressed or fire-damaged homes', 'Older homes on large lots needing major work', 'Homeowners facing foreclosure', 'Landlords exiting the rental market'],
+    blurb: 'From Sierra Lakes to South Fontana, we buy Fontana homes quickly and fairly, in any condition.',
+  },
+  {
+    slug: 'pomona',
+    publishOn: '2026-11-10',
+    name: 'Pomona',
+    county: 'Los Angeles County',
+    countySlug: 'los-angeles-county',
+    state: 'CA',
+    description: 'Pomona has some of the most varied housing in eastern Los Angeles County, from historic early-1900s homes to hillside neighborhoods in Phillips Ranch. We buy Pomona homes as-is, for cash.',
+    neighborhoods: ['Lincoln Park Historic District', 'Phillips Ranch', 'Downtown Pomona', 'Ganesha Hills', 'Fairplex area'],
+    situations: ['Historic homes with deferred maintenance', 'Inherited properties from longtime owners', 'Rentals near the colleges and Fairplex', 'Homes with code or permit issues'],
+    blurb: 'From Lincoln Park\'s historic homes to Phillips Ranch, we make fair cash offers on Pomona homes of every kind.',
+  },
 ];
+
+/** Cities that are live as of this build. */
+export const cities: CityData[] = allCities.filter(isPublished);
 
 export function getCityBySlug(slug: string): CityData | undefined {
   return cities.find((c) => c.slug === slug);

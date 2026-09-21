@@ -1,3 +1,5 @@
+import { isPublished } from './publishing';
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -19,8 +21,21 @@ export interface BlogPost {
    * in" links so the location pages pick up internal links from blog content.
    */
   relatedCitySlugs?: string[];
+  /**
+   * Other posts on the same topic. Drives "More Articles" on this post — and,
+   * in reverse, on each post listed here — so overlapping articles point at
+   * each other instead of competing. Unpublished posts are skipped.
+   */
+  relatedPostSlugs?: string[];
+  /**
+   * Scheduled publish date, YYYY-MM-DD (Pacific). Until then the post doesn't
+   * exist on the site: no route, no listing, no links. See publishing.ts.
+   */
+  publishOn?: string;
   sections: {
     heading?: string;
+    /** 3 renders the heading as a subheading (h3) under the previous section. */
+    level?: 3;
     /** Paragraphs, separated by a blank line. May carry `[label](/path)` links. */
     body?: string;
     bullets?: { lead?: string; text: string }[];
@@ -29,7 +44,542 @@ export interface BlogPost {
   }[];
 }
 
-export const blogPosts: BlogPost[] = [
+/** Every post, including scheduled ones. Use `blogPosts` for anything shown. */
+const allBlogPosts: BlogPost[] = [
+  {
+    slug: 'questions-to-ask-before-accepting-cash-offer',
+    publishOn: '2026-11-17',
+    relatedCitySlugs: ['pomona', 'riverside', 'anaheim'],
+    relatedPostSlugs: ['how-we-determine-our-offer-price', 'hidden-fees-cash-home-sale'],
+    title: '5 Questions Every Seller Should Ask Before Accepting a Cash Offer in California',
+    description:
+      'Not every cash buyer operates the same way. These five questions separate the straightforward ones from the rest, before you sign anything.',
+    seoTitle: '5 Questions to Ask Before Accepting a Cash Offer',
+    seoDescription:
+      'Five questions every California seller should ask a cash buyer before signing: who is really buying, every fee, price changes, and the real timeline.',
+    date: 'November 17, 2026',
+    readTime: '3 min read',
+    category: 'Cash Offers',
+    sections: [
+      {
+        body: 'The cash home buying space has grown significantly in California over the past decade, and not all buyers operate the same way. If you\'re considering a cash offer, here are five questions worth asking before you sign anything.',
+      },
+      {
+        heading: '1. Will You Actually Close, or Will You Assign This Contract?',
+        body: 'Some companies in the "we buy houses" space don\'t actually purchase properties themselves — they find a buyer and assign your contract to them for a fee. This means someone you\'ve never met ends up buying your home, the timeline can shift, and the price you agreed to may not be what actually closes.\n\nAsk directly: "Are you closing on this property yourself, or will you be assigning the contract?" A legitimate cash buyer should be able to answer that clearly and without hesitation.',
+      },
+      {
+        heading: '2. What Are All the Fees Involved?',
+        body: 'A genuine cash offer should mean no fees to you as the seller. Ask for a breakdown of every cost you\'ll be expected to cover — closing costs, document fees, transaction fees, anything. If there are deductions you\'re not aware of, better to know before you sign.\n\nOur offers include no fees of any kind for sellers. What\'s in the offer is what you receive at closing.',
+      },
+      {
+        heading: '3. Can the Price Change After We Agree?',
+        body: 'Some buyers make a strong initial offer, then use the inspection period to negotiate the price down significantly. This is legal but frustrating — and common enough that you should ask about it explicitly.\n\nAsk: "Is there an inspection contingency? If so, how does that affect the offer price?" We evaluate properties honestly upfront. If we make you an offer, we stand behind it.',
+      },
+      {
+        heading: '4. What Does the Timeline Actually Look Like?',
+        body: '"We close fast" is a common claim. Ask what fast means in practice. Is a 14-day close actually possible for your property? What would extend that timeline? Are there any contingencies that could delay closing?\n\nWe\'ll give you an honest timeline based on your specific situation, not a marketing promise.',
+      },
+      {
+        heading: '5. Who Are You, and How Long Have You Been Doing This?',
+        body: 'California has a lot of cash buyers, and they range from well-established local operators to out-of-state investors who don\'t know the market and iBuyer platforms that treat homes as data points. There\'s a real difference in how they handle sellers.\n\nWe\'re a family-owned business rooted in Orange County and the Inland Empire. We have construction and renovation experience that allows us to evaluate properties accurately, and our reputation is local — which means we care about how we treat the people we work with.\n\nHave more questions before you decide? That\'s exactly the kind of conversation we\'re here for. Call us or [reach out online](/contact) — no pressure, no obligation, just a straight answer.',
+      },
+    ],
+  },
+  {
+    slug: 'why-orange-county-homeowners-choose-off-market',
+    publishOn: '2026-11-03',
+    relatedCitySlugs: ['westminster', 'garden-grove', 'santa-ana'],
+    relatedPostSlugs: ['cash-offer-vs-agent-orange-county', 'how-selling-for-cash-works-orange-county'],
+    title: 'Why Orange County Homeowners Are Choosing Off-Market Sales Over Traditional Listings',
+    description:
+      'The traditional listing playbook has barely changed in decades. Here is why a growing number of Orange County sellers are going off-market instead.',
+    seoTitle: 'Why OC Homeowners Are Choosing Off-Market Sales',
+    seoDescription:
+      'The real costs of a traditional Orange County listing, what an off-market sale offers instead, and the situations where it makes the most sense.',
+    date: 'November 3, 2026',
+    readTime: '3 min read',
+    category: 'Selling Process',
+    sections: [
+      {
+        body: 'The traditional home sale playbook hasn\'t changed much in decades: hire an agent, prepare the home, list it on the MLS, host showings, negotiate offers, manage contingencies, and close — usually 60 to 90 days after you started.\n\nFor a lot of homeowners, that process still makes sense. But for a growing number of sellers in Orange County, the off-market route is becoming the preferred choice. Here\'s why.',
+      },
+      {
+        heading: 'The Traditional Process Has Real Costs',
+        body: 'It\'s not just the agent commission (typically 5–6%) that sellers absorb. It\'s everything else:',
+        bullets: [
+          { text: 'Repairs and updates to make the home show-ready' },
+          { text: 'Staging costs' },
+          { text: 'Two to four months of carrying costs — mortgage, taxes, insurance, utilities — while the home is on the market' },
+          { lead: 'Uncertainty', text: 'deals fall through, buyers lose financing, inspections reveal new issues' },
+        ],
+        outro: 'By the time you close, the difference between your list price and what you actually net can be significant.',
+      },
+      {
+        heading: 'What an Off-Market Sale Actually Offers',
+        body: 'An off-market sale to a direct buyer bypasses most of that friction:',
+        bullets: [
+          { text: 'No repairs or staging required' },
+          { text: 'No agent commissions or closing costs for the seller' },
+          { text: 'A closing timeline you control — as little as 14 days if needed, or longer if that suits you' },
+          { text: 'A deal that doesn\'t fall through because a lender changed terms or a buyer got nervous' },
+        ],
+        outro: 'You trade some potential upside in exchange for speed and certainty. For many sellers, that\'s not a hard trade to make.',
+      },
+      {
+        heading: 'The Situations Where Off-Market Makes the Most Sense',
+        body: 'Not every seller benefits equally from a direct sale. The cases where it tends to make the most sense:',
+        bullets: [
+          { text: 'The property needs significant repairs and you don\'t want to fund them' },
+          { text: 'You\'re navigating a time-sensitive situation — relocation, financial pressure, a life transition' },
+          { text: 'The home has been in the family for decades and selling through a listing feels impersonal or overwhelming' },
+          { text: 'You\'ve tried listing before and it didn\'t produce results' },
+          { text: 'You want to know exactly what you\'re walking away with, with no variables' },
+        ],
+      },
+      {
+        heading: 'Orange County\'s Market Makes This a Real Option',
+        body: 'The off-market approach works best in markets with active, well-capitalized buyers who know local values. Orange County qualifies. Whether your home is in Santa Ana, Westminster, Anaheim, or Garden Grove, there are buyers — like us — who understand the market and can move quickly on a purchase.\n\nCurious whether an off-market sale makes sense for your situation? We\'ll give you an honest assessment and a real offer — no cost, no commitment.',
+      },
+    ],
+  },
+  {
+    slug: 'selling-distressed-home-inland-empire',
+    publishOn: '2026-10-22',
+    relatedCitySlugs: ['rialto', 'fontana', 'san-bernardino'],
+    relatedSituationSlug: 'as-is-repairs',
+    relatedPostSlugs: ['selling-during-financial-hardship-southern-california', 'clean-or-repair-before-selling'],
+    title: 'Selling a Home in Distress in the Inland Empire: Options Beyond the Open Market',
+    description:
+      'Retail buyers want move-in ready homes, and their lenders insist on it. If yours is not, here is an honest look at the options that remain.',
+    seoTitle: 'Selling a Distressed Home in the Inland Empire',
+    seoDescription:
+      'Home in rough shape in Rialto, Fontana, San Bernardino, or Pomona? Your real options: list as-is, fix it up first, or sell directly for cash.',
+    date: 'October 22, 2026',
+    readTime: '3 min read',
+    category: 'Distressed Property',
+    sections: [
+      {
+        body: 'Homeowners in Rialto, Fontana, San Bernardino, and Pomona dealing with distressed properties face a particular challenge: getting a traditional buyer to make an offer on a home that needs significant work is harder than it sounds. Most retail buyers are looking for move-in ready homes, and the ones who aren\'t still need financing — which means the property has to pass an appraisal and inspection.\n\nIf your home isn\'t in that condition, your options on the open market narrow quickly. Here\'s an honest look at what\'s available.',
+      },
+      {
+        heading: 'What Makes a Property "Distressed"?',
+        body: 'The term covers a range of situations:',
+        bullets: [
+          { lead: 'Structural issues', text: 'foundation problems, roof damage, significant water intrusion' },
+          { lead: 'Systems failures', text: 'outdated electrical, plumbing that doesn\'t meet code, failed HVAC' },
+          { text: 'Severe cosmetic damage from deferred maintenance or prior occupants' },
+          { text: 'Fire or flood damage' },
+          { lead: 'Properties tied to financial distress', text: 'pre-foreclosure, tax delinquency, or probate' },
+        ],
+        outro: 'Any of these can make a traditional listing difficult, slow, or ultimately unsuccessful.',
+      },
+      {
+        heading: 'Option 1: List As-Is With a Traditional Agent',
+        body: 'Some agents specialize in as-is listings and can find buyers willing to take on a project. This is possible, but it often means a longer time on market, a smaller buyer pool, and offers that come in well below what you\'d hope for — plus the agent\'s commission on top.',
+      },
+      {
+        heading: 'Option 2: Fix It Up First',
+        body: 'If the equity is there and you have the capital, renovating before listing can significantly increase your net proceeds. But this requires time, money, contractor coordination, and a willingness to take on the risk that renovations go over budget or over schedule.',
+      },
+      {
+        heading: 'Option 3: Sell Directly to a Cash Buyer',
+        body: 'This is where we come in. We buy distressed properties in the Inland Empire as-is — no repairs required, no cleaning, no dealing with contractors before the sale. We evaluate the home for what it is, make a fair offer based on the actual condition, and close on a timeline that works for you.\n\nThere are no commissions, no fees, and no surprises between the offer and closing. You get certainty in a situation that often feels anything but certain.',
+      },
+      {
+        heading: 'The Right Choice Depends on Your Situation',
+        body: 'If you have the time and resources to renovate, it may be worth doing the math on option two. If your priority is speed, certainty, and avoiding additional out-of-pocket costs — a direct sale often makes more sense.\n\nWe\'re happy to walk through the numbers with you so you can make the call with a clear picture of what each path looks like.\n\nDealing with a property in rough shape in the Inland Empire? Reach out and we\'ll give you a straight assessment and a no-obligation offer.',
+      },
+    ],
+  },
+  {
+    slug: 'relocating-from-orange-county-sell-fast',
+    publishOn: '2026-10-15',
+    relatedCitySlugs: ['mission-viejo', 'laguna-niguel', 'anaheim'],
+    relatedSituationSlug: 'relocation',
+    relatedPostSlugs: ['relocating-inland-empire-sell-home', 'how-fast-can-you-close-orange-county'],
+    title: 'Relocating from Orange County? How a Fast, Off-Market Sale Can Simplify Your Move',
+    description:
+      'A new job, a family move, or a lease with a start date leaves little room for a listing that drags on. Here is how a direct sale fits around your move.',
+    seoTitle: 'Relocating From Orange County? Selling Your Home Fast',
+    seoDescription:
+      'Moving out of Orange County on a deadline? How an off-market sale lets you set the closing date and skip repairs, showings, and double housing costs.',
+    date: 'October 15, 2026',
+    readTime: '3 min read',
+    category: 'Relocation',
+    sections: [
+      {
+        body: 'Relocation is one of those life events that touches everything at once — your job, your home, your family\'s routine, your finances. When you\'re trying to coordinate a move to another city or state, the last thing you need is a home sale that drags out for months or falls apart at the last minute.\n\nFor homeowners leaving Orange County, a direct off-market sale is increasingly worth considering — not because it\'s always the highest-dollar option, but because of what it removes from an already complicated process.',
+      },
+      {
+        heading: 'The Problem With Listing While You\'re Trying to Move',
+        body: 'A traditional listing requires your presence and attention at an inconvenient time. You\'ll need to prepare the home for showings, potentially make repairs, negotiate with buyers, and manage the deal through escrow — all while packing, coordinating movers, and managing everything at your destination.\n\nIf your move is time-sensitive (a new job with a start date, a family obligation, a lease that begins on a specific day), the uncertainty of a traditional sale becomes a real problem. Orange County listings typically take several weeks to go under contract, and escrow adds another 30 to 45 days on top of that. That\'s months of carrying two sets of housing costs.',
+      },
+      {
+        heading: 'How a Direct Sale Changes the Math',
+        body: 'When you sell directly to us, you control the closing date. Need to be gone in three weeks? We can close that fast. Need a month and a half to coordinate your move? We can work with that too. The timeline is yours to set.\n\nYou also don\'t need to prepare the home for sale. No repairs, no deep cleans, no staging, no coordinating contractors while you\'re trying to pack. Leave behind what you don\'t want to move. We handle the rest.',
+      },
+      {
+        heading: 'What You Give Up, and What You Keep',
+        body: 'We want to be transparent: a cash offer will usually be below the maximum price you\'d receive on the open market after months of exposure to buyers. That\'s the real trade-off.\n\nWhat you keep is time, certainty, and bandwidth. For a seller who\'s relocating on a timeline, those things have real value — and when you factor in carrying costs, agent commissions, and the risk of a deal falling through, the financial gap often shrinks considerably.',
+      },
+      {
+        heading: 'We Work With Sellers Across Orange County',
+        body: 'Whether you\'re in Mission Viejo, Laguna Niguel, Anaheim, or anywhere else in the county, we can move quickly on a property evaluation and get you an offer you can plan around. We know the local market well, and we\'re used to working with sellers who have tight timelines.\n\nIf you\'re planning a move and want to understand what a fast, off-market sale could look like for your home, give us a call. We\'ll walk through it with you and give you a real number to work with.',
+      },
+    ],
+  },
+  {
+    slug: 'how-we-determine-our-offer-price',
+    publishOn: '2026-10-08',
+    relatedCitySlugs: ['anaheim', 'orange', 'fullerton'],
+    relatedPostSlugs: ['how-cash-buyers-determine-offer-price', 'hidden-fees-cash-home-sale'],
+    title: 'How We Determine Our Offer Price (And Why There Are No Hidden Fees)',
+    description:
+      '"How do I know this offer is fair?" is the right question to ask. Here is exactly how we calculate our offers, and why there are no fees on your side.',
+    seoTitle: 'How We Determine Our Cash Offer Price (No Hidden Fees)',
+    seoDescription:
+      'The formula behind our cash offers (after-repair value, repair costs, carrying costs, and margin) and why sellers pay no fees at all.',
+    date: 'October 8, 2026',
+    readTime: '3 min read',
+    category: 'Cash Offers',
+    sections: [
+      {
+        body: 'One of the most common concerns we hear from sellers is: "How do I know this offer is fair?" It\'s a fair question to ask. The cash home buying space has a reputation — not always deserved, but real — for lowball offers and vague explanations.\n\nWe want to be transparent about exactly how we calculate our offers, because we think an informed seller is a seller who can make a confident decision.',
+      },
+      {
+        heading: 'What We Look At When We Evaluate a Property',
+      },
+      {
+        heading: '1. After-Repair Value (ARV)',
+        level: 3,
+        body: 'The foundation of our offer is what the home would likely sell for on the open market in fully renovated condition. We look at comparable sales in your neighborhood — similar size, lot, and features — that have sold recently. This is the same data a real estate agent would use to price your home.',
+      },
+      {
+        heading: '2. Cost of Repairs and Renovation',
+        level: 3,
+        body: 'This is where our construction background matters. We don\'t guess at repair costs — we estimate them based on what it actually costs to renovate a property in Orange County. That includes everything from roof and HVAC to flooring, paint, kitchens, and baths. The more work a home needs, the more this factors into the offer.',
+      },
+      {
+        heading: '3. Carrying Costs',
+        level: 3,
+        body: 'While we own the property — before it\'s renovated and resold — we carry costs: property taxes, insurance, utilities, and financing. These aren\'t expenses we hide; they\'re part of why cash buyers offer below retail.',
+      },
+      {
+        heading: '4. Our Target Margin',
+        level: 3,
+        body: 'We\'re a business, and we need to make the numbers work to do this sustainably. We try to be clear about that rather than pretending the offer is purely altruistic. What we can tell you is that we don\'t build in excessive margins — we want the deal to work for both sides.',
+      },
+      {
+        heading: 'The Formula, Simply',
+        body: 'Our offer is roughly: ARV minus repair costs, minus carrying costs, minus our margin. What\'s left is what we offer you. If you want to walk through this math on your specific home, we\'re happy to do that with you.',
+      },
+      {
+        heading: 'Why There Are No Hidden Fees',
+        body: 'We don\'t charge sellers anything. No processing fees, no administrative fees, no "transaction coordination" charges. We cover the closing costs on our side. You receive what\'s in the offer — that\'s it.\n\nIf you\'ve seen contracts from other buyers that include deductions after the offer is accepted, that\'s not how we operate. We want to be clear on everything before you sign.',
+      },
+      {
+        heading: 'What to Watch Out For With Other Buyers',
+        body: 'Not all cash buyers operate the same way. Some tactics worth being aware of:',
+        bullets: [
+          { text: 'Offers that seem high initially but include post-inspection deductions' },
+          { text: 'Contracts with fees buried in the fine print' },
+        ],
+        outro: 'Have questions about a specific offer you\'ve received, or want to understand what your home might be worth? We\'re happy to talk through the numbers with you — no pressure, just a straight conversation.',
+      },
+    ],
+  },
+  {
+    slug: 'cash-offer-vs-agent-orange-county',
+    publishOn: '2026-10-01',
+    relatedCitySlugs: ['irvine', 'costa-mesa', 'huntington-beach'],
+    relatedPostSlugs: ['cash-offer-vs-agent-mission-viejo', 'hidden-fees-cash-home-sale'],
+    title: 'Cash Offer vs. Listing With an Agent in Orange County: An Honest Comparison',
+    description:
+      'A cash buyer telling you to consider listing? Sometimes that is the honest answer. Here is what each path offers, what it costs, and who it fits.',
+    seoTitle: 'Cash Offer vs. Listing With an Agent in Orange County',
+    seoDescription:
+      'Listing with an agent or selling for cash in Orange County? What each path offers, what it really costs, and who each one fits best.',
+    date: 'October 1, 2026',
+    readTime: '3 min read',
+    category: 'Selling Process',
+    sections: [
+      {
+        body: 'We\'re a cash home buyer, so you might expect us to tell you that selling directly is always the right choice. We\'re not going to do that. The honest answer is: it depends on your situation. What we will do is walk through both options clearly so you can make the call that\'s right for you.',
+      },
+      {
+        heading: 'Listing With a Real Estate Agent',
+      },
+      {
+        heading: 'What it offers',
+        level: 3,
+        bullets: [
+          { text: 'Access to the full pool of buyers on the open market' },
+          { text: 'The potential to receive offers at or above asking price in a competitive market' },
+          { text: 'Representation and guidance throughout the negotiation process' },
+        ],
+      },
+      {
+        heading: 'What it costs',
+        level: 3,
+        bullets: [
+          { text: 'Agent commission (typically 5–6% of the sale price)' },
+          { text: 'Closing costs, which sellers often contribute to' },
+          { text: 'Repair and staging costs to get the home show-ready' },
+          { lead: 'Carrying costs during the listing period', text: 'mortgage, taxes, insurance, utilities' },
+          { text: 'Time — in Orange County, a typical listing takes weeks to months from list to close' },
+        ],
+      },
+      {
+        heading: 'Best for',
+        level: 3,
+        body: 'Homeowners whose property is in good or great condition, who have time on their side, and whose primary goal is maximizing the sale price.',
+      },
+      {
+        heading: 'Selling Directly to a Cash Buyer',
+      },
+      {
+        heading: 'What it offers',
+        level: 3,
+        bullets: [
+          { text: 'A fast, certain close — in as little as 14 days, or on your schedule' },
+          { text: 'No repairs, cleaning, or staging required' },
+          { text: 'No commissions, fees, or out-of-pocket costs for the seller' },
+          { text: 'No contingencies that can unravel the deal at the last minute' },
+          { text: 'Flexibility on timeline — you set the closing date' },
+        ],
+      },
+      {
+        heading: 'What it involves',
+        level: 3,
+        body: 'A cash offer is generally below what you\'d net at full retail. That\'s the trade-off for speed, certainty, and no out-of-pocket costs.',
+      },
+      {
+        heading: 'Best for',
+        level: 3,
+        body: 'Homeowners who need to sell quickly, have a property in as-is condition, want to avoid the uncertainty and logistics of a traditional sale, or are dealing with a time-sensitive situation.',
+      },
+      {
+        heading: 'The Math Worth Doing',
+        body: 'Before deciding, it\'s worth looking at both paths side by side. Take an estimated retail sale price and subtract commissions, repair costs, closing costs, and carrying costs while the home sits. Compare that to a cash offer where those costs don\'t exist.\n\nIn many cases, the difference is smaller than sellers initially expect. And for situations that involve distress, complexity, or time pressure, that gap shrinks further — or may disappear entirely.',
+      },
+      {
+        heading: 'Our Take',
+        body: 'If your home is in great shape and you have the time and bandwidth to go through the listing process, it\'s probably worth exploring. If you\'re working through a difficult situation, dealing with a property that needs significant work, or simply want certainty over maximum price — a direct sale may be the better fit.\n\nWe\'ll always give you an honest answer about which option makes more sense for your specific situation, even if it means telling you to list with an agent.\n\nWant to run the numbers on your specific home? Call us or [submit your property details](/instant-offer) and we\'ll put together a no-obligation offer you can use as a real comparison point.',
+      },
+    ],
+  },
+  {
+    slug: 'how-selling-for-cash-works-orange-county',
+    publishOn: '2026-09-21',
+    relatedCitySlugs: ['santa-ana', 'anaheim', 'mission-viejo'],
+    relatedPostSlugs: ['what-happens-after-you-accept-cash-offer', 'how-fast-can-you-close-orange-county'],
+    title: 'How Selling Your House for Cash Works in Orange County — Step by Step',
+    description:
+      'Selling directly to a local cash buyer is simpler than most people expect. Here is exactly what happens, from the first conversation to cash at closing.',
+    seoTitle: 'How Selling a House for Cash Works in Orange County',
+    seoDescription:
+      'Step by step: what actually happens when you sell your Orange County house to a local cash buyer, from the first call to getting paid at closing.',
+    date: 'September 21, 2026',
+    readTime: '4 min read',
+    category: 'Selling Process',
+    sections: [
+      {
+        body: 'If you\'ve been thinking about selling your home but the idea of repairs, showings, and months on the market sounds exhausting, you\'re not alone. A lot of Orange County homeowners are choosing a simpler path — selling directly to a local cash buyer. We hear the same question all the time: how does this actually work?\n\nWe want to walk you through it, plainly and honestly, so you know exactly what to expect from start to finish.',
+      },
+      {
+        heading: 'Step 1: You Reach Out and Tell Us About Your Property',
+        body: 'It starts with a quick conversation. You can call us directly or [fill out the form on our website](/contact) with some basic information about your home — the address, a general sense of its condition, and your situation. There are no long questionnaires and no pressure to commit to anything at this stage.\n\nWe work with homeowners all across Orange County, from Santa Ana and Anaheim to Mission Viejo and Laguna Niguel, and we\'re familiar with the local market in each of these areas. The more context you give us, the more accurately we can evaluate your home.',
+      },
+      {
+        heading: 'Step 2: We Evaluate the Property and Put Together an Offer',
+        body: 'Once we have a sense of your home, we\'ll do our own research and, in most cases, schedule a time to visit the property. Our family has deep roots in construction and renovation, which means we can assess a home quickly and accurately — even if it needs significant work.\n\nWe\'ll factor in the local comparable sales, the condition of the property, and what it would cost to bring it up to standard. From there, we\'ll put together a fair, no-obligation cash offer.\n\nOne thing we want to be straightforward about: cash offers are typically below full retail market value. In exchange for that, you get speed, certainty, and zero out-of-pocket costs. For many sellers, that trade-off makes complete sense.',
+      },
+      {
+        heading: 'Step 3: You Review the Offer — With Zero Pressure',
+        body: 'We\'ll walk you through every number so nothing feels like a black box. You\'re never obligated to accept, and there\'s no countdown clock. Take the time you need to think it over.\n\nIf you have questions about how we arrived at the number — ask us. We\'d rather explain our process than have you wonder.',
+      },
+      {
+        heading: 'Step 4: We Handle the Paperwork and Set a Closing Date That Works for You',
+        body: 'If you accept the offer, we take care of the title and escrow process. There\'s no agent coordinating between three parties, no contingencies that fall apart at the last minute, and no surprises at the closing table.\n\nWe can close in as little as 14 days if you need to move quickly. Or if you need more time to arrange your next move, we\'ll work around your schedule. Sellers set the pace.',
+      },
+      {
+        heading: 'Step 5: You Get Paid — In Cash, At Closing',
+        body: 'At closing, you receive your funds directly. No waiting for a buyer\'s loan to fund. No last-minute lender conditions. The sale is done, and you walk away with cash in hand.\n\nYou don\'t need to clean the house out beforehand, either. If there are items you\'d rather leave behind — furniture, appliances, belongings you don\'t want to deal with — that\'s fine. We handle it after closing.',
+      },
+      {
+        heading: 'Is This the Right Option for You?',
+        body: 'A cash sale isn\'t the right fit for every situation, and we\'ll be honest with you about that. If your home is in great condition and you have the time to list it, a traditional sale might get you closer to top dollar.\n\nBut if you\'re dealing with a property that needs work, a timeline that doesn\'t allow for months on the market, or a situation that just needs to be resolved — a direct sale to a local buyer can be the simplest, most stress-free path available.\n\nWe\'ve worked with homeowners across Orange County who were navigating inherited properties, financial pressure, major life transitions, and everything in between. We don\'t judge the situation. We just try to find a solution that works.\n\nReady to see what your home might be worth? Give us a call or [submit your property info online](/instant-offer). There\'s no cost and no obligation — just a straightforward conversation.',
+      },
+    ],
+  },
+  {
+    slug: 'unwanted-belongings-cash-home-sale',
+    publishOn: '2026-09-21',
+    relatedCitySlugs: ['santa-ana', 'garden-grove', 'orange'],
+    relatedSituationSlug: 'as-is-repairs',
+    relatedPostSlugs: ['clean-or-repair-before-selling', 'selling-as-is-santa-ana'],
+    title: 'What Happens to Unwanted Belongings When You Sell to a Cash Buyer?',
+    description:
+      'The short answer to "do I have to clean out the house first?" is no. Here is what happens to everything you leave behind, and what to take with you.',
+    seoTitle: 'Unwanted Belongings When You Sell to a Cash Buyer',
+    seoDescription:
+      'Do you have to clean out the house before a cash sale? No. What happens to furniture, junk, and left-behind items, and what you should take with you.',
+    date: 'September 21, 2026',
+    readTime: '3 min read',
+    category: 'As-Is Sales',
+    sections: [
+      {
+        body: 'It\'s one of the first things sellers ask us: "Do I have to clean out the house before you buy it?"\n\nThe short answer is no. But we want to give you the longer answer too, because it\'s one of those areas where a lot of sellers have anxiety that doesn\'t need to be there.',
+      },
+      {
+        heading: 'You Don\'t Have to Take Everything With You',
+        body: 'When you sell a home through a traditional listing, you\'re expected to leave the property clean, empty, and in generally good condition for the next buyer. That means hauling away years of accumulated belongings, renting a dumpster, hiring movers, and often spending money and time you don\'t have.\n\nWhen you sell directly to us, that expectation doesn\'t exist. We buy homes as-is, which includes the stuff inside them. Old furniture, appliances that don\'t work, boxes in the garage, items left behind by previous occupants — none of it is your problem to deal with before closing.',
+      },
+      {
+        heading: 'Why We\'re Set Up to Handle This',
+        body: 'Part of what makes our process work is that we\'re not just buyers — we\'re a family business with renovation and construction experience. When we take on a property, we\'re already planning what happens next: what gets donated, what gets hauled away, what gets salvaged. We factor that into our process from the beginning.\n\nSo when you leave things behind, it\'s not a surprise or a burden. It\'s something we\'ve accounted for.',
+      },
+      {
+        heading: 'What About Sentimental or Valuable Items?',
+        body: 'This part is worth being clear about: anything you want to keep, take with you. We\'re not in the business of acquiring personal belongings or heirlooms. If there are items that matter to you — family photos, furniture you love, valuables — bring them. We\'d never expect otherwise.\n\nThe point is simply that you\'re not required to do a full cleanout before we close. If you want to take everything, great. If you want to take only what matters and leave the rest, that works too.',
+      },
+      {
+        heading: 'For Inherited Properties, This Matters a Lot',
+        body: 'We work with a lot of families who have [inherited a property in Orange County](/situations/inherited-probate) and aren\'t sure what to do with decades of belongings left behind by a parent or grandparent. The thought of sorting through all of it before a sale can make an already emotional situation feel completely overwhelming.\n\nIn those cases, knowing that you don\'t have to deal with the contents of the home before selling can be genuinely relieving. Take what\'s meaningful, leave what\'s not, and let us handle the rest.',
+      },
+      {
+        heading: 'The Bottom Line',
+        body: 'Selling a home should be simpler than it usually is. The "clean it out, fix it up, make it perfect" requirement is part of the traditional process — but it\'s not part of ours.\n\nYou bring what matters to you. We take care of everything else.\n\nHave questions about what the process looks like for your specific situation? Reach out and we\'ll walk through it with you — no pressure, no obligation.',
+      },
+    ],
+  },
+  {
+    slug: 'selling-as-is-orange-county-what-sellers-get',
+    publishOn: '2026-09-21',
+    relatedCitySlugs: ['santa-ana', 'anaheim', 'garden-grove'],
+    relatedSituationSlug: 'as-is-repairs',
+    relatedPostSlugs: ['selling-as-is-santa-ana', 'hidden-fees-cash-home-sale'],
+    title: 'We\'ve Bought Homes All Across Orange County As-Is. Here\'s What Sellers Actually Get.',
+    description:
+      'Sellers have one consistent worry: are they going to be taken advantage of? Here is exactly what "as-is" covers, what you never pay, and what you get.',
+    seoTitle: 'Selling As-Is in Orange County: What Sellers Get',
+    seoDescription:
+      'What an as-is cash sale in Orange County actually includes: no repairs, no commissions, no fees, plus the speed and certainty you get in exchange.',
+    date: 'September 21, 2026',
+    readTime: '3 min read',
+    category: 'As-Is Sales',
+    sections: [
+      {
+        body: 'We\'re a family-owned business. That means we\'re not a call center, not a hedge fund, and not an algorithm. When you work with us, you\'re talking directly to the people who will buy your home, evaluate it, and close the transaction.\n\nAfter working with homeowners across Santa Ana, Anaheim, Westminster, Garden Grove, and beyond, we\'ve learned that sellers have one consistent concern: are they going to be taken advantage of? Here\'s what we want you to know.',
+      },
+      {
+        heading: 'What "As-Is" Actually Means',
+        body: 'We buy homes in their current condition. That means:',
+        bullets: [
+          { text: 'No repairs required before closing' },
+          { text: 'No cleaning or staging expected' },
+          { text: 'No updates, renovations, or improvements needed' },
+          { text: 'No inspections that result in a list of seller credits' },
+        ],
+        outro: 'Whether your home has a roof that needs replacing, plumbing that hasn\'t been updated since the 1970s, or cosmetic damage from years of deferred maintenance — none of that stops the sale. We\'ve seen it all, and we account for it in our evaluation.',
+      },
+      {
+        heading: 'What You Don\'t Pay',
+        body: 'One of the most common surprises in a traditional home sale is how much it costs the seller. Between agent commissions, closing costs, repair credits, and carrying costs while the home sits on the market, selling the "traditional" way often nets less than sellers expect.\n\nWhen you sell to us:',
+        bullets: [
+          { text: 'There are no agent commissions' },
+          { text: 'There are no seller-paid closing costs' },
+          { text: 'There are no repair credits or last-minute concessions' },
+          { text: 'There are no fees of any kind out of your pocket' },
+        ],
+        outro: 'What we offer is what you receive.',
+      },
+      {
+        heading: 'What You Do Get',
+        body: 'Speed and certainty are the two things cash buyers consistently deliver that a traditional listing cannot guarantee.',
+      },
+      {
+        heading: 'Speed',
+        level: 3,
+        body: 'We can close in as little as 14 days. If you need more time, we\'ll work around your timeline. Either way, there\'s no waiting for a buyer to get financing, no delays while contingencies clear, and no deals that fall apart two weeks before closing.',
+      },
+      {
+        heading: 'Certainty',
+        level: 3,
+        body: 'When we make an offer and you accept it, the deal closes. Cash transactions don\'t fall through because a lender changed their terms or a buyer got cold feet. The offer we make is the offer we honor.',
+      },
+      {
+        heading: 'Who We Work With',
+        body: 'We\'ve worked with homeowners in a wide range of situations across Orange County:',
+        bullets: [
+          { text: 'Families who inherited a property and aren\'t sure what to do with it' },
+          { text: 'Homeowners facing financial pressure who need to move quickly' },
+          { text: 'Sellers with properties in rough shape that wouldn\'t survive a traditional inspection' },
+          { text: 'People relocating on a tight timeline who can\'t afford to wait months for the right buyer' },
+        ],
+        outro: 'Every situation is different. We try to meet people where they are.',
+      },
+      {
+        heading: 'What We Ask in Return',
+        body: 'Transparency. If there\'s something about the property we should know — foundation issues, unpermitted work, environmental concerns — tell us upfront. It doesn\'t necessarily change whether we\'ll buy the home, but it does allow us to give you an accurate offer the first time around.\n\nWe\'re not looking to renegotiate after the fact. What we agree to is what we\'ll close on.\n\nCurious what your home might be worth as a cash sale? Reach out and we\'ll give you a straight answer — no cost, no commitment.',
+      },
+    ],
+  },
+  {
+    slug: 'inherited-home-southern-california-skip-listing',
+    publishOn: '2026-09-21',
+    relatedCitySlugs: ['mission-viejo', 'laguna-niguel', 'santa-ana'],
+    relatedSituationSlug: 'inherited-probate',
+    relatedPostSlugs: ['sell-inherited-property-california', 'inherited-property-anaheim-options'],
+    title: 'Inherited a Home in Southern California? Here\'s Why More Families Are Skipping the Listing Process',
+    description:
+      'Inheriting a home often means inheriting its repairs, its holding costs, and a lifetime of belongings. Here is why more families are choosing a direct sale.',
+    seoTitle: 'Inherited a Home in SoCal? Why Families Skip Listing',
+    seoDescription:
+      'Inherited a house in Southern California? Why more families sell directly instead of listing: repairs, holding costs, belongings, and multiple heirs.',
+    date: 'September 21, 2026',
+    readTime: '3 min read',
+    category: 'Inherited Property',
+    sections: [
+      {
+        body: 'Inheriting a property can be a lot of things at once: emotionally overwhelming, financially uncertain, and logistically complicated — especially if the home is in a different city, needs significant work, or has belongings left behind that you\'re not sure what to do with.\n\nFor a lot of families in Orange County and across Southern California, the traditional path — listing the home, managing repairs, hosting showings, and waiting for the right offer — adds stress to an already difficult situation. That\'s why we\'re seeing more inherited property sellers choose a direct cash sale instead.',
+      },
+      {
+        heading: 'The Practical Reality of an Inherited Property',
+        body: 'When you inherit a home, you\'re also inheriting whatever condition it\'s in. Older properties often have deferred maintenance, outdated systems, or decades of accumulated belongings. Before a traditional buyer would even consider making an offer, most of those issues would need to be addressed.\n\nThat means:',
+        bullets: [
+          { text: 'Coordinating contractors, often from a distance' },
+          { text: 'Covering holding costs — mortgage, taxes, insurance, utilities — while the property sits' },
+          { text: 'Dealing with the emotional weight of sorting through a loved one\'s possessions' },
+          { text: 'Waiting months for the right buyer to come along' },
+        ],
+        outro: 'For families who are already managing grief and logistics, this is a lot to take on.',
+      },
+      {
+        heading: 'What a Direct Sale Looks Like Instead',
+        body: 'When you sell to us directly, the process is straightforward. You don\'t need to make any repairs, clean out the home, or coordinate showings. We buy properties in their current condition, belongings and all.\n\nWe can close on your timeline — in as little as 14 days if you need to resolve the estate quickly, or on a longer schedule if you need time. There are no agent commissions or fees on your end, and nothing changes between the offer and the closing table.',
+      },
+      {
+        heading: 'This Isn\'t About Getting Less — It\'s About What You Actually Keep',
+        body: 'We want to be honest: a direct cash offer will typically be below what a fully renovated home might sell for on the open market. That\'s the trade-off, and we think it\'s worth understanding clearly.\n\nBut here\'s what a lot of sellers discover when they do the math: after repairs, carrying costs, commissions, and time, the difference is often smaller than it looks on paper. And for a family that just wants to resolve an inherited property with as little additional stress as possible, the value of that simplicity is real.',
+      },
+      {
+        heading: 'Common Situations We Help Families Navigate',
+        bullets: [
+          { text: 'The property is in another city or county and managing it from a distance is difficult' },
+          { text: 'The estate has multiple heirs with different opinions about what to do' },
+          { text: 'The home needs substantial repairs that no one in the family wants to fund' },
+          { text: 'The mortgage, taxes, or HOA dues are creating ongoing financial pressure' },
+          { text: 'The family simply wants a clean, final resolution so they can move forward' },
+        ],
+      },
+      {
+        heading: 'We Work With Inherited Properties Across Orange County',
+        body: 'Whether the home is in Santa Ana, Mission Viejo, Laguna Niguel, Westminster, or elsewhere in the county, we\'re familiar with the local market and the process of buying directly from estates and families. We\'re used to navigating the paperwork, working with estate attorneys when needed, and being patient with timelines that don\'t always move in a straight line.\n\nIf you\'ve inherited a property and want to understand your options, give us a call. We\'ll listen, answer your questions honestly, and let you decide what\'s right for your family — no pressure, no obligation.',
+      },
+    ],
+  },
   {
     slug: 'selling-as-is-santa-ana',
     relatedCitySlugs: ['santa-ana', 'anaheim', 'garden-grove'],
@@ -759,6 +1309,27 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
+/**
+ * Posts that are live as of this build, in file order. Keep the array
+ * newest-first (scheduled posts included) and the blog index stays in order
+ * as each one goes live.
+ */
+export const blogPosts: BlogPost[] = allBlogPosts.filter(isPublished);
+
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);
+}
+
+/**
+ * Posts to show under "More Articles": this post's related posts, plus any
+ * post that lists this one as related, then the most recent others to fill.
+ */
+export function getRelatedPosts(post: BlogPost, count = 2): BlogPost[] {
+  const related = new Set(post.relatedPostSlugs ?? []);
+  for (const other of blogPosts) {
+    if (other.relatedPostSlugs?.includes(post.slug)) related.add(other.slug);
+  }
+  const picks = blogPosts.filter((p) => p.slug !== post.slug && related.has(p.slug));
+  const fill = blogPosts.filter((p) => p.slug !== post.slug && !related.has(p.slug));
+  return [...picks, ...fill].slice(0, count);
 }

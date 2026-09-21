@@ -8,7 +8,7 @@ import {
   blogPostingSchema,
   blogPostBreadcrumbSchema,
 } from '../lib/schema';
-import { getPostBySlug, blogPosts } from '../lib/blog-posts';
+import { getPostBySlug, getRelatedPosts } from '../lib/blog-posts';
 import { getSituationBySlug } from '../lib/situations';
 import { getCityBySlug } from '../lib/cities';
 import { TEAM } from '../lib/reviews';
@@ -49,7 +49,8 @@ export function BlogPostPage() {
     );
   }
 
-  const otherPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
+  // Same-topic articles first, so overlapping posts point at each other.
+  const otherPosts = getRelatedPosts(post);
   const relatedSituation = post.relatedSituationSlug
     ? getSituationBySlug(post.relatedSituationSlug)
     : undefined;
@@ -111,11 +112,16 @@ export function BlogPostPage() {
           <div className="prose-warm">
             {post.sections.map((section, i) => (
               <div key={i} className="mb-8">
-                {section.heading && (
-                  <h2 className="font-serif text-2xl font-medium text-espresso mb-4 mt-10 first:mt-0">
-                    {section.heading}
-                  </h2>
-                )}
+                {section.heading &&
+                  (section.level === 3 ? (
+                    <h3 className="font-serif text-xl font-medium text-espresso mb-3 mt-6">
+                      {section.heading}
+                    </h3>
+                  ) : (
+                    <h2 className="font-serif text-2xl font-medium text-espresso mb-4 mt-10 first:mt-0">
+                      {section.heading}
+                    </h2>
+                  ))}
                 {section.body && <RichText text={section.body} />}
                 {section.bullets && (
                   <ul className="space-y-3 mb-4">
