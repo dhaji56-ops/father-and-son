@@ -11,7 +11,14 @@
  * covered that city with a blog post but no location copy.
  */
 
+import { isPublished } from './publishing';
+
 export interface CityGuideSection {
+  /**
+   * Scheduled publish date, YYYY-MM-DD (Pacific), for a section added to an
+   * existing page later — it stays off the page until then. See publishing.ts.
+   */
+  publishOn?: string;
   heading?: string;
   /** Paragraphs, separated by a blank line. */
   body?: string;
@@ -24,6 +31,19 @@ export const cityGuides: Record<string, CityGuideSection[]> = {
   'anaheim': [
     {
       body: 'Anaheim\'s residential market spans a wide range of properties, from older ranch-style homes near the Disneyland corridor to hillside estates in Anaheim Hills and newer developments in the Platinum Triangle. That diversity means sellers in Anaheim face very different circumstances depending on what they own and where it sits in the city. For homeowners who need to sell without the time, cost, or uncertainty of a traditional listing, a direct cash sale provides a clear path forward on a timeline you control.\n\nFather & Son Home Buyers serves Anaheim and all of Orange County as a family-owned cash home buying company. As a father and son team with decades of hands-on real estate and construction experience, we purchase homes directly from homeowners in as-is condition. There are no commissions, no agent fees, and no seller-side costs of any kind. Our construction background means we can accurately assess what an Anaheim property needs rather than relying on rough estimates, and that accuracy is reflected in the fairness of every offer we make. See [how our process works](/how-it-works) for a full breakdown of each step.',
+    },
+    {
+      publishOn: '2026-10-03',
+      heading: 'What We Offer Homeowners in Anaheim',
+      body: 'Homeowners in Anaheim who need to sell quickly have a direct option: Father & Son Home Buyers purchases homes in Anaheim for cash, as-is, with flexible closing timelines and no fees to the seller. Whether your home needs work or you simply want to skip the traditional listing process, we\'re here to make it simple.\n\nWhen you work with Father & Son Home Buyers, you\'re working with a local, family-owned team that has direct experience buying and renovating homes in Orange County. We\'re not a national platform or an algorithm — we evaluate every property ourselves.\n\nHere\'s what sellers in Anaheim get when they work with us:',
+      bullets: [
+        { text: 'Cash offer for your Anaheim home — no financing delays, no deal uncertainty' },
+        { text: 'Buy in as-is condition — no repairs, cleaning, or updates required' },
+        { text: 'Close in as little as 14 days, or on the timeline that works for you' },
+        { text: 'No agent commissions and no fees of any kind for the seller' },
+        { text: 'You can leave behind items or belongings you don\'t want to move' },
+        { text: 'Transparent process from first call to closing — no surprises' },
+      ],
     },
     {
       heading: 'How We Buy Homes in Anaheim',
@@ -56,6 +76,19 @@ export const cityGuides: Record<string, CityGuideSection[]> = {
   'santa-ana': [
     {
       body: 'Santa Ana is one of Orange County\'s most densely populated cities, with a residential market that includes a rich mix of older single-family homes, multi-family properties, and investment units spread across established neighborhoods. For homeowners whose properties are in good condition and ready for the market, a traditional listing can yield strong results. For those dealing with code violations, deferred maintenance, liens, or time-sensitive circumstances, the traditional path often creates more problems than it solves. A direct cash sale offers a faster, simpler alternative.\n\nAt Father & Son Home Buyers, we are a father and son team who buy homes directly from Santa Ana homeowners, covering all of Orange County from our local base. With decades of combined experience across both real estate transactions and hands-on construction, we purchase residential properties in as-is condition and never charge commissions, agent fees, or closing costs to the seller. Santa Ana\'s older housing stock and diverse ownership situations require a buyer who understands what real renovation costs look like, and our construction background gives us that perspective on every property we evaluate. [Our step-by-step process page](/how-it-works) explains exactly what to expect.',
+    },
+    {
+      publishOn: '2026-10-03',
+      heading: 'What We Offer Homeowners in Santa Ana',
+      body: 'If you\'re looking to sell your home in Santa Ana without the hassle of repairs, showings, or agent commissions, Father & Son Home Buyers offers a straightforward alternative. We buy homes directly from homeowners in Santa Ana for cash, in as-is condition, on a timeline that works for you.\n\nWhen you work with Father & Son Home Buyers, you\'re working with a local, family-owned team that has direct experience buying and renovating homes in Orange County. We\'re not a national platform or an algorithm — we evaluate every property ourselves.\n\nHere\'s what sellers in Santa Ana get when they work with us:',
+      bullets: [
+        { text: 'Cash offer for your Santa Ana home — no financing delays, no deal uncertainty' },
+        { text: 'Buy in as-is condition — no repairs, cleaning, or updates required' },
+        { text: 'Close in as little as 14 days, or on the timeline that works for you' },
+        { text: 'No agent commissions and no fees of any kind for the seller' },
+        { text: 'You can leave behind items or belongings you don\'t want to move' },
+        { text: 'Transparent process from first call to closing — no surprises' },
+      ],
     },
     {
       heading: 'How We Buy Homes in Santa Ana',
@@ -152,6 +185,19 @@ export const cityGuides: Record<string, CityGuideSection[]> = {
   'garden-grove': [
     {
       body: 'Garden Grove is one of the larger cities in Orange County, with a significant concentration of homes built from the 1950s through the 1970s. Many of these properties have character and solid underlying value, but they also carry decades of deferred maintenance that not every seller is positioned to address before listing. For homeowners who need to sell without the time, money, or energy to prepare an older home for the traditional market, a direct cash sale removes the preparation burden entirely.\n\nFather & Son Home Buyers is a local, family-run cash buying company that serves Garden Grove and all of Orange County. We are a real father and son team, not a franchise or a corporate brand, and we bring decades of direct experience in construction and real estate to every home we evaluate. We buy residential properties directly from homeowners in any condition, and the seller is never responsible for commissions, agent fees, or closing costs. Garden Grove\'s older housing stock is exactly the kind of property our construction background was built to evaluate. We know what a 1960s-era home actually needs, what that work costs, and how to build a fair offer around those realities. [Our process page](/how-it-works) walks you through each step from first contact to closing day.',
+    },
+    {
+      publishOn: '2026-10-27',
+      heading: 'What We Offer Homeowners in Garden Grove',
+      body: 'Father & Son Home Buyers purchases homes in Garden Grove directly from sellers — no listings, no agents, no repairs. If you\'re looking for a fast, certain home sale in Garden Grove with no out-of-pocket costs, we offer a straightforward path from first conversation to cash at closing.\n\nWhen you work with Father & Son Home Buyers, you\'re working with a local, family-owned team that has direct experience buying and renovating homes in Orange County. We\'re not a national platform or an algorithm — we evaluate every property ourselves.\n\nHere\'s what sellers in Garden Grove get when they work with us:',
+      bullets: [
+        { text: 'Cash offer for your Garden Grove home — no financing delays, no deal uncertainty' },
+        { text: 'Buy in as-is condition — no repairs, cleaning, or updates required' },
+        { text: 'Close in as little as 14 days, or on the timeline that works for you' },
+        { text: 'No agent commissions and no fees of any kind for the seller' },
+        { text: 'You can leave behind items or belongings you don\'t want to move' },
+        { text: 'Transparent process from first call to closing — no surprises' },
+      ],
     },
     {
       heading: 'How We Buy Homes in Garden Grove',
@@ -280,6 +326,19 @@ export const cityGuides: Record<string, CityGuideSection[]> = {
   'mission-viejo': [
     {
       body: 'Mission Viejo was built as one of South Orange County\'s original master-planned communities, and that history shapes almost every sale here. Whole neighborhoods went up within a few years of each other, which means a large share of the housing stock reached the same age at the same time — roofs, plumbing, electrical panels, and kitchens all coming due together. Homes that have been meticulously maintained do very well on the open market. Homes that have not can be a difficult, expensive listing to prepare, and that is where a direct cash sale makes more sense.\n\nFather & Son Home Buyers is a family-owned cash home buyer serving Mission Viejo and all of Orange County. We are a father and son team, and our construction background means we can look at a 1970s Mission Viejo tract home and price what it actually needs rather than guessing high to protect ourselves. We buy in as-is condition, charge no commissions or fees, and cover closing costs. See [how our process works](/how-it-works) for a full breakdown of each step.',
+    },
+    {
+      publishOn: '2026-10-03',
+      heading: 'What We Offer Homeowners in Mission Viejo',
+      body: 'Selling a home in Mission Viejo doesn\'t have to mean hiring an agent, making repairs, and waiting months for the right offer. Father & Son Home Buyers buys homes in Mission Viejo directly, for cash, in their current condition — no commissions, no fees, no repairs required.\n\nWhen you work with Father & Son Home Buyers, you\'re working with a local, family-owned team that has direct experience buying and renovating homes in Orange County. We\'re not a national platform or an algorithm — we evaluate every property ourselves.\n\nHere\'s what sellers in Mission Viejo get when they work with us:',
+      bullets: [
+        { text: 'Cash offer for your Mission Viejo home — no financing delays, no deal uncertainty' },
+        { text: 'Buy in as-is condition — no repairs, cleaning, or updates required' },
+        { text: 'Close in as little as 14 days, or on the timeline that works for you' },
+        { text: 'No agent commissions and no fees of any kind for the seller' },
+        { text: 'You can leave behind items or belongings you don\'t want to move' },
+        { text: 'Transparent process from first call to closing — no surprises' },
+      ],
     },
     {
       heading: 'How We Buy Homes in Mission Viejo',
@@ -575,8 +634,50 @@ export const cityGuides: Record<string, CityGuideSection[]> = {
       body: 'We work with homeowners across Los Angeles County and surrounding communities, including Pomona.\n\nWhether your home is in need of major work or simply isn\'t the right fit for a traditional listing, we can evaluate it and give you a straight answer about what it\'s worth to us — and what the process would look like.\n\nReady to get a no-obligation cash offer for your Pomona home? Call us or [fill out our online form](/contact) and we\'ll get back to you promptly.',
     },
   ],
+  'san-bernardino': [
+    {
+      publishOn: '2026-11-24',
+      body: 'Father & Son Home Buyers purchases homes in San Bernardino directly from sellers — for cash, in as-is condition, with no agent fees and no repairs required. Whether you\'re dealing with a distressed property, an inherited home, or simply want to sell quickly without the traditional listing process, we\'re here to help.',
+    },
+    {
+      publishOn: '2026-11-24',
+      heading: 'What We Offer Homeowners in San Bernardino',
+      body: 'When you work with Father & Son Home Buyers, you\'re working with a local, family-owned team that has direct experience buying and renovating homes in San Bernardino County. We\'re not a national platform or an algorithm — we evaluate every property ourselves.\n\nHere\'s what sellers in San Bernardino get when they work with us:',
+      bullets: [
+        { text: 'Cash offer for your San Bernardino home — no financing delays, no deal uncertainty' },
+        { text: 'Buy in as-is condition — no repairs, cleaning, or updates required' },
+        { text: 'Close in as little as 14 days, or on the timeline that works for you' },
+        { text: 'No agent commissions and no fees of any kind for the seller' },
+        { text: 'You can leave behind items or belongings you don\'t want to move' },
+        { text: 'Transparent process from first call to closing — no surprises' },
+        { text: 'Distressed properties, inherited homes, and as-is purchases across San Bernardino' },
+      ],
+    },
+    {
+      publishOn: '2026-11-24',
+      heading: 'Who We Work With in San Bernardino',
+      body: 'We buy homes from homeowners in a wide range of situations in the San Bernardino area:',
+      bullets: [
+        { text: 'Sellers who need to move quickly and don\'t have time for a traditional listing' },
+        { text: 'Homeowners with properties that need significant repairs or updates' },
+        { text: 'Families who have inherited a property and want a simple resolution' },
+        { text: 'People dealing with financial pressure, relocation, or other time-sensitive circumstances' },
+        { text: 'Sellers who simply prefer a direct, off-market transaction over the traditional process' },
+      ],
+    },
+    {
+      publishOn: '2026-11-24',
+      heading: 'How the Process Works',
+      body: 'Reach out and tell us about your property. We\'ll review the details, schedule a visit if needed, and put together a fair cash offer — typically within 24 hours. There\'s no obligation to accept, and we\'ll walk you through every number so nothing is unclear.\n\nIf you decide to move forward, we handle the paperwork and set a closing date that works for you. At closing, you receive your funds directly. No agents, no middlemen, no unexpected deductions.',
+    },
+    {
+      publishOn: '2026-11-24',
+      heading: 'Serving Homeowners Throughout San Bernardino and San Bernardino County',
+      body: 'We work with homeowners across San Bernardino County and surrounding communities, including San Bernardino.\n\nWhether your home is in need of major work or simply isn\'t the right fit for a traditional listing, we can evaluate it and give you a straight answer about what it\'s worth to us — and what the process would look like.\n\nReady to get a no-obligation cash offer for your San Bernardino home? Call us or [fill out our online form](/contact) and we\'ll get back to you promptly.',
+    },
+  ],
 };
 
 export function getCityGuide(slug: string): CityGuideSection[] | undefined {
-  return cityGuides[slug];
+  return cityGuides[slug]?.filter(isPublished);
 }

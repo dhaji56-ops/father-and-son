@@ -107,13 +107,35 @@ export const routes = [
  * publish check (scripts/publish-due.mjs).
  */
 export function scheduledEntries() {
+  const seen = new Set();
   return [
     ...extractEntries('lib/cities.ts').map((e) => ({ ...e, path: `/locations/${e.slug}` })),
     ...extractEntries('lib/blog-posts.ts').map((e) => ({ ...e, path: `/blog/${e.slug}` })),
+    ...guideSectionDates(),
   ]
     .filter((e) => e.publishOn)
     .map(({ path, publishOn }) => ({ path, publishOn }))
+    .filter((e) => {
+      // A guide's sections often share one date — one entry per page per day.
+      const key = `${e.path} ${e.publishOn}`;
+      return seen.has(key) ? false : seen.add(key);
+    })
     .sort((a, b) => a.publishOn.localeCompare(b.publishOn));
+}
+
+/**
+ * Sections added to an existing city page later (city-guides.ts). The page
+ * itself is already live, but it still needs a rebuild on that day.
+ */
+function guideSectionDates() {
+  const contents = readFileSync(join(SRC, 'lib/city-guides.ts'), 'utf-8');
+  const keys = [...contents.matchAll(/^ {2}'([a-z-]+)': \[/gm)];
+  const out = [];
+  for (const m of contents.matchAll(/publishOn:\s*'(\d{4}-\d{2}-\d{2})'/g)) {
+    const owner = keys.filter((k) => k.index < m.index).pop();
+    if (owner) out.push({ path: `/locations/${owner[1]}`, publishOn: m[1] });
+  }
+  return out;
 }
 
 /** Just the paths, in prerender order. */

@@ -1,0 +1,4 @@
+# Scheduled publishes. One unindented date per publish, then what went live.
+# Appended by .github/workflows/scheduled-publish.yml; read by scripts/publish-due.mjs.
+2026-10-03
+  (manual) Q4 content through today, incl. catch-up of 2026-10-01
