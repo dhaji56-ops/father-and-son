@@ -4,3 +4,5 @@
   (manual) Q4 content through today, incl. catch-up of 2026-10-01
 2026-10-05
   (manual redeploy)
+2026-10-06
+  /locations/westminster
