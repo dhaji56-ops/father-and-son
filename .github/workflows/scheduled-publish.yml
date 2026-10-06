@@ -1,0 +1,76 @@
+# Publishes scheduled content on its date.
+#
+# Blog posts, city pages, and city-page sections can carry
+# `publishOn: 'YYYY-MM-DD'`; the build leaves out anything dated in the future
+# (scripts/build-date.mjs). This job runs just after midnight Pacific, asks
+# scripts/publish-due.mjs whether anything goes live today, and if so commits a
+# line to .github/publish-log.txt and pushes it. Vercel deploys every push to
+# main, and that deploy is the build that includes today's content.
+#
+# No secrets or deploy hooks needed. Quiet days don't commit or redeploy. The
+# daily commits also keep the repo active, so GitHub never auto-disables this
+# schedule for inactivity.
+
+name: Scheduled publish
+
+on:
+  schedule:
+    # 08:10 UTC = 1:10am PDT / 12:10am PST — always the same Pacific day as the
+    # publish date, and off the top of the hour when GitHub's queue is busiest.
+    - cron: '10 8 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Redeploy even if nothing is due today
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scheduled-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Check what goes live today
+        id: due
+        run: |
+          due="$(node scripts/publish-due.mjs)"
+          if [ -n "$due" ]; then echo "Going live today:"; echo "$due"; else echo "Nothing scheduled today."; fi
+          echo "count=$(printf '%s' "$due" | grep -c . || true)" >> "$GITHUB_OUTPUT"
+          {
+            echo 'paths<<EOF'
+            echo "$due"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Publish (commit + push, which Vercel deploys)
+        if: steps.due.outputs.count != '0' || inputs.force
+        env:
+          DUE: ${{ steps.due.outputs.paths }}
+        run: |
+          today="$(node --input-type=module -e "import { BUILD_DATE } from './scripts/build-date.mjs'; console.log(BUILD_DATE)")"
+          {
+            echo "$today"
+            if [ -n "$DUE" ]; then printf '%s\n' "$DUE" | sed 's/^/  /'; else echo "  (manual redeploy)"; fi
+          } >> .github/publish-log.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/publish-log.txt
+          git commit -m "Scheduled publish: $today"
+          for attempt in 1 2 3; do
+            git pull --rebase --quiet origin main && git push origin HEAD:main && exit 0
+            sleep 10
+          done
+          echo "::error::Could not push the publish commit — today's content is not live."
+          exit 1
