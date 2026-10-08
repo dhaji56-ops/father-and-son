@@ -6,3 +6,5 @@
   (manual redeploy)
 2026-10-06
   /locations/westminster
+2026-10-08
+  /blog/how-we-determine-our-offer-price
