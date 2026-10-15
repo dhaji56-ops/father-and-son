@@ -10,3 +10,5 @@
   /blog/how-we-determine-our-offer-price
 2026-10-13
   /locations/rialto
+2026-10-15
+  /blog/relocating-from-orange-county-sell-fast
