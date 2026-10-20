@@ -12,3 +12,5 @@
   /locations/rialto
 2026-10-15
   /blog/relocating-from-orange-county-sell-fast
+2026-10-20
+  /locations/fontana
