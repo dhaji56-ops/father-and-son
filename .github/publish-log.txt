@@ -16,3 +16,5 @@
   /locations/fontana
 2026-10-22
   /blog/selling-distressed-home-inland-empire
+2026-10-27
+  /locations/garden-grove
