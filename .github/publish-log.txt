@@ -20,3 +20,5 @@
   /locations/garden-grove
 2026-11-03
   /blog/why-orange-county-homeowners-choose-off-market
+2026-11-10
+  /locations/pomona
