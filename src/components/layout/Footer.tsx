@@ -239,18 +239,34 @@ export function Footer() {
                 </Link>
               </div>
             </div>
-            <div className="lg:col-span-3 rounded-lg overflow-hidden border border-cream/10 bg-cream/5">
-              <iframe
-                title="Father & Son Home Buyers on Google Maps"
-                src={GOOGLE_REVIEWS.embedUrl}
-                width="100%"
-                height="220"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-                className="block w-full"
-              />
-            </div>
+            <a
+              href={GOOGLE_REVIEWS.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lg:col-span-3 block rounded-lg border border-cream/10 bg-cream/5 p-6 md:p-8 hover:bg-cream/10 transition-warm"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+                <div className="flex-1">
+                  <div className="text-xs font-medium tracking-warm text-cream/50 mb-2">
+                    Google Business Profile
+                  </div>
+                  <div className="font-serif text-xl text-cream mb-1">Father &amp; Son Home Buyers</div>
+                  <div className="text-sm text-cream/70">
+                    Cash home buyer · Orange County, Los Angeles County &amp; the Inland Empire
+                  </div>
+                  <div className="text-sm text-cream/70 mt-1">(949) 541-2003 · Open daily</div>
+                </div>
+                <div className="text-center sm:text-right">
+                  <div className="font-serif text-4xl text-cream leading-none">
+                    {GOOGLE_REVIEWS.ratingValue.toFixed(1)}
+                  </div>
+                  <div className="text-terracotta text-lg leading-none mt-1" aria-hidden="true">★★★★★</div>
+                  <div className="text-xs text-cream/60 mt-2">
+                    {GOOGLE_REVIEWS.reviewCount} Google reviews
+                  </div>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
 
