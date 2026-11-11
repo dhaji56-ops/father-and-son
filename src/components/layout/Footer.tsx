@@ -254,7 +254,7 @@ export function Footer() {
                   <div className="text-sm text-cream/70">
                     Cash home buyer · Orange County, Los Angeles County &amp; the Inland Empire
                   </div>
-                  <div className="text-sm text-cream/70 mt-1">(949) 541-2003 · Open daily</div>
+                  <div className="text-sm text-cream/70 mt-1">(949) 541-2003 · Mon–Sat</div>
                 </div>
                 <div className="text-center sm:text-right">
                   <div className="font-serif text-4xl text-cream leading-none">
