@@ -117,7 +117,7 @@ export function HowItWorksPage() {
               <div className="h-px w-8 bg-espresso/20" />
             </div>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight text-espresso mb-6">
-              How to Sell Your House for Cash: Our 5-Step Process
+              How to Sell Your House for Cash
             </h1>
             <p className="text-lg text-driftwood max-w-2xl mx-auto">
               Selling your house for cash should be simple. Here's our straightforward process — no surprises, no hidden steps, no agent commissions.

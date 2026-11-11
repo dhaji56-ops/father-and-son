@@ -66,6 +66,7 @@ const staticRoutes = [
   { path: '/about-us', changefreq: 'monthly', priority: '0.7' },
   { path: '/service-areas', changefreq: 'monthly', priority: '0.9' },
   { path: '/faq', changefreq: 'monthly', priority: '0.8' },
+  { path: '/reviews', changefreq: 'monthly', priority: '0.8' },
   { path: '/contact', changefreq: 'monthly', priority: '0.9' },
   { path: '/cash-advance', changefreq: 'monthly', priority: '0.7' },
   { path: '/instant-offer', changefreq: 'monthly', priority: '0.9' },

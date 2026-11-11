@@ -64,7 +64,7 @@ export const situations: Situation[] = [
     slug: 'foreclosure',
     name: 'Foreclosure',
     cardBlurb: 'Behind on payments or facing a Notice of Default — sell before the auction and protect your equity.',
-    h1: 'Facing Foreclosure? Sell Your House Before the Auction',
+    h1: 'Sell Your House to Stop Foreclosure',
     eyebrow: 'Stop Foreclosure',
     metaTitle: 'Sell Your House Fast to Stop Foreclosure | Father & Son',
     metaDescription:
@@ -122,7 +122,7 @@ export const situations: Situation[] = [
     slug: 'inherited-probate',
     name: 'Inherited & Probate',
     cardBlurb: 'Inherited a house or settling an estate — sell as-is, buy out co-heirs, and skip months of repairs.',
-    h1: 'Sell an Inherited or Probate House Without the Headache',
+    h1: 'Sell an Inherited or Probate House',
     eyebrow: 'Inherited Property',
     metaTitle: 'Sell an Inherited or Probate House for Cash | Father & Son',
     metaDescription:
@@ -180,7 +180,7 @@ export const situations: Situation[] = [
     slug: 'divorce',
     name: 'Divorce',
     cardBlurb: 'Dividing the house in a divorce — get one fair number, a fast neutral sale, and a clean split.',
-    h1: 'Selling the House in a Divorce — Fast, Fair, and Neutral',
+    h1: 'Sell Your House During a Divorce',
     eyebrow: 'Divorce',
     metaTitle: 'Sell Your House Fast During a Divorce | Father & Son',
     metaDescription:
@@ -238,7 +238,7 @@ export const situations: Situation[] = [
     slug: 'as-is-repairs',
     name: 'As-Is / Major Repairs',
     cardBlurb: 'A home that needs a new roof, foundation, or full renovation — sell it as-is and skip every repair.',
-    h1: 'Sell Your House As-Is — No Repairs, No Renovations',
+    h1: 'Sell Your House As-Is',
     eyebrow: 'As-Is Sale',
     metaTitle: 'Sell Your House As-Is for Cash | Father & Son',
     metaDescription:
@@ -354,7 +354,7 @@ export const situations: Situation[] = [
     slug: 'tired-landlord',
     name: 'Tired Landlord',
     cardBlurb: 'Done being a landlord — sell with tenants in place, skip the turnover, and walk away for good.',
-    h1: 'Tired of Being a Landlord? Sell Your Rental As-Is',
+    h1: 'Sell Your Rental Property As-Is',
     eyebrow: 'Tired Landlord',
     metaTitle: 'Sell Your Rental Property Fast for Cash | Father & Son',
     metaDescription:
@@ -411,7 +411,7 @@ export const situations: Situation[] = [
     slug: 'relocation',
     name: 'Relocation',
     cardBlurb: 'Moving for a job or family on a deadline — sell fast for cash and close on the date you need.',
-    h1: 'Relocating? Sell Your House Fast on Your Timeline',
+    h1: 'Sell Your House Fast When Relocating',
     eyebrow: 'Relocation',
     metaTitle: 'Sell Your House Fast When Relocating | Father & Son',
     metaDescription:

@@ -74,6 +74,10 @@ export const GOOGLE_REVIEWS = {
   ratingValue: 5,
   reviewCount: 2,
   profileUrl: 'https://share.google/mYFjndAgX62vZejGs',
+  /** The listing on Google Maps (by CID, which is stable). */
+  mapsUrl: 'https://www.google.com/maps?cid=7303468535620346378',
+  /** Same listing, embeddable. Load lazily — it ships on every page's footer. */
+  embedUrl: 'https://maps.google.com/maps?cid=7303468535620346378&output=embed',
 };
 
 /**

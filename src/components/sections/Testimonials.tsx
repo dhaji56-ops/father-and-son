@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Container } from '../layout/Container';
 import { TESTIMONIALS, GOOGLE_REVIEWS } from '../../lib/reviews';
 
@@ -76,6 +77,11 @@ export function Testimonials() {
               </figcaption>
             </figure>
           ))}
+        </div>
+        <div className="text-center mt-10">
+          <Link to="/reviews" className="text-sm font-medium text-terracotta hover:underline">
+            Read all seller reviews &rarr;
+          </Link>
         </div>
       </Container>
     </section>

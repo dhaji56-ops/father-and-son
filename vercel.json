@@ -2,6 +2,14 @@
   "buildCommand": "npm run build:prerender",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.fathersonhomes.com" }],
+      "destination": "https://fathersonhomes.com/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/((?!assets|favicon|logo|icon|apple-touch|sitemap|robots|og-image).*)", "destination": "/index.html" }
   ],

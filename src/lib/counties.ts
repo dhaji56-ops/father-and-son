@@ -71,7 +71,7 @@ export const countyHubs: CountyHub[] = [
     countySlugs: ['los-angeles-county'],
     metaTitle: 'We Buy Houses in Los Angeles County, CA | Father & Son',
     metaDescription:
-      'Sell your Los Angeles County house fast for cash. Any condition, any situation. Father & Son Home Buyers makes fair cash offers within 24 hours across LA County.',
+      'Sell your Los Angeles County house fast for cash. Any condition, any situation. Fair cash offer within 24 hours from Father & Son Home Buyers.',
     intro:
       "Father & Son Home Buyers buys houses for cash across Los Angeles County — the South Bay, the Gateway Cities, and the communities in between. Fair offer within 24 hours, no repairs, no commissions, and a closing date you choose.",
     body: [
@@ -99,7 +99,7 @@ export const countyHubs: CountyHub[] = [
     countySlugs: ['riverside-county', 'san-bernardino-county'],
     metaTitle: 'We Buy Houses in the Inland Empire, CA | Father & Son',
     metaDescription:
-      'Sell your Inland Empire house fast for cash across Riverside and San Bernardino counties. No repairs, no fees. Fair cash offer within 24 hours from Father & Son.',
+      'Sell your Inland Empire house fast for cash — Riverside and San Bernardino counties. No repairs, no fees. Fair cash offer within 24 hours.',
     intro:
       "Father & Son Home Buyers buys houses for cash throughout the Inland Empire — both Riverside and San Bernardino counties. From aging homes in San Bernardino to newer builds in Eastvale, Corona, and Temecula, we make fair offers with closings that fit your timeline.",
     body: [

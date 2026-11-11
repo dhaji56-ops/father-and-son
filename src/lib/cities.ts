@@ -384,3 +384,18 @@ export function getNearbyCities(currentSlug: string): CityData[] {
 
   return [...sameCounty, ...crossCounty].slice(0, MAX);
 }
+
+/**
+ * A meta description unique to this city, built from its own data so no two
+ * location pages describe themselves identically. Kept under 155 characters.
+ */
+export function cityMetaDescription(city: CityData): string {
+  const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
+  const [a, b] = city.neighborhoods;
+  const lead = `We buy houses in ${city.name}, CA for cash — as-is, no fees, offer in 24 hours.`;
+  const hook = ` ${city.situations[0]}? We can help, from ${a} to ${b}.`;
+  const full = lead + hook;
+  if (full.length <= 155) return full;
+  const short = lead + ` We help with ${lower(city.situations[0])}.`;
+  return short.length <= 155 ? short : lead;
+}

@@ -13,3 +13,4 @@ export { BlogPage } from './BlogPage';
 export { BlogPostPage } from './BlogPostPage';
 export { PrivacyPolicyPage } from './PrivacyPolicyPage';
 export { TermsOfServicePage } from './TermsOfServicePage';
+export { ReviewsPage } from './ReviewsPage';

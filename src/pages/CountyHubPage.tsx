@@ -6,6 +6,7 @@ import {
   usePageSchema,
   countyBreadcrumbSchema,
   countyLocalBusinessSchema,
+  faqPageSchema,
 } from '../lib/schema';
 import { getHubBySlug, getHubCities } from '../lib/counties';
 
@@ -18,6 +19,41 @@ export function CountyHubPage() {
   // it stays in sync with cities.ts (the Inland Empire hub covers two).
   const countyNames = hub
     ? [...new Set(hubCities.map((c) => c.county))]
+    : [];
+
+  // Region-level FAQ built from this hub's own data, so the three hubs don't
+  // ship identical boilerplate — and so each carries FAQPage schema.
+  const cityList = hubCities.map((c) => c.name);
+  const hubFaqs = hub
+    ? [
+        {
+          question: `How fast can you buy my house in ${hub.proseName}?`,
+          answer: `We present a fair cash offer within 24 hours of hearing about your home and can close in as little as 14 days — or on whatever date works for you. We buy with our own funds, so there is no lender, appraisal, or financing contingency to wait on.`,
+        },
+        {
+          question: `Which cities in ${hub.proseName} do you buy houses in?`,
+          answer: `We have dedicated local pages for ${cityList.slice(0, -1).join(', ')} and ${cityList[cityList.length - 1]}, and we buy throughout ${hub.proseName}. If your city isn't listed, reach out — we very likely still buy there.`,
+        },
+        {
+          question: `Do you buy houses in any condition in ${hub.proseName}?`,
+          answer: `Yes. We buy ${hub.proseName} homes exactly as they sit — outdated, damaged, mid-renovation, or full of belongings. You never make repairs, clean out the property, or stage anything.`,
+        },
+        {
+          question: `What situations do you help ${hub.proseName} homeowners with?`,
+          answer: `The most common reasons sellers here call us are ${hub.situations
+            .slice(0, 3)
+            .map((x) => x.charAt(0).toLowerCase() + x.slice(1))
+            .join(', ')}, and similar time-sensitive situations. We handle each one without judgment.`,
+        },
+        {
+          question: `Are there any fees or commissions when I sell in ${hub.proseName}?`,
+          answer: `None. No agent commissions, no closing costs, and no hidden charges. The number on our offer is the number you receive at closing.`,
+        },
+        {
+          question: `Can I get a cash advance before closing in ${hub.proseName}?`,
+          answer: `Often, yes. Once we're under contract, eligible sellers can receive a cash advance for moving costs, deposits, or urgent bills before the sale is final. Every term is put in writing first.`,
+        },
+      ]
     : [];
 
   useSEO({
@@ -35,6 +71,7 @@ export function CountyHubPage() {
       ? [
           countyBreadcrumbSchema({ ...hub, countyNames }),
           countyLocalBusinessSchema({ ...hub, countyNames }),
+          faqPageSchema(hubFaqs),
         ]
       : []
   );
@@ -248,6 +285,38 @@ export function CountyHubPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Regional FAQ */}
+      <section className="py-16 md:py-20">
+        <Container size="narrow">
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl font-medium text-espresso mb-4">
+              Selling a House in {hub.name}: Common Questions
+            </h2>
+            <p className="text-driftwood">
+              Straight answers for homeowners across {hub.proseName}.
+            </p>
+          </div>
+          <div className="space-y-6">
+            {hubFaqs.map((faq) => (
+              <div key={faq.question} className="card-warm p-6">
+                <h3 className="font-serif text-lg font-medium text-espresso mb-2">
+                  {faq.question}
+                </h3>
+                <p className="text-driftwood leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link
+              to="/faq"
+              className="btn-secondary px-6 py-3 rounded-md text-sm font-medium inline-flex items-center justify-center gap-2"
+            >
+              View All FAQs
+            </Link>
           </div>
         </Container>
       </section>

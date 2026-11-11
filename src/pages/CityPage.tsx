@@ -9,7 +9,7 @@ import {
   cityLocalBusinessSchema,
   faqPageSchema,
 } from '../lib/schema';
-import { getCityBySlug, getNearbyCities } from '../lib/cities';
+import { getCityBySlug, getNearbyCities, cityMetaDescription } from '../lib/cities';
 import { getCityGuide } from '../lib/city-guides';
 import { getHubForCity } from '../lib/counties';
 import { getSituationsForCity } from '../lib/situations';
@@ -58,9 +58,7 @@ export function CityPage() {
     title: city
       ? `Sell My House Fast in ${city.name}, CA | Father & Son`
       : 'City Not Found | Father & Son',
-    description: city
-      ? `Get a fair cash offer for your ${city.name} home in 24 hours. No repairs, no fees, no agents. Father & Son Home Buyers serves ${city.county}.`
-      : 'Page not found.',
+    description: city ? cityMetaDescription(city) : 'Page not found.',
     canonical: city ? `https://fathersonhomes.com/locations/${city.slug}` : undefined,
   });
 

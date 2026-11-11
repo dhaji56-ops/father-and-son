@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Container } from './Container';
 import { countyHubs } from '../../lib/counties';
 import { situations } from '../../lib/situations';
+import { GOOGLE_REVIEWS } from '../../lib/reviews';
 
 const quickLinks = [
   { to: '/how-it-works', label: 'How It Works' },
@@ -9,6 +10,7 @@ const quickLinks = [
   { to: '/about-us', label: 'About Us' },
   { to: '/blog', label: 'Blog' },
   { to: '/faq', label: 'FAQ' },
+  { to: '/reviews', label: 'Reviews' },
   { to: '/contact', label: 'Contact' },
 ];
 
@@ -201,6 +203,53 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Google Business Profile — the listing itself, on every page */}
+        <div className="pb-14 border-t border-cream/10 pt-10">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+            <div className="lg:col-span-2">
+              <h3 className="text-sm font-medium tracking-warm text-cream/50 mb-3">
+                Find Us on Google
+              </h3>
+              <p className="font-serif text-2xl text-cream mb-2">
+                {GOOGLE_REVIEWS.ratingValue.toFixed(1)} stars on Google
+              </p>
+              <p className="text-sm text-cream/70 leading-relaxed mb-5">
+                Father &amp; Son Home Buyers is a verified local business on Google.
+                Read what Southern California sellers say about working with us — or
+                leave a review if we've helped you.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href={GOOGLE_REVIEWS.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-terracotta px-5 py-2.5 rounded-md text-sm font-medium inline-flex items-center gap-2"
+                >
+                  Review us on Google
+                </a>
+                <Link
+                  to="/reviews"
+                  className="text-sm text-cream/80 hover:text-terracotta transition-warm inline-flex items-center px-2 py-2.5"
+                >
+                  Read seller reviews &rarr;
+                </Link>
+              </div>
+            </div>
+            <div className="lg:col-span-3 rounded-lg overflow-hidden border border-cream/10 bg-cream/5">
+              <iframe
+                title="Father & Son Home Buyers on Google Maps"
+                src={GOOGLE_REVIEWS.embedUrl}
+                width="100%"
+                height="220"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                className="block w-full"
+              />
             </div>
           </div>
         </div>

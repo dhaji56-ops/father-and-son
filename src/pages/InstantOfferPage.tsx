@@ -66,7 +66,7 @@ export function InstantOfferPage() {
   useSEO({
     title: "What's My House Worth in Cash? | Father & Son Home Buyers",
     description:
-      'Tell us about your Southern California house in 60 seconds and get a real cash offer within 24 hours from Father & Son Home Buyers. No fees, no obligation.',
+      'Tell us about your Southern California house in 60 seconds and get a real cash offer within 24 hours. No fees, no obligation — from Father & Son.',
     canonical: 'https://fathersonhomes.com/instant-offer',
   });
 
